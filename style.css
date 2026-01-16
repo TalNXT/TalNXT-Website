@@ -686,3 +686,438 @@
       height: 32px;
     }
   }
+  
+  /* PERMANENT HIRING PAGE */
+  .permanent-hero {
+    position: relative;
+    overflow: hidden;
+  }
+  .process-card {
+    padding: 1.5rem;
+    background: #ffffff;
+    border-radius: 0.75rem;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+    transition: all 0.3s ease;
+  }
+  .process-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(28, 77, 163, 0.12);
+  }
+  .process-number {
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #f0f7ff 0%, #e6f2ff 100%);
+    border: 2px solid var(--primary);
+    border-radius: 50%;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary);
+    line-height: 44px;
+    text-align: center;
+  }
+  .process-icon {
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+  .feature-list {
+    margin-top: 1rem;
+  }
+  .feature-check {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    background: rgba(28, 77, 163, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .success-card {
+    padding: 2rem 1.5rem;
+    background: #ffffff;
+    border-radius: 0.75rem;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+    transition: all 0.3s ease;
+  }
+  .success-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(28, 77, 163, 0.12);
+  }
+  .success-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    background: rgba(28, 77, 163, 0.1);
+    border-radius: 50%;
+    margin: 0 auto;
+  }
+  .culture-features {
+    margin-top: 1rem;
+  }
+  .culture-item {
+    padding-left: 0.5rem;
+  }
+  .culture-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: var(--primary);
+    color: white;
+    border-radius: 50%;
+    font-size: 0.875rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  @media (max-width: 767.98px) {
+    .permanent-hero h1 {
+      font-size: 2rem !important;
+    }
+    .process-card {
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+    }
+    .process-number {
+      width: 40px;
+      height: 40px;
+      line-height: 36px;
+      font-size: 1rem;
+    }
+    .process-icon img {
+      height: 150px !important;
+    }
+    .success-card {
+      padding: 1.5rem 1.25rem;
+      margin-bottom: 1rem;
+    }
+    .success-icon {
+      width: 56px;
+      height: 56px;
+    }
+    .success-card h3 {
+      font-size: 2rem !important;
+    }
+  }
+  
+  /* RPO PAGE STYLES */
+  .rpo-hero {
+    position: relative;
+    overflow: hidden;
+  }
+  .rpo-card {
+    padding: 2rem 1.5rem;
+    background: #ffffff;
+    border-radius: 0.75rem;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+    transition: all 0.3s ease;
+    height: 100%;
+  }
+  .rpo-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(28, 77, 163, 0.12);
+  }
+  .rpo-card-image {
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+  .rpo-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .rpo-features li {
+    margin-bottom: 0.75rem;
+  }
+  .process-steps {
+    margin-top: 1rem;
+  }
+  .process-step {
+    padding-bottom: 1rem;
+  }
+  .step-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #f0f7ff 0%, #e6f2ff 100%);
+    border: 2px solid var(--primary);
+    border-radius: 50%;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary);
+    flex-shrink: 0;
+  }
+  .benefit-card {
+    padding: 2rem 1.5rem;
+    background: #ffffff;
+    border-radius: 0.75rem;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+    transition: all 0.3s ease;
+  }
+  .benefit-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(28, 77, 163, 0.12);
+  }
+  .benefit-image {
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+  .benefit-details {
+    margin-top: 1rem;
+  }
+  .case-study-highlight {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  .case-study-features {
+    margin-top: 1.5rem;
+  }
+  @media (max-width: 767.98px) {
+    .rpo-hero h1 {
+      font-size: 2rem !important;
+    }
+    .rpo-card {
+      padding: 1.5rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .rpo-card-image img {
+      height: 180px !important;
+    }
+    .process-step {
+      padding-bottom: 1.5rem;
+    }
+    .step-number {
+      width: 40px;
+      height: 40px;
+      font-size: 1rem;
+    }
+    .benefit-card {
+      padding: 1.5rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .benefit-image img {
+      height: 200px !important;
+    }
+  }
+  
+  /* LEADERSHIP HIRING PAGE STYLES */
+  .leadership-hero {
+    position: relative;
+    overflow: hidden;
+  }
+  .leadership-metric-card {
+    padding: 2rem 1.5rem;
+    background: #ffffff;
+    border-radius: 0.75rem;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+    transition: all 0.3s ease;
+    text-align: center;
+  }
+  .leadership-metric-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(28, 77, 163, 0.12);
+    border-color: var(--primary);
+  }
+  .metric-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, #f0f7ff 0%, #e6f2ff 100%);
+    border-radius: 50%;
+    margin: 0 auto;
+  }
+  .success-story-card {
+    padding: 1.5rem;
+    background: #ffffff;
+    border-radius: 0.75rem;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+    transition: all 0.3s ease;
+  }
+  .success-story-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(28, 77, 163, 0.12);
+  }
+  .story-image {
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+  .story-tag {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: linear-gradient(135deg, #f0f7ff 0%, #e6f2ff 100%);
+    color: var(--primary);
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .story-highlight {
+    padding-top: 1rem;
+    border-top: 1px solid #e5e7eb;
+  }
+  @media (max-width: 767.98px) {
+    .leadership-hero h1 {
+      font-size: 2rem !important;
+    }
+    .leadership-metric-card {
+      padding: 1.5rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .metric-icon {
+      width: 56px;
+      height: 56px;
+    }
+    .success-story-card {
+      margin-bottom: 1.5rem;
+    }
+    .story-image img {
+      height: 180px !important;
+    }
+  }
+  
+  /* CONTRACT HIRING PAGE STYLES */
+  .contract-hero {
+    position: relative;
+    overflow: hidden;
+  }
+  .kickoff-features {
+    margin-top: 1rem;
+  }
+  .kickoff-feature {
+    padding-bottom: 1rem;
+  }
+  .feature-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #f0f7ff 0%, #e6f2ff 100%);
+    border-radius: 0.5rem;
+    flex-shrink: 0;
+  }
+  .contract-service-card {
+    padding: 2rem 1.5rem;
+    background: #ffffff;
+    border-radius: 0.75rem;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+    transition: all 0.3s ease;
+    text-align: center;
+  }
+  .contract-service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(28, 77, 163, 0.12);
+    border-color: var(--primary);
+  }
+  .service-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, #f0f7ff 0%, #e6f2ff 100%);
+    border-radius: 50%;
+    margin: 0 auto;
+  }
+  .solution-card {
+    padding: 2rem 1.5rem;
+    background: #ffffff;
+    border-radius: 0.75rem;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+    transition: all 0.3s ease;
+  }
+  .solution-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(28, 77, 163, 0.12);
+  }
+  .solution-image {
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+  .solution-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .solution-features li {
+    margin-bottom: 0.75rem;
+  }
+  .conversion-benefits {
+    margin-top: 1.5rem;
+  }
+  .culture-fit-card {
+    padding: 2rem 1.5rem;
+    background: #ffffff;
+    border-radius: 0.75rem;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+    transition: all 0.3s ease;
+  }
+  .culture-fit-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(28, 77, 163, 0.12);
+  }
+  .culture-image {
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+  .culture-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .culture-features li {
+    margin-bottom: 0.75rem;
+  }
+  .culture-highlight-box {
+    background: linear-gradient(135deg, #f0f7ff 0%, #e6f2ff 100%);
+  }
+  @media (max-width: 767.98px) {
+    .contract-hero h1 {
+      font-size: 2rem !important;
+    }
+    .kickoff-feature {
+      padding-bottom: 1.5rem;
+    }
+    .feature-icon {
+      width: 40px;
+      height: 40px;
+    }
+    .contract-service-card {
+      padding: 1.5rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .service-icon {
+      width: 56px;
+      height: 56px;
+    }
+    .solution-card {
+      padding: 1.5rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .solution-image img {
+      height: 200px !important;
+    }
+    .culture-fit-card {
+      padding: 1.5rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .culture-image img {
+      height: 180px !important;
+    }
+  }
