@@ -552,7 +552,7 @@
   footer {
     background: linear-gradient(180deg, #020617 0%, #0f172a 100%);
     color: #9ca3af;
-    padding: 4rem 0 1.5rem;
+    padding: 2rem 0 1rem;
     font-size: 0.875rem;
     border-top: 1px solid rgba(148, 163, 184, 0.1);
   }
@@ -623,9 +623,9 @@
     color: #ffffff;
   }
   .footer-bottom {
-    padding-top: 2rem;
+    padding-top: 1rem;
     border-top: 1px solid rgba(148, 163, 184, 0.1);
-    margin-top: 2rem;
+    margin-top: 1rem;
   }
   .footer-bottom p {
     color: #9ca3af;
@@ -633,7 +633,7 @@
   }
   @media (max-width: 767.98px) {
     footer {
-      padding: 3rem 0 1.5rem;
+      padding: 2rem 0 1rem;
     }
     .footer-heading {
       margin-top: 1.5rem;
@@ -1119,5 +1119,100 @@
     }
     .culture-image img {
       height: 180px !important;
+    }
+  }
+  
+  /* END TO END HR OUTSOURCING PAGE STYLES */
+  .hr-outsourcing-hero {
+    position: relative;
+    overflow: hidden;
+  }
+  .lifecycle-stage-card {
+    padding: 2rem 1.5rem;
+    background: #ffffff;
+    border-radius: 0.75rem;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+    transition: all 0.3s ease;
+    text-align: center;
+  }
+  .lifecycle-stage-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(28, 77, 163, 0.12);
+    border-color: var(--primary);
+  }
+  .stage-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, #f0f7ff 0%, #e6f2ff 100%);
+    border: 2px solid var(--primary);
+    border-radius: 50%;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 0 auto;
+  }
+  .stage-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    padding-left: 1rem;
+  }
+  .stage-features li {
+    font-size: 0.85rem;
+    color: #64748b;
+    line-height: 1.8;
+    margin-bottom: 0.5rem;
+    position: relative;
+  }
+  .stage-features li::before {
+    content: "•";
+    color: var(--primary);
+    font-weight: 700;
+    position: absolute;
+    left: -1rem;
+  }
+  .hr-services-list {
+    margin-top: 1rem;
+  }
+  .hr-service-item {
+    padding-bottom: 1rem;
+  }
+  .service-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #f0f7ff 0%, #e6f2ff 100%);
+    border-radius: 0.5rem;
+    flex-shrink: 0;
+  }
+  .tech-features {
+    margin-top: 1.5rem;
+  }
+  @media (max-width: 767.98px) {
+    .hr-outsourcing-hero h1 {
+      font-size: 2rem !important;
+    }
+    .lifecycle-stage-card {
+      padding: 1.5rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .stage-number {
+      width: 48px;
+      height: 48px;
+      font-size: 1.25rem;
+    }
+    .hr-service-item {
+      padding-bottom: 1.5rem;
+    }
+    .service-icon {
+      width: 40px;
+      height: 40px;
     }
   }
