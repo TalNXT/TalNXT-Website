@@ -1,0 +1,14 @@
+/* Brand alignment layer for the legacy Bootstrap-built pages
+   (contract-hiring, leadership-hiring, rpo) that don't yet have a
+   rebuilt wireframe. Loaded after style.css + site.css. */
+:root {
+  --primary: #1b5fc4;
+}
+h1, h2, h3, h4, .section-title {
+  font-family: 'Newsreader', Georgia, serif !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.01em;
+}
+/* The shared nav/footer from site.css use IBM Plex Sans + the new palette;
+   keep the legacy body copy on the system font stack it was authored with,
+   Bootstrap's grid/spacing utilities still apply unchanged. */

@@ -1,0 +1,307 @@
+/* =========================================================
+   TalNXT Technologies — shared site stylesheet
+   Design system ported from the approved wireframe mocks.
+   ========================================================= */
+
+:root {
+  --bg: #f4f6fa; --surface: #ffffff; --ink: #14203a; --muted: #58657a;
+  --line: #dbe1ea; --accent: #1b5fc4; --accent-dark: #0e2e63; --accent-tint: #e4eaf6;
+  --navy: #16223c; --navy-deep: #0a1224;
+  --red: #b3574a; --red-tint: #f5ece9; --green: #3d7c63; --green-tint: #ebf3ef;
+  --build: #1b5fc4; --build-tint: #e4eaf6;
+  --scale: #2f8f5b; --scale-tint: #e5f2ea;
+  --transform-c: #7857b0; --transform-tint: #efe9f7;
+  --advise: #b8862f; --advise-tint: #f6efe0;
+  --tint-pale: #f4f8fc;
+  --container: 1200px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: 'IBM Plex Sans', -apple-system, Segoe UI, Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, .display { font-family: 'Newsreader', Georgia, serif; font-weight: 500; letter-spacing: -0.01em; margin: 0; }
+p { margin: 0; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--accent-dark); }
+img { max-width: 100%; display: block; }
+
+.container { width: 100%; max-width: var(--container); margin: 0 auto; padding: 0 56px; box-sizing: border-box; }
+.sec { padding: 42px 0; }
+.sec.tight { padding: 24px 0; }
+
+.eyebrow { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--accent); }
+.muted { color: var(--muted); }
+p.copy { font-size: 15px; line-height: 1.7; color: #2b3446; margin: 0; }
+
+.btn { display: inline-flex; align-items: center; gap: 8px; border: 1.5px solid var(--ink); color: var(--ink); border-radius: 4px; padding: 13px 24px; font-size: 14px; font-weight: 600; background: transparent; cursor: pointer; white-space: nowrap; }
+.btn:hover { color: var(--accent-dark); border-color: var(--accent-dark); }
+.btn.accent { background: var(--accent); color: #fff; border-color: var(--accent); }
+.btn.accent:hover { background: var(--accent-dark); border-color: var(--accent-dark); color: #fff; }
+.btn.ghost-light { border-color: rgba(255,255,255,.55); color: #fff; }
+.btn.ghost-light:hover { border-color: #fff; color: #fff; }
+
+.card { border: 1px solid var(--line); border-radius: 10px; padding: 24px; background: var(--surface); }
+.icon-badge { width: 44px; height: 44px; border-radius: 50%; background: var(--accent-tint); color: var(--accent); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+
+/* ---- accordion pillar cards (Org & People Transformation page) ---- */
+.pillar-card summary { list-style: none; cursor: pointer; }
+.pillar-card summary::-webkit-details-marker { display: none; }
+.pillar-card .chevron { transition: transform .15s ease; }
+.pillar-card[open] .chevron { transform: rotate(180deg); }
+.pillar-card[open] summary { border-bottom: 1px solid var(--line); }
+
+/* ---- responsive image (replaces the old dashed photo placeholder) ---- */
+.ph-img { position: relative; border-radius: 10px; overflow: hidden; background: #eef1f6; }
+.ph-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ph-img .cap { position: absolute; left: 12px; bottom: 12px; background: rgba(10,18,36,.6); color: #fff; font-size: 10.5px; font-weight: 600; letter-spacing: .02em; padding: 5px 10px; border-radius: 20px; }
+
+/* ---- responsive grid utilities (used in place of inline grid-template-columns) ---- */
+.grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 14px; }
+.outcomes-grid > div:first-child { border-left: none !important; padding-left: 0 !important; }
+
+.row-flex { display: flex; gap: 40px; align-items: center; }
+.row-flex.top { align-items: flex-start; }
+
+/* ---- numbered step timeline with arrow connectors (Candidates: How It Works) ---- */
+.step-row { display: flex; align-items: flex-start; gap: 6px; flex-wrap: wrap; }
+.step-row .step-item { flex: 1; min-width: 120px; }
+.step-row .step-arrow { flex: 0 0 20px; display: flex; align-items: center; justify-content: center; height: 32px; color: var(--line); }
+@media (max-width: 760px) {
+  .step-row { gap: 20px 24px; }
+  .step-row .step-item { flex: 0 0 calc(50% - 12px); }
+  .step-row .step-arrow { display: none; }
+}
+
+/* ---- full-bleed CTA band with a pill-clipped photo (How We Help Businesses, Industries) ---- */
+.cta-band { display: flex; align-items: stretch; min-height: 190px; }
+.cta-band-text { flex: 1; display: flex; align-items: center; min-width: 0; }
+.cta-band-img { flex: 0 0 300px; position: relative; overflow: hidden; border-radius: 999px 0 0 999px; }
+.cta-band-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+@media (max-width: 900px) {
+  .cta-band { flex-direction: column; min-height: 0; }
+  .cta-band-img { flex-basis: 200px; width: 100%; border-radius: 14px; }
+}
+
+/* ---- taller cta-band variant (Candidates final CTA) ---- */
+.cta-band.tall { min-height: 320px; }
+.cta-band.tall .cta-band-img { flex: 0 0 420px; }
+@media (max-width: 900px) {
+  .cta-band.tall { min-height: 0; }
+  .cta-band.tall .cta-band-img { flex-basis: 200px; }
+}
+
+/* ---- flush (square-edge, no pill clip) cta-band variant — Insights hero ---- */
+.cta-band.hero-flush { min-height: 320px; }
+.cta-band.hero-flush .cta-band-img { flex: 0 0 480px; border-radius: 0; }
+@media (max-width: 900px) {
+  .cta-band.hero-flush { min-height: 0; }
+  .cta-band.hero-flush .cta-band-img { flex-basis: 220px; border-radius: 0; }
+}
+
+/* ---- full-bleed hero using a photo with built-in copy space (Insights hero) ---- */
+.hero-blend { position: relative; overflow: hidden; min-height: 340px; }
+.hero-blend-bg { position: absolute; inset: 0; z-index: 0; }
+.hero-blend-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; }
+.hero-blend-fade { position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(to right, #f8fafc 0%, rgba(248,250,252,.7) 24%, rgba(248,250,252,.1) 42%, rgba(248,250,252,0) 56%);
+}
+.hero-blend-arc { position: absolute; z-index: 1; opacity: .3; pointer-events: none; }
+.hero-blend-text { max-width: 560px; }
+@media (max-width: 900px) {
+  .hero-blend { display: flex; flex-direction: column-reverse; min-height: 0; }
+  .hero-blend-bg { position: relative; inset: auto; height: 220px; }
+  .hero-blend-fade { display: none; }
+  .hero-blend-arc { display: none; }
+}
+
+/* ---- search bar (Current Opportunities) ---- */
+.search-bar { display: flex; align-items: stretch; gap: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 6px; box-shadow: 0 14px 34px rgba(20,30,60,.10); flex-wrap: wrap; }
+.search-field { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 150px; padding: 10px 14px; border-right: 1px solid var(--line); color: var(--muted); }
+.search-field:last-of-type { border-right: none; }
+.search-field input { border: none; outline: none; font-size: 13.5px; font-family: inherit; color: var(--ink); width: 100%; background: transparent; }
+.search-field input::placeholder { color: var(--muted); }
+.search-field .sf-label { font-size: 13.5px; color: var(--ink); white-space: nowrap; }
+.search-field select.sf-select { border: none; outline: none; font-size: 13.5px; font-family: inherit; color: var(--muted); background: transparent; appearance: none; -webkit-appearance: none; -moz-appearance: none; width: 100%; cursor: pointer; }
+.search-field select.sf-select option { color: var(--ink); }
+.search-bar .btn { flex: 0 0 auto; margin: 2px; }
+@media (max-width: 900px) {
+  .search-bar { flex-direction: column; align-items: stretch; }
+  .search-field { border-right: none; border-bottom: 1px solid var(--line); }
+  .search-bar .btn { width: 100%; justify-content: center; }
+}
+
+/* ---- filter sidebar (Current Opportunities) ---- */
+.filter-group { padding-bottom: 16px; margin-bottom: 16px; border-bottom: 1px solid var(--line); }
+.filter-group:last-child { border-bottom: none; margin-bottom: 0; }
+.filter-group-title { font-size: 12px; font-weight: 700; color: var(--ink); margin-bottom: 10px; text-transform: uppercase; letter-spacing: .03em; }
+.filter-check { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); padding: 5px 0; cursor: pointer; }
+.filter-check input { accent-color: var(--accent); width: 15px; height: 15px; flex-shrink: 0; }
+
+/* ---- insight library filter row (Insights) ---- */
+.insight-filter-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; }
+.insight-filter-fields { display: flex; flex-wrap: wrap; gap: 10px; flex: 1; }
+.insight-field { display: flex; align-items: center; gap: 8px; border: 1px solid var(--line); border-radius: 8px; padding: 9px 13px; background: var(--surface); color: var(--muted); }
+.insight-field input { border: none; outline: none; font-size: 13px; font-family: inherit; color: var(--ink); background: transparent; min-width: 200px; }
+.insight-field input::placeholder { color: var(--muted); }
+.insight-field select.sf-select { font-size: 13px; }
+.insight-field.grow { flex: 1; min-width: 220px; }
+@media (max-width: 900px) {
+  .insight-filter-row { flex-direction: column; align-items: stretch; }
+  .insight-field input { min-width: 0; width: 100%; }
+}
+
+/* ---- topic rows (Insights sidebar) ---- */
+.topic-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 9px 10px; border-radius: 8px; font-size: 13.5px; color: var(--ink); cursor: pointer; }
+.topic-row:hover { background: var(--tint-pale); }
+.topic-row.active { background: var(--accent-tint); color: var(--accent-dark); font-weight: 700; }
+.topic-row .tr-left { display: flex; align-items: center; gap: 9px; }
+.topic-row .tr-count { font-size: 12px; color: var(--muted); }
+.topic-row.active .tr-count { color: var(--accent-dark); }
+
+/* ---- insight cards (Insights) ---- */
+.insight-card { display: flex; flex-direction: column; padding: 18px; }
+.insight-card-top { display: flex; gap: 14px; }
+.insight-card-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+.insight-card-thumb { flex: 0 0 84px; width: 84px; border-radius: 8px; overflow: hidden; background: #eef1f6; align-self: flex-start; }
+.insight-card-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; aspect-ratio: 170/210; }
+.insight-card-footer { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); }
+#insight-grid.list-view { display: flex; flex-direction: column; gap: 14px; }
+
+/* ---- view toggle + pagination (Insights) ---- */
+.view-toggle { display: flex; gap: 6px; }
+.view-toggle button { width: 32px; height: 32px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--muted); display: flex; align-items: center; justify-content: center; cursor: pointer; }
+.view-toggle button.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.pagination { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 28px; }
+.pagination button { min-width: 34px; height: 34px; padding: 0 8px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font-size: 13px; font-weight: 600; cursor: pointer; }
+.pagination button.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.pagination button:disabled { opacity: .4; cursor: not-allowed; }
+
+/* ---- lead-capture modal (Insights downloads) ---- */
+.modal-overlay { position: fixed; inset: 0; background: rgba(10,18,36,.55); display: none; align-items: center; justify-content: center; z-index: 200; padding: 20px; }
+.modal-overlay.open { display: flex; }
+.modal-box { background: var(--surface); border-radius: 14px; padding: 28px; max-width: 420px; width: 100%; box-shadow: 0 30px 60px rgba(10,18,36,.3); position: relative; }
+.modal-close { position: absolute; top: 14px; right: 14px; width: 28px; height: 28px; border-radius: 50%; border: none; background: var(--tint-pale); color: var(--muted); display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 13px; }
+.modal-field { margin-bottom: 14px; }
+.modal-field label { display: block; font-size: 12.5px; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
+.modal-field input { width: 100%; border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; font-size: 13.5px; font-family: inherit; color: var(--ink); box-sizing: border-box; }
+.modal-field input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+/* ================= NAV ================= */
+.site-nav { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; border-bottom: 1px solid var(--line); background: var(--surface); position: sticky; top: 0; z-index: 100; }
+.site-nav .logo img { height: 64px; width: auto; display: block; }
+.nav-links { display: flex; align-items: center; gap: 26px; font-size: 14px; font-weight: 500; list-style: none; margin: 0; padding: 0; }
+.nav-links > li { position: relative; }
+.nav-links a { color: var(--ink); }
+.nav-links a:hover, .nav-links li.active > a { color: var(--accent); }
+.nav-links .caret { display: inline-flex; margin-left: 4px; vertical-align: -1px; }
+/* Invisible bridge that fills the visual gap between the trigger and the
+   dropdown panel below, so the mouse never leaves a hoverable area while
+   moving from the "What We Do" link down into the menu. Without this the
+   14px margin-top gap on .nav-dropdown breaks :hover continuity and the
+   panel closes before the cursor reaches it. */
+.nav-links > li.has-dropdown::after { content: ""; position: absolute; top: 100%; left: 0; right: 0; height: 14px; }
+.nav-dropdown { display: none; position: absolute; top: 100%; left: 0; margin-top: 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 12px 28px rgba(20,32,58,.12); padding: 22px; min-width: 920px; z-index: 200; }
+.nav-links li:hover .nav-dropdown, .nav-links li.open .nav-dropdown { display: flex; gap: 24px; }
+
+/* mega menu regions: intro panel | 4 capability cards | other links + candidate promo */
+.mega-intro { flex: 0 0 200px; background: var(--tint-pale); border-radius: 10px; padding: 18px; display: flex; flex-direction: column; }
+.mega-intro h3 { font-size: 17px; line-height: 1.32; margin: 0 0 8px; color: var(--ink); }
+.mega-intro p { font-size: 12.5px; color: var(--muted); line-height: 1.55; margin: 0 0 14px; }
+.mega-intro a { font-size: 12.5px; font-weight: 700; color: var(--accent); margin-top: auto; }
+.mega-cards { flex: 1; display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 18px; align-content: start; }
+.mega-card { display: flex; flex-direction: column; align-items: flex-start; height: 100%; }
+.mega-card-title { font-size: 13.5px; font-weight: 700; color: var(--ink); line-height: 1.3; margin: 0 0 6px; min-height: 35px; }
+.mega-card-desc { font-size: 12px; color: var(--muted); line-height: 1.55; margin: 0 0 8px; }
+.mega-card a { font-size: 12px; font-weight: 700; color: var(--accent); }
+.mega-other { flex: 0 0 168px; border-left: 1px solid var(--line); padding-left: 22px; display: flex; flex-direction: column; }
+.mega-other .eyebrow { margin-bottom: 12px; }
+.mega-other-links { display: flex; flex-direction: column; gap: 11px; margin-bottom: 18px; }
+.mega-other-links a { font-size: 13px; font-weight: 600; color: var(--ink); }
+.mega-other-links a:hover { color: var(--accent); }
+.mega-candidate { display: flex; gap: 10px; align-items: flex-start; padding-top: 16px; border-top: 1px solid var(--line); }
+.mega-candidate-title { font-size: 12.5px; font-weight: 700; color: var(--ink); }
+.mega-candidate-title a { color: inherit; }
+.mega-candidate-title a:hover { color: var(--accent); }
+.mega-candidate-desc { font-size: 11.5px; color: var(--muted); margin-top: 3px; line-height: 1.45; }
+.nav-toggle { display: none; background: none; border: none; padding: 6px; cursor: pointer; }
+.nav-toggle span { display: block; width: 22px; height: 2px; background: var(--ink); margin: 5px 0; }
+.nav-cta { flex-shrink: 0; }
+
+/* ================= FOOTER ================= */
+.site-footer { border-top: 1px solid var(--line); background: var(--surface); padding-top: 48px; }
+.footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 36px; }
+.footer-grid img { height: 54px; margin-bottom: 12px; }
+.footer-col-title { font-weight: 600; margin-bottom: 10px; font-size: 13.5px; }
+.footer-links-list { display: flex; flex-direction: column; gap: 8px; font-size: 13.5px; }
+.footer-links-list a { color: var(--muted); }
+.footer-links-list a:hover { color: var(--accent); }
+.footer-bottom { border-top: 1px solid var(--line); padding: 18px 0; font-size: 13px; color: var(--muted); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+
+/* ================= responsive breakpoints ================= */
+/* The nav now carries 7 top-level items plus a rich mega menu, which no
+   longer fits as a horizontal bar once the viewport drops below ~1180px —
+   so the hamburger/drawer treatment (and the mega menu's mobile stacking)
+   kicks in earlier than the rest of the page's tablet breakpoint. */
+@media (max-width: 1180px) {
+  .nav-links { position: fixed; top: 65px; left: 0; right: 0; bottom: 0; background: var(--surface); flex-direction: column; align-items: flex-start; padding: 18px 24px; gap: 4px; overflow-y: auto; transform: translateX(100%); transition: transform .2s ease; z-index: 150; }
+  .nav-links.open { transform: translateX(0); }
+  .nav-links > li { width: 100%; padding: 10px 0; border-bottom: 1px solid var(--line); }
+  .nav-dropdown { display: none !important; }
+  .nav-links li.open .nav-dropdown { display: flex !important; flex-direction: column; gap: 16px; padding: 10px 0 0 12px; border: none; margin-top: 8px; }
+  .mega-intro, .mega-other { width: 100%; }
+  .mega-other { border-left: none; padding-left: 0; border-top: 1px solid var(--line); padding-top: 14px; }
+  .mega-cards { grid-template-columns: 1fr; gap: 14px; }
+  .nav-toggle { display: block; }
+  .nav-cta.desktop-only { display: none; }
+}
+
+@media (max-width: 1080px) {
+  .container { padding: 0 32px; }
+}
+
+@media (max-width: 900px) {
+  h1 { font-size: 30px !important; }
+  .grid-4 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .outcomes-grid > div:nth-child(2n+1) { border-left: none !important; padding-left: 0 !important; }
+  .outcomes-grid > div:nth-child(-n+2) { margin-bottom: 16px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 760px) {
+  .container { padding: 0 20px; }
+  .sec { padding: 30px 0; }
+  .row-flex { flex-direction: column; align-items: stretch; gap: 24px; }
+  .row-flex.reverse-mobile { flex-direction: column-reverse; }
+  .industries-hero-row { flex-direction: column; align-items: stretch !important; gap: 24px !important; }
+  .industries-hero-text { flex-basis: auto !important; max-width: 100% !important; }
+  .industries-hero-text h1 { max-width: 100% !important; }
+  .industries-hero-text p { max-width: 100% !important; }
+  .industries-hero-imgcol { min-width: 0 !important; }
+  .grid-3 { grid-template-columns: 1fr; }
+  .grid-2 { grid-template-columns: 1fr; }
+  h1 { font-size: 26px !important; line-height: 1.28 !important; }
+  h2 { font-size: 20px !important; }
+}
+
+@media (min-width: 1181px) {
+  .mobile-only { display: none !important; }
+}
+@media (max-width: 1180px) {
+  .desktop-only { display: none !important; }
+}
+
+@media (max-width: 560px) {
+  .grid-4 { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .outcomes-grid > div { border-left: none !important; padding-left: 0 !important; margin-bottom: 14px; }
+}
+
+/* Insights: search box fills the row now that the dropdown menus are removed */
+.insight-field.grow { flex: 1; }
+.insight-field.grow input { flex: 1; width: 100%; min-width: 0; }

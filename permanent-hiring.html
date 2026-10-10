@@ -1,524 +1,281 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Permanent Hiring | TalNXT Technologies</title>
-    <meta name="description" content="AI-powered permanent hiring solutions with intelligent screening, precise candidate matching, and culture-fit assessment for long-term team building." />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="style.css" rel="stylesheet" />
-    
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0LQ99HRMGH"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-0LQ99HRMGH');
-    </script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Permanent Hiring | Talent Solutions | TalNXT Technologies</title>
+<meta name="description" content="Permanent hiring for critical technology roles, with candidates assessed for technical fit, domain relevance and long-term potential — not just resume keywords." />
+<link rel="canonical" href="https://www.talnxt.com/permanent-hiring.html" />
+<meta name="robots" content="index, follow" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Permanent Hiring | Talent Solutions | TalNXT Technologies" />
+<meta property="og:description" content="Permanent hiring for critical technology roles, with candidates assessed for technical fit, domain relevance and long-term potential — not just resume keywords." />
+<meta property="og:url" content="https://www.talnxt.com/permanent-hiring.html" />
+<meta property="og:image" content="https://www.talnxt.com/logo.png" />
+<meta property="og:site_name" content="TalNXT Technologies" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Permanent Hiring | Talent Solutions | TalNXT Technologies" />
+<meta name="twitter:description" content="Permanent hiring for critical technology roles, with candidates assessed for technical fit, domain relevance and long-term potential — not just resume keywords." />
+<meta name="twitter:image" content="https://www.talnxt.com/logo.png" />
+<link rel="icon" href="logo.png" />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;0,600;1,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<link href="css/site.css" rel="stylesheet" />
+<script src="js/consent.js"></script>
 </head>
 <body>
 
-<!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-light border-bottom fixed-top">
-    <div class="container">
-        <a class="navbar-brand d-flex align-items-center" href="index.html">
-            <img src="logo.png" alt="TalNXT Technologies" width="120" height="80" class="d-inline-block me-2" style="object-fit: contain;">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div id="mainNav" class="collapse navbar-collapse">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-semibold">
-                <!-- ABOUT US Dropdown -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        About Us
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
-                        <li><a class="dropdown-item" href="index.html#overview">Overview</a></li>
-                        <li><a class="dropdown-item" href="index.html#why-talnxt">Why TalNXT</a></li>
-                    </ul>
-                </li>
-                
-                <!-- RECRUITMENT Dropdown -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="recruitmentDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Recruitment
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="recruitmentDropdown">
-                        <li><a class="dropdown-item active" href="permanent-hiring.html">Permanent / Full-Time Hiring</a></li>
-                        <li><a class="dropdown-item" href="index.html#rpo">RPO</a></li>
-                        <li><a class="dropdown-item" href="index.html#leadership-hiring">Leadership Hiring</a></li>
-                        <li><a class="dropdown-item" href="index.html#contract-hiring">Contract Hiring</a></li>
-                    </ul>
-                </li>
-                
-                <!-- END TO END HR SERVICES Dropdown -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="hrServicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        End to End HR Services
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="hrServicesDropdown">
-                        <li><a class="dropdown-item" href="end-to-end-hr-outsourcing.html">End to End HR Outsourcing (Hire to Retire)</a></li>
-                        <li><a class="dropdown-item" href="build-operate-transfer.html">Build - Operate - Transfer</a></li>
-                        <li><a class="dropdown-item" href="hr-shared-services.html">HR Shared Services</a></li>
-                        <li><a class="dropdown-item" href="hr-on-demand.html">HR on Demand / Fractional HR</a></li>
-                        <li><a class="dropdown-item" href="project-based-hr-consulting.html">Project Based HR Consulting</a></li>
-                    </ul>
-                </li>
-                
-                <!-- CONTACT US Dropdown -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="contactDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Contact Us
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="contactDropdown">
-                        <li><a class="dropdown-item" href="index.html#contact">Address and Location</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-<!-- HERO SECTION -->
-<section class="permanent-hero" style="padding-top: 120px; padding-bottom: 1rem; background: linear-gradient(135deg, #f0f7ff 0%, #e6f2ff 100%);">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-6">
-                <div class="section-eyebrow mb-2">Permanent Hiring</div>
-                <h1 class="mb-3" style="font-size: 2.5rem; font-weight: 700; color: var(--primary);">Build Your Core Team with AI-Powered Precision</h1>
-                <p class="lead mb-3" style="font-size: 1.1rem; color: #475569; line-height: 1.7;">
-                    Find the perfect long-term talent who aligns with your culture and grows with your company. Our AI-enhanced process delivers pre-screened, job-ready professionals ready to make an immediate impact.
-                </p>
-                <div class="d-flex gap-5 flex-wrap">
-                    <div>
-                        <div style="font-size: 2rem; font-weight: 700; color: var(--primary);">75%+</div>
-                        <div style="font-size: 0.9rem; color: #64748b;">Success Rate</div>
-                    </div>
-                    <div>
-                        <div style="font-size: 2rem; font-weight: 700; color: var(--primary);">30%</div>
-                        <div style="font-size: 0.9rem; color: #64748b;">Faster Hiring</div>
-                    </div>
-                    <div>
-                        <div style="font-size: 2rem; font-weight: 700; color: var(--primary);">95%+</div>
-                        <div style="font-size: 0.9rem; color: #64748b;">Culture Match</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 mt-4 mt-lg-0">
-                <img src="https://images.pexels.com/photos/3184423/pexels-photo-3184423.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Professional team collaboration" class="img-fluid rounded-3 shadow-lg" style="width: 100%; height: 400px; object-fit: cover;">
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- AI-BASED SCREENING PROCESS -->
-<section class="py-3">
-    <div class="container">
-        <div class="row mb-3">
-            <div class="col-lg-8 mx-auto text-center">
-                <div class="section-eyebrow mb-2">Our Process</div>
-                <h2 class="section-title mb-3">AI-Powered Screening for <span style="color: var(--primary);">Quality Matches</span></h2>
-                <p class="lead text-secondary">
-                    Our intelligent screening system combines cutting-edge AI with human expertise to identify candidates who truly fit your requirements.
-                </p>
-            </div>
-        </div>
-
-        <div class="row g-4 mb-3">
-            <!-- Step 1 -->
-            <div class="col-md-6 col-lg-3">
-                <div class="process-card h-100 text-center">
-                    <div class="process-number mb-3">01</div>
-                    <div class="process-icon mb-3">
-                        <img src="https://images.pexels.com/photos/3184354/pexels-photo-3184354.jpeg?auto=compress&cs=tinysrgb&w=400" alt="AI Analysis" class="img-fluid rounded-3" style="width: 100%; height: 180px; object-fit: cover;">
-                    </div>
-                    <h5 class="mb-2" style="color: var(--primary); font-weight: 600;">AI-Powered Analysis</h5>
-                    <p class="small text-secondary mb-0" style="line-height: 1.6;">
-                        Advanced algorithms analyze resumes, portfolios, and professional profiles to identify top candidates based on skills, experience, and potential.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Step 2 -->
-            <div class="col-md-6 col-lg-3">
-                <div class="process-card h-100 text-center">
-                    <div class="process-number mb-3">02</div>
-                    <div class="process-icon mb-3">
-                        <img src="https://images.pexels.com/photos/3184319/pexels-photo-3184319.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Smart Matching" class="img-fluid rounded-3" style="width: 100%; height: 180px; object-fit: cover;">
-                    </div>
-                    <h5 class="mb-2" style="color: var(--primary); font-weight: 600;">Precise Matching</h5>
-                    <p class="small text-secondary mb-0" style="line-height: 1.6;">
-                        Intelligent matching engine compares candidate profiles against your specific requirements, role expectations, and company culture.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Step 3 -->
-            <div class="col-md-6 col-lg-3">
-                <div class="process-card h-100 text-center">
-                    <div class="process-number mb-3">03</div>
-                    <div class="process-icon mb-3">
-                        <img src="https://images.pexels.com/photos/3184321/pexels-photo-3184321.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Human Review" class="img-fluid rounded-3" style="width: 100%; height: 180px; object-fit: cover;">
-                    </div>
-                    <h5 class="mb-2" style="color: var(--primary); font-weight: 600;">Expert Review</h5>
-                    <p class="small text-secondary mb-0" style="line-height: 1.6;">
-                        Domain recruiters validate AI findings through technical assessments, behavioral interviews, and comprehensive candidate evaluation.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Step 4 -->
-            <div class="col-md-6 col-lg-3">
-                <div class="process-card h-100 text-center">
-                    <div class="process-number mb-3">04</div>
-                    <div class="process-icon mb-3">
-                        <img src="https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Culture Fit" class="img-fluid rounded-3" style="width: 100%; height: 180px; object-fit: cover;">
-                    </div>
-                    <h5 class="mb-2" style="color: var(--primary); font-weight: 600;">Culture Assessment</h5>
-                    <p class="small text-secondary mb-0" style="line-height: 1.6;">
-                        Deep culture-fit evaluation ensures candidates align with your team dynamics, work values, and long-term organizational goals.
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="row mt-4">
-            <div class="col-lg-8 mx-auto text-center">
-                <div class="d-inline-flex align-items-center gap-3">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="color: var(--primary);">
-                        <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    <h3 class="mb-0" style="font-size: 1.5rem; font-weight: 700; color: var(--primary);">Our Commitment in Action</h3>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- CLOSE MATCHES WITH REQUIREMENTS -->
-<section class="py-5" style="background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);">
-    <div class="container">
-        <div class="row align-items-center g-4">
-            <div class="col-lg-6">
-                <img src="https://images.pexels.com/photos/5905447/pexels-photo-5905447.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Close requirement matching" class="img-fluid rounded-3 shadow-lg" style="width: 100%; height: 400px; object-fit: cover;">
-            </div>
-            <div class="col-lg-6">
-                <div class="section-eyebrow mb-2">Precision Matching</div>
-                <h2 class="section-title mb-3">Close Matches with <span style="color: var(--primary);">Your Requirements</span></h2>
-                <p class="text-secondary mb-3" style="line-height: 1.7;">
-                    Our AI system doesn't just look at keywords—it understands context, technical depth, and role-specific nuances to find candidates who genuinely match your needs.
-                </p>
-                <div class="feature-list">
-                    <div class="d-flex align-items-start mb-3">
-                        <div class="feature-check me-3">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9 11L12 14L22 4" stroke="#1c4da3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M21 12V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H16" stroke="#1c4da3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h6 class="mb-1" style="font-weight: 600; color: #0f172a;">Multi-Dimensional Analysis</h6>
-                            <p class="small text-secondary mb-0" style="line-height: 1.6;">Evaluates technical skills, soft skills, experience depth, and learning agility simultaneously for comprehensive matching.</p>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-start mb-3">
-                        <div class="feature-check me-3">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9 11L12 14L22 4" stroke="#1c4da3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M21 12V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H16" stroke="#1c4da3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h6 class="mb-1" style="font-weight: 600; color: #0f172a;">Role-Specific Scoring</h6>
-                            <p class="small text-secondary mb-0" style="line-height: 1.6;">Custom scoring algorithms weighted by your priorities ensure candidates meet your exact role requirements and team dynamics.</p>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-start">
-                        <div class="feature-check me-3">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9 11L12 14L22 4" stroke="#1c4da3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M21 12V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H16" stroke="#1c4da3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h6 class="mb-1" style="font-weight: 600; color: #0f172a;">Continuous Learning</h6>
-                            <p class="small text-secondary mb-0" style="line-height: 1.6;">AI system learns from each successful placement to improve matching accuracy and better understand your hiring preferences.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- QUICK POSITION FILLING -->
-<section class="py-3">
-    <div class="container">
-        <div class="row align-items-center g-4">
-            <div class="col-lg-6 order-lg-2">
-                <img src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Quick hiring process" class="img-fluid rounded-3 shadow-lg" style="width: 100%; height: 400px; object-fit: cover;">
-            </div>
-            <div class="col-lg-6 order-lg-1">
-                <div class="section-eyebrow mb-2">Speed & Efficiency</div>
-                <h2 class="section-title mb-3">Quick Position <span style="color: var(--primary);">Filling</span></h2>
-                <p class="text-secondary mb-3" style="line-height: 1.7;">
-                    Time is money, and we understand the cost of open positions. Our streamlined process reduces time-to-hire by up to 30% without compromising on quality.
-                </p>
-                <div class="feature-list">
-                    <div class="d-flex align-items-start mb-3">
-                        <div class="feature-check me-3">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9 11L12 14L22 4" stroke="#1c4da3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M21 12V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H16" stroke="#1c4da3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h6 class="mb-1" style="font-weight: 600; color: #0f172a;">Pre-Vetted Talent Pool</h6>
-                            <p class="small text-secondary mb-0" style="line-height: 1.6;">Access to an extensive database of pre-screened, verified candidates ready for immediate consideration and quick interviews.</p>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-start mb-3">
-                        <div class="feature-check me-3">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9 11L12 14L22 4" stroke="#1c4da3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M21 12V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H16" stroke="#1c4da3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h6 class="mb-1" style="font-weight: 600; color: #0f172a;">Automated Workflows</h6>
-                            <p class="small text-secondary mb-0" style="line-height: 1.6;">Intelligent automation handles scheduling, follow-ups, and documentation, freeing you to focus on interviewing the best candidates.</p>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-start">
-                        <div class="feature-check me-3">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9 11L12 14L22 4" stroke="#1c4da3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M21 12V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H16" stroke="#1c4da3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h6 class="mb-1" style="font-weight: 600; color: #0f172a;">Priority Hiring Support</h6>
-                            <p class="small text-secondary mb-0" style="line-height: 1.6;">Dedicated recruiters work on your timeline, providing same-day candidate submissions for urgent hiring needs.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- HIGH SUCCESS RATE -->
-<section class="py-5" style="background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);">
-    <div class="container">
-        <div class="row mb-3">
-            <div class="col-lg-8 mx-auto text-center">
-                <div class="section-eyebrow mb-2">Proven Results</div>
-                <h2 class="section-title mb-3">High Success Rate with <span style="color: var(--primary);">Quality Guarantee</span></h2>
-                <p class="lead text-secondary">
-                    Our commitment to quality over quantity results in exceptional success rates and long-term retention.
-                </p>
-            </div>
-        </div>
-
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="success-card text-center h-100">
-                    <div class="success-icon mb-3">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M9 11L12 14L22 4" stroke="#1c4da3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M21 12V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H16" stroke="#1c4da3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </div>
-                    <h3 class="mb-2" style="font-size: 2.5rem; font-weight: 700; color: var(--primary);">75%+</h3>
-                    <h5 class="mb-2" style="font-weight: 600;">Offer Acceptance Rate</h5>
-                    <p class="small text-secondary mb-0" style="line-height: 1.6;">
-                        Industry-leading acceptance rates thanks to better candidate engagement, transparent communication, and mutual fit assessment.
-                    </p>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="success-card text-center h-100">
-                    <div class="success-icon mb-3">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="#1c4da3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M2 17L12 22L22 17" stroke="#1c4da3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M2 12L12 17L22 12" stroke="#1c4da3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </div>
-                    <h3 class="mb-2" style="font-size: 2.5rem; font-weight: 700; color: var(--primary);">90%+</h3>
-                    <h5 class="mb-2" style="font-weight: 600;">Retention Rate</h5>
-                    <p class="small text-secondary mb-0" style="line-height: 1.6;">
-                        Long-term placement success with candidates who stay, grow, and contribute meaningfully to your organization.
-                    </p>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="success-card text-center h-100">
-                    <div class="success-icon mb-3">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M13 2L3 7V10C3 15.55 6.84 20.74 12 22C17.16 20.74 21 15.55 21 10V7L13 2Z" stroke="#1c4da3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M9 12L11 14L15 10" stroke="#1c4da3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </div>
-                    <h3 class="mb-2" style="font-size: 2.5rem; font-weight: 700; color: var(--primary);">4.8/5</h3>
-                    <h5 class="mb-2" style="font-weight: 600;">Client Satisfaction</h5>
-                    <p class="small text-secondary mb-0" style="line-height: 1.6;">
-                        Consistently high ratings from clients who appreciate our quality-focused approach and dedicated partnership.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- CULTURE CHECK SECTION -->
-<section class="py-3">
-    <div class="container">
-        <div class="row align-items-center g-4">
-            <div class="col-lg-6">
-                <img src="https://images.pexels.com/photos/3184323/pexels-photo-3184323.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Culture fit assessment" class="img-fluid rounded-3 shadow-lg" style="width: 100%; height: 450px; object-fit: cover;">
-            </div>
-            <div class="col-lg-6">
-                <div class="section-eyebrow mb-2">Culture Assessment</div>
-                <h2 class="section-title mb-3">Good Culture Check for <span style="color: var(--primary);">Candidates</span></h2>
-                <p class="text-secondary mb-3" style="line-height: 1.7;">
-                    Technical skills are just the beginning. We ensure every candidate aligns with your company's values, work style, and team dynamics for long-term success.
-                </p>
-                <div class="culture-features">
-                    <div class="culture-item mb-3">
-                        <h6 class="mb-2" style="font-weight: 600; color: #0f172a; display: flex; align-items: center;">
-                            <span class="culture-badge me-2">1</span>
-                            Values Alignment Assessment
-                        </h6>
-                        <p class="small text-secondary mb-0" style="line-height: 1.6;">
-                            Comprehensive evaluation of candidate values, work ethics, and professional principles to ensure alignment with your organizational culture.
-                        </p>
-                    </div>
-                    <div class="culture-item mb-3">
-                        <h6 class="mb-2" style="font-weight: 600; color: #0f172a; display: flex; align-items: center;">
-                            <span class="culture-badge me-2">2</span>
-                            Team Dynamics Evaluation
-                        </h6>
-                        <p class="small text-secondary mb-0" style="line-height: 1.6;">
-                            Assessment of communication style, collaboration approach, and team integration potential through behavioral interviews and reference checks.
-                        </p>
-                    </div>
-                    <div class="culture-item">
-                        <h6 class="mb-2" style="font-weight: 600; color: #0f172a; display: flex; align-items: center;">
-                            <span class="culture-badge me-2">3</span>
-                            Long-term Fit Prediction
-                        </h6>
-                        <p class="small text-secondary mb-0" style="line-height: 1.6;">
-                            AI-powered analysis predicts candidate's growth trajectory, adaptability, and long-term contribution potential within your organization.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- CTA SECTION -->
-<section class="py-3" style="background: linear-gradient(135deg, var(--primary) 0%, #163c81 100%); color: white;">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 mx-auto text-center">
-                <h3 class="mb-2" style="font-size: 1.5rem; font-weight: 700;">Ready to Build Your Core Team?</h3>
-                <p class="mb-3" style="font-size: 1rem; opacity: 0.9;">
-                    Experience the difference of AI-powered permanent hiring. Get started today with a free consultation.
-                </p>
-                <div class="d-flex justify-content-center">
-                    <a href="index.html#contact" class="btn btn-light">Contact Us</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-    <div class="container">
-        <div class="row g-3 mb-2">
-            <div class="col-lg-4 col-md-6">
-                <div class="footer-brand mb-2">
-                    <img src="logo.png" alt="TalNXT Technologies" width="120" height="80" style="object-fit: contain; filter: brightness(0) invert(1);">
-                    <p class="footer-description mb-2">
-                        New-age recruitment and HR solutions powered by AI and human expertise. We help startups and enterprises build their dream tech teams and robust HR capabilities faster.
-                    </p>
-                </div>
-            </div>
-            <div class="col-lg-2 col-md-6">
-                <h6 class="footer-heading mb-2">Quick Links</h6>
-                <ul class="footer-links">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="index.html#about">About Us</a></li>
-                    <li><a href="index.html#recruitment-services">Recruitment</a></li>
-                    <li><a href="index.html#hr-services">HR Services</a></li>
-                    <li><a href="index.html#contact">Contact</a></li>
-                </ul>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <h6 class="footer-heading mb-2">Our Services</h6>
-                <ul class="footer-links">
-                    <li><a href="permanent-hiring.html">Permanent Hiring</a></li>
-                    <li><a href="#rpo">RPO</a></li>
-                    <li><a href="#leadership">Leadership Hiring</a></li>
-                    <li><a href="#contract">Contract Hiring</a></li>
-                    <li><a href="#hr-outsourcing">HR Outsourcing</a></li>
-                </ul>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <h6 class="footer-heading mb-2">Get In Touch</h6>
-                <ul class="footer-contact">
-                    <li>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="footer-icon">
-                            <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M22 6L12 13L2 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        <a href="mailto:info@talnxt.com">info@talnxt.com</a>
-                    </li>
-                    <li>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="footer-icon">
-                            <path d="M22 16.92V19.92C22.0011 20.1985 21.9441 20.4742 21.8325 20.7292C21.7209 20.9841 21.5573 21.2126 21.352 21.4C21.1467 21.5874 20.9046 21.7299 20.6407 21.8181C20.3768 21.9063 20.0969 21.9382 19.82 21.92C16.7428 21.5856 13.787 20.5341 11.19 18.85C8.77382 17.3147 6.72533 15.2662 5.19 12.85C3.49997 10.2412 2.44824 7.27099 2.12 4.18C2.10177 3.90347 2.13366 3.62407 2.22187 3.36054C2.31008 3.09701 2.45253 2.85525 2.63997 2.65031C2.82741 2.44536 3.05589 2.28203 3.31081 2.17078C3.56573 2.05953 3.84139 2.00274 4.12 2.004H7.12C7.68123 1.99522 8.22849 2.16708 8.68263 2.49452C9.13677 2.82196 9.47391 3.28924 9.64 3.82L10.64 7.22C10.7841 7.70254 10.7928 8.22204 10.6647 8.70938C10.5366 9.19672 10.2774 9.62987 9.92 9.96L8.12 11.76C9.51449 14.1687 11.4313 16.0855 13.84 17.48L15.64 15.68C15.9701 15.3226 16.4033 15.0634 16.8906 14.9353C17.378 14.8072 17.8975 14.8159 18.38 14.96L21.78 15.96C22.3108 16.1261 22.7781 16.4632 23.1055 16.9174C23.433 17.3715 23.6048 17.9188 23.596 18.48L22 16.92Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        <a href="tel:+919606629269">+91-9606629269</a>
-                    </li>
-                    <li>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="footer-icon">
-                            <path d="M21 10C21 17 12 23 12 23C12 23 3 17 3 10C3 7.61305 3.94821 5.32387 5.63604 3.63604C7.32387 1.94821 9.61305 1 12 1C14.3869 1 16.6761 1.94821 18.364 3.63604C20.0518 5.32387 21 7.61305 21 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M12 13C13.6569 13 15 11.6569 15 10C15 8.34315 13.6569 7 12 7C10.3431 7 9 8.34315 9 10C9 11.6569 10.3431 13 12 13Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        <span>Bangalore, Karnataka, India</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
+<header>
+  <nav class="site-nav">
+    <div class="container" style="display:flex; align-items:center; justify-content:space-between; width:100%;">
+      <a class="logo" href="index.html"><img src="logo.png" alt="TalNXT Technologies"></a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+      <ul class="nav-links">
+        <li class=""><a href="about.html">About</a></li>
         
-        <div class="footer-bottom">
-            <div class="row align-items-center">
-                <div class="col-md-6">
-                    <p class="mb-0">
-                        © <span id="year"></span> TalNXT Technologies. All rights reserved.
-                    </p>
-                </div>
-                <div class="col-md-6 text-md-end mt-2 mt-md-0">
-                    <p class="mb-0" style="font-size: 0.8rem; color: #9ca3af;">
-                        Built with ❤️ for tech talent
-                    </p>
-                </div>
+        <li class="has-dropdown active">
+          <a href="how-we-help-businesses.html">What We Do <span class="caret"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span></a>
+          <div class="nav-dropdown">
+            <div class="mega-intro">
+              <div class="eyebrow" style="margin-bottom:10px;">What we do</div>
+              <h3>Four capabilities.<br>A stronger tomorrow.</h3>
+              <p>We connect technology, talent, workforce and organization capabilities to help businesses build, scale and transform.</p>
+              <a href="how-we-help-businesses.html">Explore all capabilities →</a>
             </div>
-        </div>
+            <div class="mega-cards">
+              
+              <div class="mega-card">
+                <div class="icon-badge" style="width:38px; height:38px; margin-bottom:10px; background:var(--build-tint); color:var(--build);"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M9 7V3M15 7V3M9 21v-4M15 21v-4M7 9H3M7 15H3M21 9h-4M21 15h-4"/></svg></div>
+                <div class="mega-card-title">Technology &amp; IT Services</div>
+                <p class="mega-card-desc">Deliver the technology capability your business needs.</p>
+                <a href="technology-services.html">Learn more →</a>
+              </div>
+              
+              <div class="mega-card">
+                <div class="icon-badge" style="width:38px; height:38px; margin-bottom:10px; background:var(--scale-tint); color:var(--scale);"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="8" r="3.2"/><path d="M4.5 19c0-3.3 2.7-5.5 5.7-5.5"/><circle cx="17.5" cy="16.5" r="3"/><path d="M19.8 18.8 22 21"/></svg></div>
+                <div class="mega-card-title">Talent Solutions</div>
+                <p class="mega-card-desc">Access and build the talent you need, when you need it.</p>
+                <a href="permanent-hiring.html">Learn more →</a>
+              </div>
+              
+              <div class="mega-card">
+                <div class="icon-badge" style="width:38px; height:38px; margin-bottom:10px; background:var(--transform-tint); color:var(--transform-c);"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 17l5-5 4 3 8-9"/><path d="M14 6h6v6"/></svg></div>
+                <div class="mega-card-title">Workforce Transformation</div>
+                <p class="mega-card-desc">Plan, build and optimize your workforce for what's next.</p>
+                <a href="workforce-strategy-planning.html">Learn more →</a>
+              </div>
+              
+              <div class="mega-card">
+                <div class="icon-badge" style="width:38px; height:38px; margin-bottom:10px; background:var(--advise-tint); color:var(--advise);"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M15 9l-2 6-6 2 2-6 6-2z"/></svg></div>
+                <div class="mega-card-title">Organization &amp; People Transformation</div>
+                <p class="mega-card-desc">Design and enable the organization to grow and scale.</p>
+                <a href="organization-people-transformation.html">Learn more →</a>
+              </div>
+            </div>
+            <div class="mega-other">
+              <div class="eyebrow">Other links</div>
+              <div class="mega-other-links">
+                <a href="how-we-help-businesses.html">How We Help Businesses →</a>
+                <a href="industries.html">Industries →</a>
+              </div>
+              <div class="mega-candidate">
+                <span class="icon-badge" style="width:30px; height:30px; flex-shrink:0;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-3.9 3.1-7 7-7s7 3.1 7 7"/></svg></span>
+                <div>
+                  <div class="mega-candidate-title"><a href="candidates.html">For Candidates →</a></div>
+                  <div class="mega-candidate-desc">Find opportunities that move your career forward.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class=""><a href="how-we-help-businesses.html">How We Help Businesses</a></li>
+        <li class=""><a href="industries.html">Industries</a></li>
+        <li class=""><a href="candidates.html">For Candidates</a></li>
+        <li class=""><a href="index.html#contact">Contact</a></li>
+      </ul>
+      <div class="nav-cta desktop-only"><a class="btn accent" href="index.html#contact">Talk to Us</a></div>
     </div>
-</footer>
+  </nav>
+</header>
+<main>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="script.js"></script>
+<div class="sec tight" style="padding-top:28px; padding-bottom:20px; background:linear-gradient(115deg,#f8fafc 0%,var(--accent-tint) 100%); border-bottom:1px solid var(--line); position:relative; overflow:hidden;">
+  <svg style="position:absolute; top:-60px; right:-60px; width:340px; height:340px; z-index:0;" viewBox="0 0 200 200"><circle cx="100" cy="100" r="100" fill="#cfe0f7" opacity=".5"/></svg>
+  <div class="container" style="position:relative; z-index:1;">
+    <div class="muted" style="font-size:12px; margin-bottom:14px;">Home → What We Do → Talent Solutions → <span style="color:var(--ink); font-weight:600;">Permanent Hiring</span></div>
+    <div class="row-flex top" style="gap:40px;">
+      <div style="flex:1.2; min-width:280px;">
+        <div class="eyebrow" style="margin-bottom:10px;">Permanent hiring</div>
+        <h1 style="font-size:32px; max-width:600px; line-height:1.22;">Build the Technology Team Your Business Needs</h1>
+        <p class="copy" style="max-width:600px; margin-top:16px; font-size:15px;">Permanent hiring for critical technology roles, with candidates assessed for technical fit, domain relevance and long-term potential — not just resume keywords.</p>
+        <div style="margin-top:24px;"><a class="btn accent" href="index.html#contact">Talk to Talent Acquisition →</a></div>
+        <div style="display:flex; align-items:center; gap:22px; flex-wrap:wrap; margin-top:28px;">
+          <div style="display:flex; align-items:center; gap:9px;"><span class="icon-badge" style="width:34px; height:34px;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></svg></span><span style="font-size:12.5px; font-weight:600; color:var(--ink); line-height:1.25;">Right talent.<br>Longer tenure.</span></div>
+          <div style="display:flex; align-items:center; gap:9px;"><span class="icon-badge" style="width:34px; height:34px;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><path d="M2.5 19c0-2.8 2.4-5 5.5-5s5.5 2.2 5.5 5M10.5 19c0-2.8 2.4-5 5.5-5s5.5 2.2 5.5 5"/></svg></span><span style="font-size:12.5px; font-weight:600; color:var(--ink); line-height:1.25;">Domain-aligned<br>candidates.</span></div>
+          <div style="display:flex; align-items:center; gap:9px;"><span class="icon-badge" style="width:34px; height:34px;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20V10M12 20V4M20 20v-7"/></svg></span><span style="font-size:12.5px; font-weight:600; color:var(--ink); line-height:1.25;">Stronger teams.<br>Greater impact.</span></div>
+        </div>
+      </div>
+      <div style="flex:0.8; min-width:260px; position:relative; align-self:stretch;">
+        <div class="ph-img" style="width:100%; height:100%; min-height:220px; position:relative; z-index:1;"><img src="https://images.unsplash.com/photo-1758691736975-9f7f643d178e?q=85&w=900&h=700&fit=crop&crop=faces&auto=format&dpr=2" alt="Diverse team of technology professionals in a modern office" loading="lazy"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sec" style="background:var(--tint-pale);">
+  <div class="container">
+    <div class="eyebrow" style="margin-bottom:8px;">The outcome</div>
+    <h2 style="font-size:22px; margin-bottom:10px; max-width:640px;">Build stronger teams, faster.</h2>
+    <p class="copy" style="max-width:680px; margin-bottom:28px;">When you partner with us, you get more than candidates — you get the right people, a smoother hiring process, and long-term impact for your business.</p>
+    <div class="grid-4" style="gap:16px;">
+      <div class="card" style="text-align:center;">
+        <div style="width:44px; height:44px; border-radius:50%; background:var(--build-tint); color:var(--build); display:flex; align-items:center; justify-content:center; margin:0 auto 12px;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="8" r="3.4"/><path d="M4 20c0-3.5 2.7-6.2 6-6.2s6 2.7 6 6.2"/><circle cx="18.2" cy="7" r="4.2" fill="var(--build-tint)"/><path d="M16.3 7l1.2 1.2 2.2-2.4"/></svg></div>
+        <div style="font-size:15.5px; font-weight:700; color:var(--ink);">Quality, pre-vetted talent</div>
+        <p class="copy" style="font-size:12.5px; margin-top:6px;">Access candidates assessed for technical skills, domain relevance and cultural fit — ready to make an impact.</p>
+      </div>
+      <div class="card" style="text-align:center;">
+        <div style="width:44px; height:44px; border-radius:50%; background:var(--scale-tint); color:var(--scale); display:flex; align-items:center; justify-content:center; margin:0 auto 12px;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2"/><path d="M9 2h6"/></svg></div>
+        <div style="font-size:15.5px; font-weight:700; color:var(--ink);">Faster time to hire</div>
+        <p class="copy" style="font-size:12.5px; margin-top:6px;">Reduce time-to-fill with our AI-enabled sourcing and streamlined hiring process.</p>
+      </div>
+      <div class="card" style="text-align:center;">
+        <div style="width:44px; height:44px; border-radius:50%; background:var(--advise-tint); color:var(--advise); display:flex; align-items:center; justify-content:center; margin:0 auto 12px;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20V13M12 20V8M20 20v-9"/></svg></div>
+        <div style="font-size:15.5px; font-weight:700; color:var(--ink);">Stronger, more stable teams</div>
+        <p class="copy" style="font-size:12.5px; margin-top:6px;">Improve retention with better-fit hires who align with your goals and ways of working.</p>
+      </div>
+      <div class="card" style="text-align:center;">
+        <div style="width:44px; height:44px; border-radius:50%; background:var(--transform-tint); color:var(--transform-c); display:flex; align-items:center; justify-content:center; margin:0 auto 12px;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <div style="font-size:15.5px; font-weight:700; color:var(--ink);">Measurable business impact</div>
+        <p class="copy" style="font-size:12.5px; margin-top:6px;">Keep your roadmap on track and focus on what matters — building and growing your business.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sec" style="background:var(--surface);">
+  <div class="container">
+    <div class="eyebrow" style="margin-bottom:8px;">Our approach</div>
+    <h2 style="font-size:22px; margin-bottom:6px;">A structured, end-to-end hiring process.</h2>
+    <p class="copy" style="max-width:680px; margin-bottom:36px;">We combine deep market expertise with a disciplined process to bring you the right talent, faster.</p>
+    <div style="display:flex; align-items:flex-start; width:100%;">
+      
+      
+      <div style="flex:1; min-width:0; text-align:center;">
+        <div style="width:64px; height:64px; border-radius:50%; background:var(--build-tint); color:var(--build); display:flex; align-items:center; justify-content:center; margin:0 auto;">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4"/><path d="M9 12h6M9 16h6"/></svg>
+        </div>
+        <div style="margin-top:14px; font-weight:700; font-size:13px; letter-spacing:.05em; color:var(--ink); text-transform:uppercase;">Define</div>
+        <p class="copy" style="font-size:12.5px; margin-top:6px; max-width:150px; margin-left:auto; margin-right:auto;">Understand your goals, role requirements and success profile.</p>
+      </div>
+      <div style="flex:0 0 auto; padding-top:28px; padding-left:8px; padding-right:8px;"><svg width="28" height="16" viewBox="0 0 36 16" fill="none" stroke="var(--muted)" stroke-width="1.6"><path d="M0 8h30M24 3l6 5-6 5"/></svg></div>
+      <div style="flex:1; min-width:0; text-align:center;">
+        <div style="width:64px; height:64px; border-radius:50%; background:var(--scale-tint); color:var(--scale); display:flex; align-items:center; justify-content:center; margin:0 auto;">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="6"/><path d="M20 20l-5.5-5.5"/></svg>
+        </div>
+        <div style="margin-top:14px; font-weight:700; font-size:13px; letter-spacing:.05em; color:var(--ink); text-transform:uppercase;">Source</div>
+        <p class="copy" style="font-size:12.5px; margin-top:6px; max-width:150px; margin-left:auto; margin-right:auto;">Tap into our network and use AI-enabled sourcing.</p>
+      </div>
+      <div style="flex:0 0 auto; padding-top:28px; padding-left:8px; padding-right:8px;"><svg width="28" height="16" viewBox="0 0 36 16" fill="none" stroke="var(--muted)" stroke-width="1.6"><path d="M0 8h30M24 3l6 5-6 5"/></svg></div>
+      <div style="flex:1; min-width:0; text-align:center;">
+        <div style="width:64px; height:64px; border-radius:50%; background:var(--advise-tint); color:var(--advise); display:flex; align-items:center; justify-content:center; margin:0 auto;">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="3.2"/><circle cx="16" cy="8" r="3.2"/><path d="M3 19c0-2.9 2.2-5.2 5-5.2s5 2.3 5 5.2M11 19c0-2.9 2.2-5.2 5-5.2s5 2.3 5 5.2"/></svg>
+        </div>
+        <div style="margin-top:14px; font-weight:700; font-size:13px; letter-spacing:.05em; color:var(--ink); text-transform:uppercase;">Assess</div>
+        <p class="copy" style="font-size:12.5px; margin-top:6px; max-width:150px; margin-left:auto; margin-right:auto;">Evaluate for technical skills, domain fit and cultural alignment.</p>
+      </div>
+      <div style="flex:0 0 auto; padding-top:28px; padding-left:8px; padding-right:8px;"><svg width="28" height="16" viewBox="0 0 36 16" fill="none" stroke="var(--muted)" stroke-width="1.6"><path d="M0 8h30M24 3l6 5-6 5"/></svg></div>
+      <div style="flex:1; min-width:0; text-align:center;">
+        <div style="width:64px; height:64px; border-radius:50%; background:var(--transform-tint); color:var(--transform-c); display:flex; align-items:center; justify-content:center; margin:0 auto;">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>
+        </div>
+        <div style="margin-top:14px; font-weight:700; font-size:13px; letter-spacing:.05em; color:var(--ink); text-transform:uppercase;">Shortlist</div>
+        <p class="copy" style="font-size:12.5px; margin-top:6px; max-width:150px; margin-left:auto; margin-right:auto;">Share only the best-fit candidates with detailed insights.</p>
+      </div>
+      <div style="flex:0 0 auto; padding-top:28px; padding-left:8px; padding-right:8px;"><svg width="28" height="16" viewBox="0 0 36 16" fill="none" stroke="var(--muted)" stroke-width="1.6"><path d="M0 8h30M24 3l6 5-6 5"/></svg></div>
+      <div style="flex:1; min-width:0; text-align:center;">
+        <div style="width:64px; height:64px; border-radius:50%; background:var(--build-tint); color:var(--build); display:flex; align-items:center; justify-content:center; margin:0 auto;">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="8" r="3.4"/><path d="M4 20c0-3.5 2.7-6.2 6-6.2s6 2.7 6 6.2"/><circle cx="18.2" cy="17" r="4.2" fill="#fff"/><path d="M16.3 17l1.2 1.2 2.2-2.4"/></svg>
+        </div>
+        <div style="margin-top:14px; font-weight:700; font-size:13px; letter-spacing:.05em; color:var(--ink); text-transform:uppercase;">Hire & Support</div>
+        <p class="copy" style="font-size:12.5px; margin-top:6px; max-width:150px; margin-left:auto; margin-right:auto;">Enable a smooth hiring process and post-offer support.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sec" style="border-top:1px solid var(--line);">
+  <div class="container">
+    <div class="eyebrow" style="margin-bottom:8px;">Related capabilities</div>
+    <h2 style="font-size:22px; margin-bottom:22px; max-width:640px;">More ways we help you build for what's next.</h2>
+    <div class="grid-3">
+      <div class="card"><span class="icon-badge" style="margin-bottom:12px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="3.2"/><circle cx="16" cy="8" r="3.2"/><path d="M3 19c0-2.9 2.2-5.2 5-5.2s5 2.3 5 5.2M11 19c0-2.9 2.2-5.2 5-5.2s5 2.3 5 5.2"/></svg></span><div style="font-size:14.5px; font-weight:600; margin-bottom:6px;">Contract Hiring</div><p class="copy" style="font-size:13px; margin-bottom:10px;">Flexible technical talent for project-based needs.</p><a href="index.html#contact" style="font-size:12.5px; font-weight:600;">Learn more →</a></div>
+      <div class="card"><span class="icon-badge" style="margin-bottom:12px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2.5l2.7 5.6 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg></span><div style="font-size:14.5px; font-weight:600; margin-bottom:6px;">Leadership &amp; Executive Hiring</div><p class="copy" style="font-size:13px; margin-bottom:10px;">Technology and operations leaders for critical roles.</p><a href="index.html#contact" style="font-size:12.5px; font-weight:600;">Learn more →</a></div>
+      <div class="card"><span class="icon-badge" style="margin-bottom:12px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l9 4.5-9 4.5-9-4.5L12 3z"/><path d="M3 12l9 4.5 9-4.5"/><path d="M3 16.5l9 4.5 9-4.5"/></svg></span><div style="font-size:14.5px; font-weight:600; margin-bottom:6px;">Recruitment Process Outsourcing (RPO)</div><p class="copy" style="font-size:13px; margin-bottom:10px;">End-to-end recruiting for sustained hiring needs.</p><a href="index.html#contact" style="font-size:12.5px; font-weight:600;">Learn more →</a></div>
+    </div>
+  </div>
+</div>
+
+<section id="contact" class="sec" style="background:linear-gradient(120deg,#eef2fb 0%,#e6ecf9 100%); padding:24px 0;">
+  <div class="container">
+    <div style="background:var(--accent-tint); border-radius:14px; padding:20px 28px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+      <div style="display:flex; align-items:center; gap:14px;">
+        <span class="icon-badge" style="flex-shrink:0;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="8" r="3.2"/><path d="M4.5 19c0-3.3 2.7-5.5 5.7-5.5"/><circle cx="17.5" cy="16.5" r="3"/><path d="M19.8 18.8 22 21"/></svg></span>
+        <div>
+          <div style="font-weight:700; font-size:15.5px; color:var(--ink);">Talent that's assessed, not just matched.</div>
+          <div class="copy" style="font-size:13px; margin-top:2px;">Right skills. Right fit. Faster time-to-hire.</div>
+        </div>
+      </div>
+      <a class="btn accent" href="index.html#contact">Talk to Talent Acquisition →</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer" style="position:relative; overflow:hidden;">
+  <svg style="position:absolute; bottom:-90px; right:-40px; width:280px; height:280px; pointer-events:none;" viewBox="0 0 200 200"><circle cx="100" cy="100" r="100" fill="#e4eaf6" opacity=".7"/></svg>
+  <div class="container" style="position:relative;">
+    <div class="footer-grid">
+      <div>
+        <img src="logo.png" alt="TalNXT Technologies">
+        <p class="copy" style="font-size:13px; font-weight:600; max-width:260px;">Build. Scale. Transform.</p>
+        <div style="display:flex; align-items:center; gap:10px; margin-top:14px;">
+          <a href="https://www.linkedin.com/company/talnxt" target="_blank" rel="noopener" aria-label="LinkedIn" style="width:32px; height:32px; border-radius:50%; background:var(--accent-tint); color:var(--accent); display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700;">in</a>
+          <a href="https://www.facebook.com/talnxt" target="_blank" rel="noopener" aria-label="Facebook" style="width:32px; height:32px; border-radius:50%; background:var(--accent-tint); color:var(--accent); display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:700; font-family:Georgia,serif;">f</a>
+          <a href="https://www.instagram.com/talnxt" target="_blank" rel="noopener" aria-label="Instagram" style="width:32px; height:32px; border-radius:50%; background:var(--accent-tint); color:var(--accent); display:flex; align-items:center; justify-content:center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <div class="eyebrow" style="margin-bottom:14px;">Company</div>
+        <div class="footer-links-list">
+          <a href="about.html">About</a>
+          <a href="careers.html">Careers</a>
+          <a href="candidates.html">For Candidates</a>
+          <a href="index.html#contact">Contact</a>
+        </div>
+      </div>
+      <div>
+        <div class="eyebrow" style="margin-bottom:14px;">What We Do</div>
+        <div class="footer-links-list">
+          <a href="technology-services.html">Technology &amp; IT Services</a>
+          <a href="permanent-hiring.html">Talent Solutions</a>
+          <a href="workforce-strategy-planning.html">Workforce Transformation</a>
+          <a href="organization-people-transformation.html">Organization &amp; People Transformation</a>
+        </div>
+      </div>
+      <div>
+        <div class="eyebrow" style="margin-bottom:14px;">Resources</div>
+        <div class="footer-links-list">
+          <a href="industries.html">Industries</a>
+          <a href="how-we-help-businesses.html">How We Help Businesses</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>&copy; <span id="year"></span> TalNXT Technologies. All rights reserved.</div>
+    </div>
+  </div>
+</footer>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Permanent Hiring","serviceType":"Technology Recruitment","provider":{"@type":"Organization","name":"TalNXT Technologies"},"areaServed":"Global"}</script>
+<script src="js/main.js"></script>
 </body>
 </html>

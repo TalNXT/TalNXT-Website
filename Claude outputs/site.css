@@ -1,0 +1,152 @@
+/* =========================================================
+   TalNXT Technologies — shared site stylesheet
+   Design system ported from the approved wireframe mocks.
+   ========================================================= */
+
+:root {
+  --bg: #f4f6fa; --surface: #ffffff; --ink: #14203a; --muted: #58657a;
+  --line: #dbe1ea; --accent: #1b5fc4; --accent-dark: #0e2e63; --accent-tint: #e4eaf6;
+  --navy: #16223c; --navy-deep: #0a1224;
+  --red: #b3574a; --red-tint: #f5ece9; --green: #3d7c63; --green-tint: #ebf3ef;
+  --build: #1b5fc4; --build-tint: #e4eaf6;
+  --scale: #2f8f5b; --scale-tint: #e5f2ea;
+  --transform-c: #7857b0; --transform-tint: #efe9f7;
+  --advise: #b8862f; --advise-tint: #f6efe0;
+  --tint-pale: #f4f8fc;
+  --container: 1200px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: 'IBM Plex Sans', -apple-system, Segoe UI, Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, .display { font-family: 'Newsreader', Georgia, serif; font-weight: 500; letter-spacing: -0.01em; margin: 0; }
+p { margin: 0; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--accent-dark); }
+img { max-width: 100%; display: block; }
+
+.container { width: 100%; max-width: var(--container); margin: 0 auto; padding: 0 56px; box-sizing: border-box; }
+.sec { padding: 42px 0; }
+.sec.tight { padding: 24px 0; }
+
+.eyebrow { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--accent); }
+.muted { color: var(--muted); }
+p.copy { font-size: 15px; line-height: 1.7; color: #2b3446; margin: 0; }
+
+.btn { display: inline-flex; align-items: center; gap: 8px; border: 1.5px solid var(--ink); color: var(--ink); border-radius: 4px; padding: 13px 24px; font-size: 14px; font-weight: 600; background: transparent; cursor: pointer; white-space: nowrap; }
+.btn:hover { color: var(--accent-dark); border-color: var(--accent-dark); }
+.btn.accent { background: var(--accent); color: #fff; border-color: var(--accent); }
+.btn.accent:hover { background: var(--accent-dark); border-color: var(--accent-dark); color: #fff; }
+.btn.ghost-light { border-color: rgba(255,255,255,.55); color: #fff; }
+.btn.ghost-light:hover { border-color: #fff; color: #fff; }
+
+.card { border: 1px solid var(--line); border-radius: 10px; padding: 24px; background: var(--surface); }
+.icon-badge { width: 44px; height: 44px; border-radius: 50%; background: var(--accent-tint); color: var(--accent); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+
+/* ---- accordion pillar cards (Org & People Transformation page) ---- */
+.pillar-card summary { list-style: none; cursor: pointer; }
+.pillar-card summary::-webkit-details-marker { display: none; }
+.pillar-card .chevron { transition: transform .15s ease; }
+.pillar-card[open] .chevron { transform: rotate(180deg); }
+.pillar-card[open] summary { border-bottom: 1px solid var(--line); }
+
+/* ---- responsive image (replaces the old dashed photo placeholder) ---- */
+.ph-img { position: relative; border-radius: 10px; overflow: hidden; background: #eef1f6; }
+.ph-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ph-img .cap { position: absolute; left: 12px; bottom: 12px; background: rgba(10,18,36,.6); color: #fff; font-size: 10.5px; font-weight: 600; letter-spacing: .02em; padding: 5px 10px; border-radius: 20px; }
+
+/* ---- responsive grid utilities (used in place of inline grid-template-columns) ---- */
+.grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 14px; }
+.outcomes-grid > div:first-child { border-left: none !important; padding-left: 0 !important; }
+
+.row-flex { display: flex; gap: 40px; align-items: center; }
+.row-flex.top { align-items: flex-start; }
+
+/* ================= NAV ================= */
+.site-nav { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; border-bottom: 1px solid var(--line); background: var(--surface); position: sticky; top: 0; z-index: 100; }
+.site-nav .logo img { height: 64px; width: auto; display: block; }
+.nav-links { display: flex; align-items: center; gap: 26px; font-size: 14px; font-weight: 500; list-style: none; margin: 0; padding: 0; }
+.nav-links > li { position: relative; }
+.nav-links a { color: var(--ink); }
+.nav-links a:hover, .nav-links li.active > a { color: var(--accent); }
+.nav-links .caret { display: inline-flex; margin-left: 4px; vertical-align: -1px; }
+/* Invisible bridge that fills the visual gap between the trigger and the
+   dropdown panel below, so the mouse never leaves a hoverable area while
+   moving from the "What We Do" link down into the menu. Without this the
+   14px margin-top gap on .nav-dropdown breaks :hover continuity and the
+   panel closes before the cursor reaches it. */
+.nav-links > li.has-dropdown::after { content: ""; position: absolute; top: 100%; left: 0; right: 0; height: 14px; }
+.nav-dropdown { display: none; position: absolute; top: 100%; left: 0; margin-top: 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; box-shadow: 0 12px 28px rgba(20,32,58,.12); padding: 10px; min-width: 780px; z-index: 200; }
+.nav-links li:hover .nav-dropdown, .nav-links li.open .nav-dropdown { display: flex; gap: 4px; }
+.nav-dropdown .pillar-col { flex: 1; padding: 12px 14px; border-radius: 8px; }
+.nav-dropdown .pillar-col:hover { background: var(--tint-pale); }
+.nav-dropdown .pillar-title { font-size: 12.5px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+.nav-dropdown .pillar-links { display: flex; flex-direction: column; gap: 7px; }
+.nav-dropdown .pillar-links a { font-size: 12.5px; color: var(--muted); }
+.nav-dropdown .pillar-links a:hover { color: var(--accent); }
+.nav-toggle { display: none; background: none; border: none; padding: 6px; cursor: pointer; }
+.nav-toggle span { display: block; width: 22px; height: 2px; background: var(--ink); margin: 5px 0; }
+.nav-cta { flex-shrink: 0; }
+
+/* ================= FOOTER ================= */
+.site-footer { border-top: 1px solid var(--line); background: var(--surface); padding-top: 48px; }
+.footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 36px; }
+.footer-grid img { height: 54px; margin-bottom: 12px; }
+.footer-col-title { font-weight: 600; margin-bottom: 10px; font-size: 13.5px; }
+.footer-links-list { display: flex; flex-direction: column; gap: 8px; font-size: 13.5px; }
+.footer-links-list a { color: var(--muted); }
+.footer-links-list a:hover { color: var(--accent); }
+.footer-bottom { border-top: 1px solid var(--line); padding: 18px 0; font-size: 13px; color: var(--muted); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+
+/* ================= responsive breakpoints ================= */
+@media (max-width: 1080px) {
+  .container { padding: 0 32px; }
+  .nav-dropdown { min-width: 620px; }
+}
+
+@media (max-width: 900px) {
+  h1 { font-size: 30px !important; }
+  .grid-4 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .outcomes-grid > div:nth-child(2n+1) { border-left: none !important; padding-left: 0 !important; }
+  .outcomes-grid > div:nth-child(-n+2) { margin-bottom: 16px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .nav-dropdown { position: static; min-width: 0; box-shadow: none; margin-top: 8px; flex-direction: column; }
+}
+
+@media (max-width: 760px) {
+  .container { padding: 0 20px; }
+  .sec { padding: 30px 0; }
+  .row-flex { flex-direction: column; align-items: stretch; gap: 24px; }
+  .row-flex.reverse-mobile { flex-direction: column-reverse; }
+  .grid-3 { grid-template-columns: 1fr; }
+  .grid-2 { grid-template-columns: 1fr; }
+  h1 { font-size: 26px !important; line-height: 1.28 !important; }
+  h2 { font-size: 20px !important; }
+
+  .nav-links { position: fixed; top: 65px; left: 0; right: 0; bottom: 0; background: var(--surface); flex-direction: column; align-items: flex-start; padding: 18px 24px; gap: 4px; overflow-y: auto; transform: translateX(100%); transition: transform .2s ease; }
+  .nav-links.open { transform: translateX(0); }
+  .nav-links > li { width: 100%; padding: 10px 0; border-bottom: 1px solid var(--line); }
+  .nav-dropdown { display: none !important; }
+  .nav-links li.open .nav-dropdown { display: flex !important; flex-direction: column; padding: 10px 0 0 12px; border: none; margin-top: 8px; }
+  .nav-toggle { display: block; }
+  .nav-cta.desktop-only { display: none; }
+}
+
+@media (min-width: 761px) {
+  .mobile-only { display: none !important; }
+}
+@media (max-width: 760px) {
+  .desktop-only { display: none !important; }
+}
+
+@media (max-width: 560px) {
+  .grid-4 { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .outcomes-grid > div { border-left: none !important; padding-left: 0 !important; margin-bottom: 14px; }
+}
