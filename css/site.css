@@ -361,6 +361,18 @@ p.copy { font-size: 15px; line-height: 1.7; color: #2b3446; margin: 0; }
 .chip-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
 .chip { font-size: 11.5px; font-weight: 600; color: var(--accent-dark); background: var(--accent-tint); border-radius: 20px; padding: 4px 10px; }
 
+/* compact coverage cards (home: technologies & verticals) */
+.sec.sec-compact { padding: 30px 0; }
+.sec-compact .sec-head { margin-bottom: 16px; }
+.coverage-card { padding: 16px 18px; }
+.coverage-head { display: flex; align-items: center; gap: 10px; }
+.coverage-head .icon-badge { width: 32px; height: 32px; }
+.coverage-head .card-title { margin: 0; flex: 1; }
+.coverage-head .card-link { margin-top: 0; white-space: nowrap; }
+.coverage-card .copy { margin-top: 8px; font-size: 13px; line-height: 1.5; }
+.coverage-card .chip-list { margin-top: 10px; gap: 5px; }
+.coverage-card .chip { padding: 3px 9px; font-size: 11px; }
+
 /* numbered lifecycle */
 .lifecycle { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 14px; counter-reset: step; }
 .lifecycle li { counter-increment: step; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px 18px 16px; position: relative; }
