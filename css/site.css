@@ -578,21 +578,50 @@ p.copy { font-size: 15px; line-height: 1.7; color: #2b3446; margin: 0; }
 .am-body h2 { font-size: 28px; font-weight: 600; line-height: 1.25; color: #172544; }
 .am-body p.copy { margin-top: 10px; font-size: 13.5px; color: #526174; white-space: nowrap; }
 .am-levels { list-style: none; margin: 22px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
-.am-level { --c: #239B7A; --bg: #F0FAF7; --bd: rgba(35,155,122,.3); position: relative; display: flex; align-items: center; gap: 14px; padding: 16px 18px; border-radius: 13px; background: var(--bg); border: 1px solid var(--bd); }
+.am-level { --c: #239B7A; --bg: #F0FAF7; --bd: rgba(35,155,122,.3); position: relative; display: flex; align-items: center; gap: 14px; padding: 11px 18px; border-radius: 13px; background: var(--bg); border: 1px solid var(--bd); }
 .am-level.l2 { --c: #287CDB; --bg: #F1F7FD; --bd: rgba(40,124,219,.3); }
 .am-level.l3 { --c: #8061C5; --bg: #F6F2FC; --bd: rgba(128,97,197,.3); }
 .am-level-icon { flex: none; width: 30px; height: 30px; color: var(--c); padding-right: 14px; border-right: 1px solid var(--bd); box-sizing: content-box; }
 .am-level-icon svg { width: 30px; height: 30px; display: block; }
 .am-level-body { min-width: 0; }
-.am-badge { display: inline-block; font-size: 10.5px; font-weight: 700; letter-spacing: .07em; color: #fff; background: var(--c); border-radius: 4px; padding: 3px 8px; }
-.am-role { font-size: 15px; font-weight: 700; color: #172544; margin-top: 8px; }
-.am-time { font-size: 13px; line-height: 1.45; color: #526174; margin-top: 2px; }
+.am-badge { display: inline-block; font-size: 10.5px; font-weight: 700; letter-spacing: .07em; color: #fff; background: var(--c); border-radius: 4px; padding: 2px 7px; }
+.am-role { font-size: 15px; font-weight: 700; color: #172544; margin-top: 5px; }
+.am-time { font-size: 13px; line-height: 1.35; color: #526174; margin-top: 1px; }
 .am-arrow { position: absolute; top: 50%; right: -18px; transform: translateY(-50%); z-index: 1; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; background: #fff; border: 1px solid #DCE7F1; color: #287CDB; box-shadow: 0 2px 6px rgba(23,37,68,.06); }
 .am-arrow svg { width: 14px; height: 14px; }
+/* escalation flow: each level lights up in turn and its arrow hands off to the next; hover takes over */
+.am-level { transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; animation: am-step 7.5s ease-in-out infinite; }
+.am-level.l2 { animation-delay: 2.5s; }
+.am-level.l3 { animation-delay: 5s; }
+.am-arrow { transition: background-color .25s ease, color .25s ease, border-color .25s ease; animation: am-pass 7.5s ease-in-out infinite; }
+.am-arrow svg { animation: am-nudge 7.5s ease-in-out infinite; }
+.am-level.l2 .am-arrow, .am-level.l2 .am-arrow svg { animation-delay: 2.5s; }
+.am-levels:hover .am-level, .am-levels:hover .am-arrow, .am-levels:hover .am-arrow svg { animation: none; }
+.am-level:hover { transform: translateY(-2px); border-color: var(--c); box-shadow: 0 0 0 2px var(--bd), 0 12px 24px -14px var(--c); }
+.am-level:hover .am-arrow { background: var(--c); border-color: var(--c); color: #fff; }
+.am-level:hover .am-arrow svg { transform: translateX(2px); }
+@keyframes am-step {
+  0%, 32%, 100% { transform: none; border-color: var(--bd); box-shadow: 0 0 0 0 transparent; }
+  5%, 26% { transform: translateY(-2px); border-color: var(--c); box-shadow: 0 0 0 2px var(--bd), 0 12px 24px -14px var(--c); }
+}
+@keyframes am-pass {
+  0%, 24%, 40%, 100% { background: #fff; border-color: #DCE7F1; color: #287CDB; }
+  28%, 34% { background: var(--c); border-color: var(--c); color: #fff; }
+}
+@keyframes am-nudge {
+  0%, 24%, 40%, 100% { transform: translateX(0); }
+  29% { transform: translateX(3px); }
+  33% { transform: translateX(0); }
+  36% { transform: translateX(3px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .am-level, .am-arrow, .am-arrow svg { animation: none; }
+  .am-level:hover { transform: none; }
+}
 @media (max-width: 1080px) {
   .am-wrap { grid-template-columns: 170px minmax(0, 1fr); gap: 28px; }
   .am-levels { gap: 18px; }
-  .am-level { padding: 14px; gap: 10px; }
+  .am-level { padding: 10px 14px; gap: 10px; }
   .am-level-icon, .am-level-icon svg { width: 24px; height: 24px; }
   .am-level-icon { padding-right: 10px; }
   .am-arrow { right: -16px; }
