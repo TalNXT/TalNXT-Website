@@ -474,6 +474,10 @@ p.copy { font-size: 15px; line-height: 1.7; color: #2b3446; margin: 0; }
 .sla-card.green { border-top-color: var(--scale); }
 .sla-card.violet { border-top-color: var(--transform-c); }
 .sla-card.gold { border-top-color: var(--advise); }
+.sla-card.blue { --sla-c: #287cdb; border-top-color: var(--sla-c); }
+.sla-card.blue .sla-time { color: var(--sla-c); font-size: 28px; font-weight: 700; }
+.sla-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.sla-head .icon-badge { width: 36px; height: 36px; background: color-mix(in srgb, var(--sla-c, var(--accent)) 12%, #fff); color: var(--sla-c, var(--accent)); }
 
 /* escalation matrix */
 .esc-matrix { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 14px; }
