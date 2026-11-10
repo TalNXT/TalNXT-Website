@@ -791,15 +791,30 @@ p.copy { font-size: 15px; line-height: 1.7; color: #2b3446; margin: 0; }
 .svc-head h2 { font-size: 30px; line-height: 1.22; font-weight: 700; max-width: 680px; margin: 0 auto; }
 .svc-head .copy { font-size: 15px; line-height: 1.65; color: var(--muted); max-width: 600px; margin: 0 auto; }
 .svc-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
-.svc-card { --s-c: var(--accent); --s-tint: var(--accent-tint); --s-bd: #b9cbec; position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 6px; padding: 14px 16px 38px; border: 1px solid var(--line); border-radius: 14px; background: var(--bg); color: var(--ink); transition: transform .2s, box-shadow .2s, border-color .2s, background .2s; }
+.svc-card { --s-c: var(--accent); --s-rgb: 40,124,219; --s-tint: var(--accent-tint); --s-bd: #b9cbec; position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 6px; padding: 14px 16px 38px; border: 1px solid var(--line); border-radius: 14px; background: var(--bg); color: var(--ink); transition: transform .2s, box-shadow .2s, border-color .2s, background .2s; }
 .svc-card:hover { color: var(--ink); transform: translateY(-2px); background: var(--surface); border-color: var(--s-bd); box-shadow: 0 14px 28px -18px rgba(14,46,99,.5); }
 /* Brand-blue (logo) corner wave: hugs the bottom edge, sweeps up the right edge */
 .svc-card::after { content: ""; position: absolute; right: 0; bottom: 0; width: 32%; height: 22%; min-width: 60px; min-height: 30px; max-height: 42px; pointer-events: none;
   background: no-repeat center / 100% 100% url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath fill='%231B5FC4' d='M0 100C48 100 100 72 100 0V100Z'/%3E%3C/svg%3E"); }
-.svc-card.blue { --s-c: #287CDB; --s-tint: #EAF3FD; --s-bd: rgba(40,124,219,.4); }
-.svc-card.teal { --s-c: #239B7A; --s-tint: #E8F6F0; --s-bd: rgba(35,155,122,.4); }
-.svc-ico { width: 34px; height: 34px; border-radius: 9px; display: flex; align-items: center; justify-content: center; margin-bottom: 2px; background: var(--s-tint); color: var(--s-c); }
-.svc-ico svg { width: 18px; height: 18px; }
+.svc-card.blue { --s-c: #287CDB; --s-rgb: 40,124,219; --s-tint: #EAF3FD; --s-bd: rgba(40,124,219,.4); }
+.svc-card.teal { --s-c: #239B7A; --s-rgb: 35,155,122; --s-tint: #E8F6F0; --s-bd: rgba(35,155,122,.4); }
+/* Icon: soft idle glow pulse; lights up (filled, brighter glow, lift) on card hover/focus */
+.svc-ico { width: 34px; height: 34px; border-radius: 9px; display: flex; align-items: center; justify-content: center; margin-bottom: 2px; background: var(--s-tint); color: var(--s-c); box-shadow: 0 0 0 1px rgba(var(--s-rgb),.18), 0 0 10px 0 rgba(var(--s-rgb),.28); animation: svcGlow 2.8s ease-in-out infinite; transition: background .25s, color .25s, transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .25s; }
+.svc-card:nth-child(2) .svc-ico { animation-delay: .4s; }
+.svc-card:nth-child(3) .svc-ico { animation-delay: .8s; }
+.svc-card:nth-child(4) .svc-ico { animation-delay: 1.2s; }
+.svc-card:nth-child(5) .svc-ico { animation-delay: 1.6s; }
+.svc-ico svg { width: 18px; height: 18px; transition: transform .35s ease, filter .25s; }
+.svc-card:hover .svc-ico, .svc-card:focus-visible .svc-ico { animation: none; background: var(--s-c); color: #fff; transform: translateY(-2px) scale(1.12); box-shadow: 0 0 0 4px rgba(var(--s-rgb),.16), 0 0 18px 4px rgba(var(--s-rgb),.55), 0 6px 14px -4px rgba(var(--s-rgb),.6); }
+.svc-card:hover .svc-ico svg, .svc-card:focus-visible .svc-ico svg { transform: rotate(-8deg) scale(1.05); filter: drop-shadow(0 0 3px rgba(255,255,255,.85)); }
+@keyframes svcGlow {
+  0%, 100% { box-shadow: 0 0 0 1px rgba(var(--s-rgb),.18), 0 0 8px 0 rgba(var(--s-rgb),.22); }
+  50% { box-shadow: 0 0 0 1px rgba(var(--s-rgb),.3), 0 0 16px 3px rgba(var(--s-rgb),.45); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .svc-ico { animation: none; }
+  .svc-card:hover .svc-ico, .svc-card:focus-visible .svc-ico, .svc-card:hover .svc-ico svg, .svc-card:focus-visible .svc-ico svg { transform: none; }
+}
 .svc-name { font-size: 14.5px; font-weight: 700; line-height: 1.3; padding-right: 22px; }
 .svc-desc { font-size: 12.5px; line-height: 1.55; color: var(--muted); }
 .svc-card > .svc-arrow { position: absolute; top: 14px; right: 16px; color: var(--s-c); font-weight: 700; transition: transform .2s; }
