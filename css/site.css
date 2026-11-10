@@ -553,6 +553,10 @@ p.copy { font-size: 15px; line-height: 1.7; color: #2b3446; margin: 0; }
 .card-head .icon-badge { width: 32px; height: 32px; }
 .card-head .card-title { margin: 0; font-size: 14.5px; }
 .compact-card .copy { margin-top: 8px; font-size: 13px; line-height: 1.55; }
+.sla-sec .sec-head .eyebrow { font-size: 12px; display: flex; align-items: center; justify-content: center; gap: 12px; }
+.sla-sec .sec-head .eyebrow::before,
+.sla-sec .sec-head .eyebrow::after { content: ""; width: 40px; height: 4px; border-radius: 2px; background: linear-gradient(180deg, #6fb394 0%, var(--green) 55%, #2a5a47 100%); box-shadow: 0 1px 2px rgba(20,32,58,.25), inset 0 1px 0 rgba(255,255,255,.35); }
+.sla-sec .sec-head h2 { font-size: 25px; }
 .sec-compact .sla-card { padding: 14px 16px; }
 .sec-compact .sla-time { font-size: 26px; }
 .sec-compact .sla-label { margin-top: 6px; }
