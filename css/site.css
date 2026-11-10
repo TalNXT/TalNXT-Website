@@ -576,7 +576,7 @@ p.copy { font-size: 15px; line-height: 1.7; color: #2b3446; margin: 0; }
 @media (prefers-reduced-motion: reduce) { .am-illus .bob { animation: none; } }
 .am-body .eyebrow { font-size: 12px; color: #287CDB; margin-bottom: 10px; }
 .am-body h2 { font-size: 28px; font-weight: 600; line-height: 1.25; color: #172544; }
-.am-body p.copy { margin-top: 10px; max-width: 660px; font-size: 15px; color: #526174; }
+.am-body p.copy { margin-top: 10px; font-size: 13.5px; color: #526174; white-space: nowrap; }
 .am-levels { list-style: none; margin: 22px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
 .am-level { --c: #239B7A; --bg: #F0FAF7; --bd: rgba(35,155,122,.3); position: relative; display: flex; align-items: center; gap: 14px; padding: 16px 18px; border-radius: 13px; background: var(--bg); border: 1px solid var(--bd); }
 .am-level.l2 { --c: #287CDB; --bg: #F1F7FD; --bd: rgba(40,124,219,.3); }
@@ -599,6 +599,7 @@ p.copy { font-size: 15px; line-height: 1.7; color: #2b3446; margin: 0; }
 }
 @media (max-width: 900px) {
   .am-levels { grid-template-columns: 1fr; gap: 16px; max-width: 460px; }
+  .am-body p.copy { white-space: normal; }
   .am-arrow { top: auto; right: auto; bottom: -21px; left: 36px; transform: rotate(90deg); }
 }
 @media (max-width: 760px) {
