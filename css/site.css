@@ -789,7 +789,7 @@ p.copy { font-size: 15px; line-height: 1.7; color: #2b3446; margin: 0; }
 .svc-head { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px; max-width: 760px; margin: 0 auto 32px; }
 .svc-head .eyebrow { margin-bottom: 10px; }
 .svc-head h2 { font-size: 30px; line-height: 1.22; font-weight: 700; max-width: 680px; margin: 0 auto; }
-.svc-head .copy { font-size: 15px; line-height: 1.65; color: var(--muted); max-width: 600px; margin: 0 auto; }
+.svc-head .copy { font-size: 13px; line-height: 1.65; color: var(--muted); max-width: 600px; margin: 0 auto; text-align: center; text-wrap: balance; }
 .svc-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
 .svc-card { --s-c: var(--accent); --s-rgb: 40,124,219; --s-tint: var(--accent-tint); --s-bd: #b9cbec; position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 6px; padding: 14px 16px 38px; border: 1px solid var(--line); border-radius: 14px; background: var(--bg); color: var(--ink); transition: transform .2s, box-shadow .2s, border-color .2s, background .2s; }
 .svc-card:hover { color: var(--ink); transform: translateY(-2px); background: var(--surface); border-color: var(--s-bd); box-shadow: 0 14px 28px -18px rgba(14,46,99,.5); }
@@ -854,7 +854,7 @@ a.cta-pill:hover { background: rgba(255,255,255,.13); color: #fff; }
 @media (max-width: 760px) {
   .svc-sec { padding: 36px 0 26px; }
   .svc-head h2 { font-size: 23px !important; }
-  .svc-head .copy { font-size: 14px; }
+  .svc-head .copy { font-size: 12px; }
   .svc-grid { grid-template-columns: 1fr; }
   .svc-card, .svc-card:nth-child(4) { grid-column: auto; }
   .cta-panel { padding: 22px 20px; }
