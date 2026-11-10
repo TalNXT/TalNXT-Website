@@ -520,20 +520,20 @@ p.copy { font-size: 15px; line-height: 1.7; color: #2b3446; margin: 0; }
 
 /* compact "why choose" band (home) — intro left, 2x2 tiles right */
 .sec.why-band { padding: 34px 0; }
-.why-split { display: grid; grid-template-columns: minmax(0,0.85fr) minmax(0,1.15fr); gap: 40px; align-items: center; }
+.why-split { display: grid; grid-template-columns: minmax(0,0.75fr) minmax(0,1.25fr); gap: 32px; align-items: center; }
 .why-intro .eyebrow { margin-bottom: 8px; }
 .why-intro h2 { font-size: 22px; line-height: 1.28; }
 .why-intro p.copy { margin-top: 10px; font-size: 13.5px; line-height: 1.6; }
 .why-intro .btn { margin-top: 16px; }
-.why-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; }
-.why-item { background: #131d30; border: 1px solid #2a3644; border-left: 3px solid #7fb0f5; border-radius: 8px; padding: 14px 16px; transition: border-color .2s, transform .2s; }
+.why-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 8px; }
+.why-item { background: #131d30; border: 1px solid #2a3644; border-left: 3px solid #7fb0f5; border-radius: 8px; padding: 10px 14px; transition: border-color .2s, transform .2s; }
 .why-item:hover { border-color: #3d5170; border-left-color: #7fb0f5; transform: translateY(-2px); }
-.why-item-head { display: flex; align-items: center; gap: 10px; }
-.why-item-head .icon-badge { width: 30px; height: 30px; }
+.why-item-head { display: flex; align-items: center; gap: 8px; }
+.why-item-head .icon-badge { width: 26px; height: 26px; }
 .why-item-head .card-title { margin: 0; font-size: 14px; }
-.why-item p { margin-top: 6px; font-size: 12.5px; line-height: 1.5; color: #b7c0c9; }
-.why-item .chip-list { margin-top: 8px; gap: 4px; }
-.why-item .chip { font-size: 10.5px; padding: 2px 8px; color: #cfe0fb; background: #1e2c45; border: 1px solid #2f4566; }
+.why-item p { margin-top: 4px; font-size: 12.5px; line-height: 1.4; color: #b7c0c9; }
+.why-item .chip-list { margin-top: 6px; gap: 4px; }
+.why-item .chip { font-size: 10.5px; padding: 1px 7px; color: #cfe0fb; background: #1e2c45; border: 1px solid #2f4566; }
 @media (max-width: 900px) { .why-split { grid-template-columns: 1fr; gap: 22px; } }
 @media (max-width: 560px) { .why-grid { grid-template-columns: 1fr; } }
 
