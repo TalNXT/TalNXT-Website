@@ -288,4 +288,46 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     }
   }
+
+  // Home coverage cards: each tag toggles its details in the card's panel and
+  // swaps the corner illustration to match (Escape or the close button collapses it).
+  document.querySelectorAll('.cov-card').forEach(function (card) {
+    var panel = card.querySelector('.cov-panel');
+    if (!panel) return;
+    var tags = Array.prototype.slice.call(card.querySelectorAll('.cov-tag'));
+    var details = Array.prototype.slice.call(panel.querySelectorAll('.cov-detail'));
+    var arts = Array.prototype.slice.call(card.querySelectorAll('.cov-art [data-art]'));
+    var closeBtn = panel.querySelector('.cov-close');
+
+    function setArt(name) {
+      if (!arts.some(function (g) { return g.getAttribute('data-art') === name; })) name = 'default';
+      arts.forEach(function (g) { g.classList.toggle('on', g.getAttribute('data-art') === name); });
+    }
+    function collapse() {
+      var active = card.querySelector('.cov-tag[aria-expanded="true"]');
+      tags.forEach(function (b) { b.setAttribute('aria-expanded', 'false'); });
+      panel.classList.remove('open');
+      setArt('default');
+      return active;
+    }
+
+    tags.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        if (btn.getAttribute('aria-expanded') === 'true') { collapse(); return; }
+        tags.forEach(function (b) { b.setAttribute('aria-expanded', String(b === btn)); });
+        details.forEach(function (d) { d.hidden = d.id !== btn.getAttribute('aria-controls'); });
+        panel.classList.add('open');
+        setArt(btn.getAttribute('data-art'));
+      });
+    });
+    if (closeBtn) closeBtn.addEventListener('click', function () {
+      var active = collapse();
+      if (active) active.focus();
+    });
+    card.addEventListener('keydown', function (e) {
+      if (e.key !== 'Escape' || !panel.classList.contains('open')) return;
+      var active = collapse();
+      if (active) active.focus();
+    });
+  });
 });
