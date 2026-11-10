@@ -549,6 +549,14 @@ p.copy { font-size: 15px; line-height: 1.7; color: #2b3446; margin: 0; }
 .value-icon { flex-shrink: 0; display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 50%; background: #EAF3FF; color: #0871E8; }
 .value-icon svg { width: 30px; height: 30px; }
 .value-label { font-size: 14px; font-weight: 700; line-height: 1.3; color: #172544; white-space: nowrap; }
+@media (min-width: 1081px) {
+  /* First item on the left margin, last on the right, equal gaps with a centered divider in each */
+  .value-strip { display: flex; padding: 14px 0 18px; }
+  .value-item { flex: 0 0 auto; gap: 0; padding: 4px 0; }
+  .value-item + .value-item { flex: 1 0 auto; border-left: none; }
+  .value-item + .value-item::before { content: ""; align-self: stretch; width: 1px; margin: 0 auto; background: rgba(22,34,60,.12); }
+  .value-label { margin-left: 10px; }
+}
 @media (max-width: 1080px) {
   .value-item { flex-direction: column; text-align: center; gap: 10px; padding: 4px 8px; }
   .value-label { font-size: 13.5px; }
