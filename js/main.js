@@ -330,4 +330,89 @@ document.addEventListener('DOMContentLoaded', function () {
       if (active) active.focus();
     });
   });
+
+  // Home testimonials carousel: cards per view comes from the CSS --per value
+  // (3 / 2 / 1), so dots and the last stop are rebuilt on resize. Auto-advances
+  // every 5.5s, pausing on hover, keyboard focus, touch and hidden tabs; it stays
+  // manual-only for reduced-motion users. Arrows, dots, swipe and ←/→ keys navigate.
+  var tst = document.querySelector('.tst-carousel');
+  if (tst) {
+    var tstTrack = tst.querySelector('.tst-track');
+    var tstSlides = Array.prototype.slice.call(tstTrack.children);
+    var tstDots = tst.querySelector('.tst-dots');
+    var tstReduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var tstIndex = 0, tstMax = -1, tstTimer = null, tstHover = false, tstFocus = false, tstTouchX = null, tstTouchY = 0;
+
+    tstSlides.forEach(function (s, i) { s.setAttribute('aria-label', (i + 1) + ' of ' + tstSlides.length); });
+
+    var tstRender = function () {
+      tstTrack.style.transform = 'translateX(' + (-tstSlides[tstIndex].offsetLeft) + 'px)';
+      Array.prototype.forEach.call(tstDots.children, function (d, i) { d.setAttribute('aria-current', String(i === tstIndex)); });
+    };
+    var tstBuild = function () {
+      var per = parseInt(getComputedStyle(tstTrack).getPropertyValue('--per'), 10) || 1;
+      var max = Math.max(0, tstSlides.length - per);
+      if (max !== tstMax) {
+        tstMax = max;
+        tstIndex = Math.min(tstIndex, tstMax);
+        tstDots.innerHTML = '';
+        for (var i = 0; i <= tstMax; i++) {
+          var dot = document.createElement('button');
+          dot.type = 'button';
+          dot.className = 'tst-dot';
+          dot.setAttribute('aria-label', 'Show testimonials from card ' + (i + 1));
+          dot.addEventListener('click', tstGo.bind(null, i));
+          tstDots.appendChild(dot);
+        }
+      }
+      tstRender();
+    };
+    var tstStop = function () { clearInterval(tstTimer); tstTimer = null; };
+    var tstStart = function () {
+      tstStop();
+      if (tstReduce.matches || tstHover || tstFocus || tstTouchX !== null || document.hidden || tstMax < 1) return;
+      tstTimer = setInterval(function () { tstGo(tstIndex + 1); }, 5500);
+    };
+    function tstGo(i) {
+      tstIndex = (i + tstMax + 1) % (tstMax + 1);
+      tstRender();
+      tstStart();
+    }
+
+    tst.querySelector('.tst-prev').addEventListener('click', function () { tstGo(tstIndex - 1); });
+    tst.querySelector('.tst-next').addEventListener('click', function () { tstGo(tstIndex + 1); });
+    tst.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') { e.preventDefault(); tstGo(tstIndex - 1); }
+      else if (e.key === 'ArrowRight') { e.preventDefault(); tstGo(tstIndex + 1); }
+    });
+    tst.addEventListener('mouseenter', function () { tstHover = true; tstStop(); });
+    tst.addEventListener('mouseleave', function () { tstHover = false; tstStart(); });
+    tst.addEventListener('focusin', function () { tstFocus = true; tstStop(); });
+    tst.addEventListener('focusout', function (e) {
+      if (tst.contains(e.relatedTarget)) return;
+      tstFocus = false; tstStart();
+    });
+    tst.addEventListener('touchstart', function (e) {
+      tstTouchX = e.touches[0].clientX; tstTouchY = e.touches[0].clientY; tstStop();
+    }, { passive: true });
+    tst.addEventListener('touchend', function (e) {
+      if (tstTouchX === null) return;
+      var dx = e.changedTouches[0].clientX - tstTouchX, dy = e.changedTouches[0].clientY - tstTouchY;
+      tstTouchX = null;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) tstGo(tstIndex + (dx < 0 ? 1 : -1));
+      else tstStart();
+    });
+    tst.addEventListener('touchcancel', function () { tstTouchX = null; tstStart(); });
+    document.addEventListener('visibilitychange', tstStart);
+    if (tstReduce.addEventListener) tstReduce.addEventListener('change', tstStart);
+    else if (tstReduce.addListener) tstReduce.addListener(tstStart);
+
+    var tstResizeFrame = null;
+    window.addEventListener('resize', function () {
+      if (tstResizeFrame) cancelAnimationFrame(tstResizeFrame);
+      tstResizeFrame = requestAnimationFrame(function () { tstBuild(); tstStart(); });
+    });
+    tstBuild();
+    tstStart();
+  }
 });
