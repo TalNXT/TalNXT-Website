@@ -239,8 +239,8 @@ p.copy { font-size: 15px; line-height: 1.7; color: #2b3446; margin: 0; }
 .footer-col { min-width: 0; padding: 0 32px; border-left: 1px solid #DCE7F1; }
 .footer-col:first-child { padding-left: 0; border-left: none; }
 .footer-col:last-child { padding-right: 0; }
-.footer-logo { height: 48px; margin-bottom: 8px; }
-.footer-tagline { font-size: 15px; font-weight: 600; color: #172544; line-height: 1.4; max-width: 270px; }
+.footer-logo { height: 58px; margin-bottom: -8px; }
+.footer-tagline { font-size: 13px; font-weight: 600; color: #172544; line-height: 1.4; max-width: 270px; }
 .footer-desc { font-size: 13.5px; line-height: 1.6; color: #526174; max-width: 270px; margin-top: 6px; }
 .footer-social { display: flex; gap: 10px; margin-top: 14px; }
 .soc { width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #EAF3FD; transition: background .2s, color .2s, transform .2s; }
