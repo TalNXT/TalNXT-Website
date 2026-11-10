@@ -571,6 +571,21 @@ p.copy { font-size: 15px; line-height: 1.7; color: #2b3446; margin: 0; }
 .sec-compact .esc-time { margin-top: 6px; }
 .sec-compact .esc-level:not(:last-child)::after { content: "›"; position: absolute; right: -13px; top: 50%; transform: translateY(-50%); width: 22px; height: 22px; border-radius: 50%; background: var(--surface); border: 1px solid var(--line); color: var(--accent); font-size: 15px; font-weight: 700; line-height: 19px; text-align: center; z-index: 1; }
 @media (max-width: 760px) { .sec-compact .esc-level::after { display: none; } }
+
+/* section divider: hairline with a centred handshake medallion (home, SLAs → account manager) */
+.sec-divider { background: var(--surface); padding: 8px 0; }
+.sec-divider-inner { display: flex; align-items: center; gap: 8px; width: 98%; margin: 0 auto; }
+.sec-divider-line { flex: 1; height: 3px; border-radius: 2px; background: linear-gradient(90deg, rgba(185,216,245,0) 0%, #B9D8F5 12%, #B9D8F5 100%); }
+.sec-divider-line:last-child { transform: scaleX(-1); }
+.sec-divider-icon { position: relative; flex: none; width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; color: #287CDB; background: radial-gradient(circle at 50% 35%, #ffffff 0%, #f3f8fe 100%); border: 2px solid #B9D8F5; box-shadow: 0 0 0 5px var(--surface), 0 4px 16px rgba(40,124,219,.16), 0 0 22px rgba(185,216,245,.55); }
+.sec-divider-icon::before { content: ""; position: absolute; inset: -9px; border-radius: 50%; border: 1px solid rgba(185,216,245,.6); border-left-color: transparent; border-right-color: transparent; }
+.sec-divider-icon svg { width: 24px; height: 24px; }
+@media (max-width: 760px) {
+  .sec-divider { padding: 4px 0; }
+  .sec-divider-inner { width: 100%; }
+  .sec-divider-icon { width: 42px; height: 42px; }
+  .sec-divider-icon svg { width: 22px; height: 22px; }
+}
 .cta-box { padding: 32px 36px; border-radius: 12px; background: var(--navy-deep); display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
 .cta-box .cta-title { font-size: 20px; font-weight: 600; color: #fff; font-family: 'Newsreader', Georgia, serif; }
 .cta-box .cta-sub { font-size: 13.5px; color: #b7c0c9; margin-top: 4px; }
