@@ -785,7 +785,28 @@ p.copy { font-size: 15px; line-height: 1.7; color: #2b3446; margin: 0; }
 }
 
 /* Services: five equal cards */
-.svc-sec { padding: 48px 0 34px; }
+.svc-sec { position: relative; overflow: hidden; isolation: isolate; padding: 48px 0 34px; }
+.svc-sec > .container { position: relative; z-index: 1; }
+/* Soft background: diffused blue glow left, mint glow right, faint blurred curved layers for depth; centre stays white.
+   Top layer fades the bottom edge into the Contact section's background. */
+.svc-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(244,246,250,0) calc(100% - 40px), var(--bg)),
+    radial-gradient(ellipse 44% 88% at -6% 40%, #DAECFD 0%, rgba(232,243,253,.9) 40%, rgba(241,247,253,0) 76%),
+    radial-gradient(ellipse 44% 88% at 106% 60%, #DAF3E9 0%, rgba(230,246,240,.9) 40%, rgba(240,250,247,0) 76%); }
+/* Translucent curved layers: huge soft ellipses whose inner arcs sweep in from the edges */
+.svc-bg::before, .svc-bg::after { content: ""; position: absolute; border-radius: 50%; filter: blur(48px); }
+.svc-bg::before { width: 70%; height: 150%; left: -42%; top: -30%; transform: rotate(-12deg);
+  background: radial-gradient(closest-side, rgba(218,236,253,0) 70%, rgba(218,236,253,.95) 86%, rgba(241,247,253,0) 100%); }
+.svc-bg::after { width: 70%; height: 150%; right: -42%; top: -18%; transform: rotate(-12deg);
+  background: radial-gradient(closest-side, rgba(218,243,233,0) 70%, rgba(218,243,233,.95) 86%, rgba(240,250,247,0) 100%); }
+@media (max-width: 760px) {
+  .svc-bg { background:
+    linear-gradient(180deg, rgba(244,246,250,0) calc(100% - 32px), var(--bg)),
+    radial-gradient(ellipse 70% 40% at -10% 12%, #E5F1FC, rgba(241,247,253,0) 75%),
+    radial-gradient(ellipse 70% 40% at 110% 88%, #E5F5EF, rgba(240,250,247,0) 75%); }
+  .svc-bg::before, .svc-bg::after { display: none; }
+}
 .svc-head { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px; max-width: 760px; margin: 0 auto 32px; }
 .svc-head .eyebrow { margin-bottom: 10px; }
 .svc-head h2 { font-size: 30px; line-height: 1.22; font-weight: 700; max-width: 680px; margin: 0 auto; }
