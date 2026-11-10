@@ -519,6 +519,28 @@ p.copy { font-size: 15px; line-height: 1.7; color: #2b3446; margin: 0; }
   .home-hero .ph-img { height: 200px; }
 }
 
+/* Home hero: C2C / C2H engagement model cards */
+.engage-models { position: relative; display: flex; gap: 20px; margin-top: 28px; }
+.engage-card { flex: 1 1 0; min-width: 0; display: flex; align-items: center; gap: 18px; padding: 16px 24px; border-radius: 12px; border-left: 4px solid; transition: transform .2s, box-shadow .2s; }
+.engage-card:hover { transform: translateY(-2px); box-shadow: 0 14px 28px -18px rgba(14,46,99,.45); }
+.engage-card.c2c { background: #EAF3FF; border-left-color: #1670E8; }
+.engage-card.c2h { background: #EAF8F1; border-left-color: #13B879; }
+.engage-icon { flex-shrink: 0; display: flex; width: 44px; height: 44px; }
+.engage-icon svg { width: 44px; height: 44px; }
+.engage-card.c2c .engage-icon { color: #1670E8; }
+.engage-card.c2h .engage-icon { color: #13B879; }
+.engage-divider { flex-shrink: 0; align-self: stretch; width: 1px; background: rgba(22,34,60,.14); }
+.engage-text { min-width: 0; }
+.engage-title { font-size: 16px; font-weight: 700; color: var(--navy); line-height: 1.3; }
+.engage-desc { margin: 3px 0 0; font-size: 13.5px; font-weight: 400; line-height: 1.45; color: var(--navy); overflow-wrap: break-word; }
+@media (max-width: 900px) {
+  .engage-models { flex-direction: column; gap: 16px; }
+}
+@media (max-width: 560px) {
+  .engage-card { gap: 14px; padding: 14px 18px; }
+  .engage-icon, .engage-icon svg { width: 40px; height: 40px; }
+}
+
 /* Managed end to end: compact */
 .mgd-sec { padding: 32px 0; }
 .mgd-wrap { display: flex; gap: 36px; align-items: center; }
