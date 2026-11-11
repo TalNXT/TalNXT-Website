@@ -1158,3 +1158,104 @@ a.cta-v:hover { color: #8EC1F5; }
 .fit-final .fit-title { color: #fff; }
 .fit-final p { color: #d6e2f5; }
 @media (max-width: 420px) { .fit-steps { grid-template-columns: 1fr; } }
+
+/* People & HR Solutions hero: photo with capability labels + outcome strip */
+.phr-hero {
+  --phr-blue: #287CDB; --phr-navy: #172544; --phr-teal: #239B7A; --phr-body: #526174;
+  --phr-pale-blue: #F1F7FD; --phr-light-blue: #DCEEFF; --phr-pale-mint: #F0FAF7; --phr-light-mint: #DDF4EC; --phr-border: #DCE7F1;
+  background:
+    radial-gradient(ellipse 46% 60% at 88% 18%, rgba(220,238,255,.75), transparent 70%),
+    radial-gradient(ellipse 38% 55% at 4% 92%, rgba(221,244,236,.7), transparent 70%),
+    #fff;
+  border-bottom: none;
+}
+.phr-hero .container { padding-top: 22px; padding-bottom: 22px; }
+.phr-grid { display: grid; grid-template-columns: 48fr 52fr; align-items: center; gap: 40px; }
+.phr-copy .eyebrow { color: var(--phr-blue); letter-spacing: .12em; margin-bottom: 10px; }
+.phr-hero h1 { font-size: 36px; line-height: 1.16; font-weight: 700; color: var(--phr-navy); max-width: 560px; }
+.phr-h1-accent { color: var(--phr-blue); white-space: nowrap; }
+.phr-hero .lede { font-size: 14px; line-height: 1.65; color: var(--phr-body); max-width: 500px; margin-top: 14px; }
+.phr-hero .hero-actions { margin-top: 22px; gap: 12px; }
+.phr-hero .hero-actions .btn { border-radius: 8px; padding: 13px 22px; transition: background .2s, border-color .2s, color .2s, transform .2s, box-shadow .2s; }
+.phr-hero .btn.accent { background: var(--phr-blue); border-color: var(--phr-blue); font-weight: 700; }
+.phr-hero .btn.accent:hover { background: #1f6cc4; border-color: #1f6cc4; transform: translateY(-1px); box-shadow: 0 10px 20px -12px rgba(40,124,219,.7); }
+
+.phr-visual { position: relative; width: 100%; max-width: 450px; justify-self: end; padding: 12px 36px; }
+.phr-blob { position: absolute; inset: 0 8px; width: calc(100% - 16px); height: 100%; z-index: 0; }
+.phr-blob path { fill: var(--phr-light-blue); opacity: .7; }
+.phr-photo { position: relative; z-index: 1; aspect-ratio: 1 / .84; border-radius: 52% 48% 46% 54% / 50% 46% 54% 50%; overflow: hidden; border: 6px solid #fff; box-shadow: 0 18px 40px -26px rgba(23,37,68,.45); }
+.phr-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 55% 40%; }
+
+.phr-tags { list-style: none; margin: 0; padding: 0; }
+.phr-tag { position: absolute; z-index: 2; display: flex; align-items: center; gap: 8px; padding: 7px 12px 7px 7px; background: #fff; border: 1px solid var(--phr-border); border-radius: 10px; box-shadow: 0 8px 20px -12px rgba(23,37,68,.35); font-size: 12.5px; font-weight: 600; line-height: 1.2; color: var(--phr-navy); white-space: nowrap; animation: phr-float 6s ease-in-out infinite, phr-hl 10s ease-in-out infinite; animation-delay: 0s, var(--hl); }
+.phr-tag-ico { flex-shrink: 0; display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 8px; }
+.phr-tag-ico svg { width: 16px; height: 16px; }
+.phr-tag.blue { --tc: var(--phr-blue); --tc-pale: var(--phr-pale-blue); }
+.phr-tag.teal { --tc: var(--phr-teal); --tc-pale: var(--phr-pale-mint); }
+.phr-tag-ico { background: var(--tc-pale); color: var(--tc); animation: phr-hl-ico 10s ease-in-out infinite var(--hl); }
+/* Labels sit on the photo's edge, clear of the faces */
+.phr-tag.t1 { top: 8%; left: 0; transform-origin: left center; --hl: 0s; }
+.phr-tag.t2 { top: 58%; left: -6px; --hl: 8s; animation-delay: -1.5s, var(--hl); }
+.phr-tag.t3 { bottom: 4%; left: 14%; --hl: 6s; animation-delay: -3s, var(--hl); }
+.phr-tag.t4 { top: 14%; right: 0; transform-origin: right center; --hl: 2s; animation-delay: -4.5s, var(--hl); }
+.phr-tag.t5 { bottom: 18%; right: 0; transform-origin: right center; --hl: 4s; animation-delay: -2.2s, var(--hl); }
+@keyframes phr-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+/* Auto highlight: one label at a time, clockwise, 2s each over a 10s cycle */
+@keyframes phr-hl {
+  0%, 20%, 100% { scale: 1; border-color: var(--phr-border); box-shadow: 0 8px 20px -12px rgba(23,37,68,.35); }
+  4%, 16% { scale: 1.07; border-color: var(--tc); box-shadow: 0 12px 26px -12px color-mix(in srgb, var(--tc) 60%, transparent), 0 0 0 4px color-mix(in srgb, var(--tc) 12%, transparent); }
+}
+@keyframes phr-hl-ico {
+  0%, 20%, 100% { background: var(--tc-pale); color: var(--tc); }
+  4%, 16% { background: var(--tc); color: #fff; }
+}
+@media (prefers-reduced-motion: reduce) { .phr-tag, .phr-tag-ico { animation: none; } .phr-hero .btn.accent:hover { transform: none; } }
+
+/* Outcome strip: reuses .value-strip, icon left of text at every size */
+.phr-benefits { position: relative; z-index: 1; overflow: hidden; background: linear-gradient(90deg, var(--phr-pale-blue) 0%, var(--phr-pale-mint) 100%); border-top: 1px solid var(--phr-border); }
+.page-hero .phr-benefits .container { padding-top: 0; padding-bottom: 0; }
+/* Desktop keeps the shared .value-strip flex layout: first item on the left edge, last on the right, equal gaps with a centred divider */
+.phr-benefits .value-strip { margin: 0; padding: 18px 0 22px; }
+.phr-benefits .value-icon { width: 46px; height: 46px; border-radius: 12px; }
+.phr-benefits .value-icon svg { width: 24px; height: 24px; }
+.phr-benefits .value-item.blue .value-icon { background: var(--phr-light-blue); color: var(--phr-blue); }
+.phr-benefits .value-item.teal .value-icon { background: var(--phr-light-mint); color: var(--phr-teal); }
+.phr-benefits .value-label { margin-left: 12px; font-size: 12.5px; font-weight: 600; color: var(--phr-navy); }
+.phr-curve { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 22px; pointer-events: none; }
+.phr-curve path { fill: none; stroke-width: 2; }
+.phr-curve .c1 { stroke: rgba(40,124,219,.28); }
+.phr-curve .c2 { stroke: rgba(35,155,122,.26); }
+
+@media (max-width: 1080px) {
+  .phr-hero h1 { font-size: 32px; }
+  .phr-grid { gap: 28px; }
+  .phr-visual { padding: 14px 24px; }
+  .phr-tag { font-size: 11.5px; padding: 5px 10px 5px 5px; gap: 6px; }
+  .phr-tag-ico { width: 24px; height: 24px; }
+  .phr-tag-ico svg { width: 14px; height: 14px; }
+  .phr-benefits .value-strip { grid-template-columns: repeat(2, minmax(0,1fr)); row-gap: 16px; padding: 18px 0 22px; }
+  .phr-benefits .value-item { flex-direction: row; justify-content: flex-start; text-align: left; gap: 12px; padding: 2px 16px; }
+  .phr-benefits .value-item:nth-child(3) { border-left: none; }
+  .phr-benefits .value-label { margin-left: 0; font-size: 12px; white-space: normal; }
+}
+@media (max-width: 860px) {
+  .phr-grid { grid-template-columns: 1fr; gap: 26px; }
+  .phr-visual { justify-self: center; max-width: 440px; }
+}
+@media (max-width: 760px) {
+  .phr-hero .container { padding-top: 24px; padding-bottom: 20px; }
+  .phr-hero h1 { font-size: 28px; }
+  .phr-hero .lede { font-size: 13px; }
+  .phr-hero .hero-actions .btn { flex: 1 1 220px; justify-content: center; padding: 14px 18px; }
+  .phr-benefits .value-item { padding: 2px 8px; gap: 10px; }
+  .phr-benefits .value-icon { width: 40px; height: 40px; border-radius: 10px; }
+  .phr-benefits .value-icon svg { width: 21px; height: 21px; }
+  .phr-benefits .value-label { font-size: 11px; }
+}
+/* Small phones: labels drop below the photo as a chip row */
+@media (max-width: 560px) {
+  .phr-visual { padding: 10px 6px 0; }
+  .phr-blob { inset: 0 -8px auto; width: calc(100% + 16px); height: auto; aspect-ratio: 400 / 380; }
+  .phr-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 16px; position: relative; z-index: 2; }
+  .phr-tag { position: static; animation-name: none, phr-hl; box-shadow: 0 4px 12px -8px rgba(23,37,68,.35); }
+}
