@@ -995,6 +995,8 @@ p.copy { font-size: 15px; line-height: 1.7; color: #2b3446; margin: 0; }
 }
 .svc-head { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px; max-width: 760px; margin: 0 auto 32px; }
 .svc-head .eyebrow { margin-bottom: 10px; }
+#solutions .svc-head .eyebrow { font-size: 12px; }
+#solutions .svc-head .copy { max-width: none; white-space: nowrap; }
 .svc-head h2 { font-size: 30px; line-height: 1.22; font-weight: 700; max-width: 680px; margin: 0 auto; }
 .svc-head .copy { font-size: 13px; line-height: 1.65; color: var(--muted); max-width: 600px; margin: 0 auto; text-align: center; text-wrap: balance; }
 .svc-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
@@ -1141,6 +1143,7 @@ a.cta-v:hover { color: #8EC1F5; }
   .svc-sec { padding: 36px 0 26px; }
   .svc-head h2 { font-size: 23px !important; }
   .svc-head .copy { font-size: 12px; }
+  #solutions .svc-head .copy { white-space: normal; }
   .svc-grid { grid-template-columns: 1fr; }
   .svc-card, .svc-card:nth-child(4) { grid-column: auto; }
 }
