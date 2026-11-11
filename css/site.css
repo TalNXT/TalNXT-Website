@@ -348,6 +348,8 @@ p.copy { font-size: 15px; line-height: 1.7; color: #2b3446; margin: 0; }
 .page-hero .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
 .page-hero .hero-orb { position: absolute; top: -80px; right: -80px; width: 340px; height: 340px; border-radius: 50%; background: #cfe0f7; opacity: .45; z-index: 0; }
 /* Contingent staffing hero: photo on a pale blob */
+.cs-hero { background: #fff; }
+.cs-hero .hero-orb { display: none; }
 .cs-hero .container { padding-top: 16px; padding-bottom: 16px; }
 /* Type matches the home hero (.home-hero) */
 .cs-hero h1 { font-size: 30px; line-height: 1.22; max-width: none; font-weight: 700; }
@@ -914,6 +916,17 @@ p.copy { font-size: 15px; line-height: 1.7; color: #2b3446; margin: 0; }
   .value-icon svg { width: 28px; height: 28px; }
   .value-label { font-size: 13px; white-space: normal; }
 }
+/* Contingent staffing hero: compact strip, no divider lines */
+.cs-hero { border-bottom: none; }
+.cs-benefits { border-top: none; }
+.cs-benefits .value-strip { padding-top: 6px; padding-bottom: 10px; }
+.cs-benefits .value-item { padding-top: 2px; padding-bottom: 2px; }
+.cs-benefits .value-item + .value-item { border-left: none; }
+.cs-benefits .value-item + .value-item::before { background: transparent; }
+.cs-benefits .value-icon { width: 40px; height: 40px; }
+.cs-benefits .value-icon svg { width: 24px; height: 24px; }
+@media (max-width: 1080px) { .cs-benefits .value-item { gap: 6px; } }
+@media (max-width: 760px) { .cs-benefits .value-strip { row-gap: 10px; } }
 
 /* Services: five equal cards */
 .svc-sec { position: relative; overflow: hidden; isolation: isolate; padding: 48px 0 34px; }
