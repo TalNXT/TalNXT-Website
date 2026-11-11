@@ -1740,3 +1740,97 @@ a.cta-v:hover { color: #8EC1F5; }
   .wte-bg { background: radial-gradient(ellipse 70% 40% at 50% 50%, rgba(228,240,255,.7), transparent 72%); }
   .wte-bg::after { height: 40px; }
 }
+
+/* People & HR: final CTA — a bright banner with a stacked-blocks illustration, the headline, three
+   engagement cues and the enquiry button, over soft blue / mint glows and waves along the foot. */
+.hrcta-sec {
+  --wsp-blue: #287CDB; --wsp-navy: #172544; --wsp-teal: #239B7A; --wsp-body: #526174;
+  background: #fff; padding: 20px 0 56px;
+}
+.hrcta { position: relative; overflow: hidden; isolation: isolate; width: 94%; margin: 0 auto; box-sizing: border-box;
+  display: grid; grid-template-columns: 120px minmax(0,1fr) auto; grid-template-areas: "art body action" "art cues cues";
+  column-gap: 28px; row-gap: 10px; align-content: center; align-items: center; padding: 16px 32px 22px;
+  border: 1px solid #A9CDF3; border-radius: 28px; box-shadow: 0 22px 44px -30px rgba(23,37,68,.22);
+  background:
+    radial-gradient(ellipse 30% 70% at 13% 50%, rgba(255,255,255,.45), transparent 72%),
+    linear-gradient(120deg, #DCEBFC 0%, #C2DCF8 100%); }
+.hrcta > * { position: relative; z-index: 1; }
+/* Mint curve in the upper-right corner and a blue / mint wave along the bottom edge */
+.hrcta::before, .hrcta::after { content: ""; position: absolute; z-index: 0; pointer-events: none; }
+.hrcta::before { top: 0; right: 0; width: 220px; height: 90px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 150' fill='none'%3E%3Cpath d='M300 0H70c30 52 98 88 230 104z' fill='%23DDF4EC' fill-opacity='.55'/%3E%3Cpath d='M118 0c34 40 92 66 182 76' stroke='%23239B7A' stroke-opacity='.22' stroke-width='1.5'/%3E%3C/svg%3E") right top/100% 100% no-repeat; }
+.hrcta::after { left: -24px; right: -24px; bottom: -10px; height: 40px; filter: blur(10px);
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0 78C180 40 360 104 600 82S980 30 1200 64V120H0z' fill='%23239B7A' fill-opacity='.5'/%3E%3Cpath d='M0 100C220 74 420 118 660 100S1000 70 1200 92V120H0z' fill='%23287CDB' fill-opacity='.6'/%3E%3C/svg%3E") center bottom/100% 100% no-repeat; }
+
+.hrcta-art { grid-area: art; align-self: center; }
+.hrcta-art svg { display: block; width: 100%; height: auto; }
+.hrcta-art::after { content: ""; position: absolute; top: 6%; bottom: 6%; right: -15px; width: 1px;
+  background: linear-gradient(180deg, rgba(23,37,68,0), rgba(23,37,68,.14) 22%, rgba(23,37,68,.14) 78%, rgba(23,37,68,0)); }
+
+.hrcta-body { grid-area: body; }
+.hrcta-sec .hrcta-title { font-family: 'IBM Plex Sans', -apple-system, Segoe UI, Roboto, sans-serif; font-size: 14px; line-height: 1.3; letter-spacing: 0;
+  font-weight: 700; color: var(--wsp-navy); text-wrap: balance; }
+.hrcta-accent { position: relative; display: inline-block; color: var(--wsp-blue); white-space: nowrap; }
+.hrcta-accent::after { content: ""; position: absolute; left: 1%; right: 3%; bottom: -4px; height: 5px; pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 14' preserveAspectRatio='none' fill='none'%3E%3Cpath d='M3 10C50 2 130 1 197 7' stroke='%23287CDB' stroke-width='3.2' stroke-linecap='round' opacity='.55'/%3E%3C/svg%3E") center/100% 100% no-repeat; }
+.hrcta-sub { margin-top: 6px; font-size: 12px; line-height: 1.5; color: var(--wsp-body); max-width: 560px; text-wrap: balance; }
+
+.hrcta-cues { grid-area: cues; list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; row-gap: 12px; }
+.hrcta-cue { display: flex; align-items: center; gap: 10px; padding: 0 16px; font-size: 12.5px; font-weight: 600; line-height: 1.3; color: var(--wsp-navy); }
+.hrcta-cue:first-child { padding-left: 0; }
+.hrcta-cue:last-child { padding-right: 0; }
+.hrcta-cue + .hrcta-cue { border-left: 1px solid rgba(23,37,68,.14); }
+.hrcta-cue-ic { flex-shrink: 0; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--cue-bg); color: var(--cue-c); }
+.hrcta-cue-ic svg { width: 15px; height: 15px; }
+.hrcta-cue.blue     { --cue-bg: #F1F7FD; --cue-c: #287CDB; }
+.hrcta-cue.mint     { --cue-bg: #F0FAF7; --cue-c: #239B7A; }
+.hrcta-cue.lavender { --cue-bg: #F4F0FD; --cue-c: #8063D6; }
+
+.hrcta-action { grid-area: action; align-self: center; }
+.hrcta-sec .hrcta-btn { gap: 10px; padding: 11px 20px; border-radius: 14px; font-size: 14px; font-weight: 700;
+  background: var(--wsp-blue); border-color: var(--wsp-blue); color: #fff; box-shadow: 0 12px 24px -12px rgba(40,124,219,.6);
+  transition: background-color .2s ease, border-color .2s ease, box-shadow .2s ease; }
+.hrcta-sec .hrcta-btn:hover { background: #1F65B8; border-color: #1F65B8; color: #fff; box-shadow: 0 14px 28px -12px rgba(31,101,184,.65); }
+.hrcta-sec .hrcta-btn:focus-visible { outline: 3px solid rgba(40,124,219,.35); outline-offset: 3px; }
+.hrcta-arrow { transition: transform .2s ease; }
+.hrcta-btn:hover .hrcta-arrow { transform: translateX(3px); }
+@media (prefers-reduced-motion: reduce) { .hrcta-sec .hrcta-btn, .hrcta-arrow { transition: none; } .hrcta-btn:hover .hrcta-arrow { transform: none; } }
+
+/* Smaller desktop & tablet: a smaller illustration; cues and the button sit beneath the copy */
+@media (min-width: 761px) and (max-width: 1199px) {
+  .hrcta { width: 100%; min-height: 0; grid-template-columns: 136px minmax(0,1fr); grid-template-areas: "art body" "art cues" "art action";
+    row-gap: 16px; padding: 26px 30px 36px; }
+  .hrcta-cue { padding: 0 14px; font-size: 12.5px; }
+  .hrcta-cue:first-child { padding-left: 0; }
+  .hrcta-cue:last-child { padding-right: 0; }
+  .hrcta-sec .hrcta-title { font-size: 14px; }
+  .hrcta-sub { font-size: 12px; }
+  .hrcta-action { justify-self: start; }
+  .hrcta::before { width: 220px; height: 110px; }
+}
+/* Narrow tablet: the cues wrap, so space them with a gap rather than dividers */
+@media (min-width: 761px) and (max-width: 900px) {
+  .hrcta-cues { column-gap: 24px; }
+  .hrcta-cue, .hrcta-cue:first-child, .hrcta-cue:last-child { padding: 0; }
+  .hrcta-cue + .hrcta-cue { border-left: none; }
+}
+/* Mobile: illustration above centred copy, stacked cues and a full-width button */
+@media (max-width: 760px) {
+  .hrcta-sec { padding: 12px 0 40px; }
+  .hrcta { width: 100%; min-height: 0; grid-template-columns: minmax(0,1fr); grid-template-areas: "art" "body" "cues" "action";
+    row-gap: 18px; padding: 22px 18px 32px; border-radius: 24px; text-align: center;
+    background: radial-gradient(ellipse 80% 30% at 50% 16%, rgba(255,255,255,.45), transparent 72%), linear-gradient(160deg, #DCEBFC 0%, #C2DCF8 100%); }
+  .hrcta::before { display: none; }
+  .hrcta::after { height: 44px; }
+  .hrcta-art { justify-self: center; width: 100%; max-width: 200px; }
+  .hrcta-art::after { top: auto; bottom: -12px; left: 15%; right: 15%; width: auto; height: 1px;
+    background: linear-gradient(90deg, rgba(23,37,68,0), rgba(23,37,68,.14) 25%, rgba(23,37,68,.14) 75%, rgba(23,37,68,0)); }
+  .hrcta-sec .hrcta-title { font-size: 14px; line-height: 1.3; }
+  .hrcta-accent::after { bottom: -4px; height: 5px; }
+  .hrcta-sub { font-size: 12px; margin: 6px auto 0; }
+  .hrcta-cues { flex-direction: column; align-items: flex-start; gap: 12px; justify-self: center; }
+  .hrcta-cue, .hrcta-cue:first-child { padding: 0; font-size: 13px; }
+  .hrcta-cue + .hrcta-cue { border-left: none; }
+  .hrcta-action { justify-self: stretch; }
+  .hrcta-sec .hrcta-btn { width: 100%; justify-content: center; }
+}
