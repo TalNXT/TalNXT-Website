@@ -877,7 +877,7 @@ p.copy { font-size: 15px; line-height: 1.7; color: #2b3446; margin: 0; }
 }
 
 /* Home hero: compact */
-.home-hero .container { padding-top: 26px; padding-bottom: 0; }
+.home-hero .container { padding-top: 16px; padding-bottom: 0; }
 .home-hero-row { gap: 40px; align-items: center; }
 .home-hero-text { flex: 1.15; min-width: 300px; }
 .home-hero-media { flex: 0.85; min-width: 260px; }
@@ -897,7 +897,7 @@ p.copy { font-size: 15px; line-height: 1.7; color: #2b3446; margin: 0; }
 .home-hero { background: #fff; }
 .home-hero .hero-orb { display: none; }
 @media (max-width: 760px) {
-  .home-hero .container { padding-top: 20px; padding-bottom: 0; }
+  .home-hero .container { padding-top: 28px; padding-bottom: 0; }
   .home-hero h1 { font-size: 24px !important; }
   .home-hero .ph-img { height: 200px; }
   .home-hero-text, .home-hero-media { flex-basis: auto; }
@@ -1417,4 +1417,83 @@ a.cta-v:hover { color: #8EC1F5; }
   .hro-photo-frame { -webkit-mask: none; mask: none; border-radius: 28px; overflow: hidden; }
   .hro-photo-frame img { object-position: 50% 45%; }
   .hro-cards { grid-template-columns: 1fr; grid-auto-rows: auto; }
+}
+
+/* People & HR: Organisation & People Transformation — copy left (~44%), four floating illustrated circles right (~56%). */
+.opt-sec {
+  --wsp-blue: #287CDB; --wsp-navy: #172544; --wsp-teal: #239B7A; --wsp-body: #526174;
+  position: relative; overflow: hidden; isolation: isolate; padding: 28px 0 40px; background: #fff;
+}
+.opt-sec > .container { position: relative; z-index: 1; }
+/* Pale-blue glow behind the cards, faint lavender at top-left, mint towards the bottom-right, flowing waves along the bottom */
+.opt-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 30% 62% at 62% 46%, rgba(220,238,255,.7), transparent 72%),
+    radial-gradient(ellipse 30% 50% at -4% 10%, rgba(237,227,250,.55), transparent 72%),
+    radial-gradient(ellipse 34% 60% at 104% 96%, rgba(221,244,236,.75), transparent 72%); }
+.opt-bg::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 64px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 90' preserveAspectRatio='none'%3E%3Cpath d='M0 52C240 20 500 18 740 44s480 30 700-4v50H0z' fill='%23287CDB' fill-opacity='.05'/%3E%3Cpath d='M0 70C300 44 560 40 820 62s420 18 620-8v36H0z' fill='%23239B7A' fill-opacity='.07'/%3E%3Cpath d='M0 40C260 8 520 6 760 32s460 28 680-8' fill='none' stroke='%23287CDB' stroke-opacity='.12' stroke-width='2'/%3E%3C/svg%3E") center bottom/100% 100% no-repeat; }
+
+.opt-grid { display: grid; grid-template-columns: 36fr 64fr; grid-template-areas: "copy cards"; align-items: center; gap: 36px; }
+.opt-copy { grid-area: copy; }
+.opt-copy .eyebrow { font-size: 12.5px; font-weight: 700; letter-spacing: .12em; color: var(--wsp-blue); margin-bottom: 10px; }
+.opt-sec .opt-title { font-family: 'IBM Plex Sans', -apple-system, Segoe UI, Roboto, sans-serif; font-size: 14px; line-height: 1.3; letter-spacing: 0; font-weight: 700; color: var(--wsp-navy); text-wrap: balance; }
+.opt-accent { position: relative; display: inline-block; color: var(--wsp-blue); white-space: nowrap; }
+.opt-accent::after { content: ""; position: absolute; left: 2%; right: 10%; bottom: -5px; height: 7px; pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 14' preserveAspectRatio='none' fill='none'%3E%3Cpath d='M3 10C50 2 130 1 197 7' stroke='%23287CDB' stroke-width='3.2' stroke-linecap='round' opacity='.55'/%3E%3C/svg%3E") center/100% 100% no-repeat; }
+.opt-lede { font-size: 11px; line-height: 1.5; color: var(--wsp-body); max-width: 440px; margin: 10px 0 0; }
+.opt-benefits { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.opt-benefits li { position: relative; padding-left: 20px; font-size: 10px; line-height: 1.5; color: var(--wsp-body); max-width: 420px; }
+.opt-benefits li::before { content: ""; position: absolute; left: 0; top: 0; width: 14px; height: 14px; border-radius: 50%;
+  background: #239B7A url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E") center/8px no-repeat; }
+.opt-cta { display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; padding: 10px 16px; border-radius: 12px; background: var(--wsp-blue); color: #fff; font-size: 11px; font-weight: 700;
+  transition: background-color .2s ease, transform .2s ease; }
+.opt-cta span { transition: transform .2s ease; }
+.opt-cta:hover, .opt-cta:focus-visible { background: #1f6cc4; color: #fff; transform: translateY(-1px); }
+.opt-cta:hover span, .opt-cta:focus-visible span { transform: translateX(3px); }
+.opt-cta:focus-visible { outline: 2px solid var(--wsp-navy); outline-offset: 2px; }
+
+/* Four capability circles loosely zig-zagging across one short band. Everything scales with the band's width
+   (circles 27% wide, low ones offset ~31% down) so neighbours never overlap. */
+.opt-orbs { grid-area: cards; position: relative; list-style: none; margin: 0; padding: 0; width: 100%; max-width: 720px; justify-self: center; aspect-ratio: 5 / 2; }
+.opt-orb { position: absolute; z-index: 1; width: 27%; aspect-ratio: 1; border-radius: 50%; box-sizing: border-box; padding: 0 14px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; color: var(--orb-c);
+  background: radial-gradient(circle at 32% 26%, #fff 0%, var(--orb-bg) 62%); border: 1px solid var(--orb-border);
+  box-shadow: 0 20px 40px -30px rgba(23,37,68,.4), inset 0 0 0 6px rgba(255,255,255,.55);
+  animation: opt-float 7s ease-in-out infinite; transition: border-color .22s ease, box-shadow .22s ease; }
+.opt-orb:hover { animation-play-state: paused; border-color: var(--orb-border-hover); box-shadow: 0 24px 44px -28px rgba(23,37,68,.45), inset 0 0 0 6px rgba(255,255,255,.7); }
+/* Irregular high / low positions so the circles read as floating rather than gridded */
+.opt-orb:nth-child(1) { left: 0; top: 1%; animation-delay: 0s; }
+.opt-orb:nth-child(2) { left: 24.33%; top: 32%; animation-duration: 8s; animation-delay: -2.5s; }
+.opt-orb:nth-child(3) { left: 48.67%; top: 0; animation-duration: 7.5s; animation-delay: -4s; }
+.opt-orb:nth-child(4) { left: 73%; top: 31%; animation-duration: 8.5s; animation-delay: -1.2s; }
+.opt-orb.lav { --orb-bg: #F5F1FC; --orb-border: #E7DDF8; --orb-border-hover: #C9B5EE; --orb-c: #7952C8; }
+.opt-orb.mint { --orb-bg: #F0FAF7; --orb-border: #D7F0E8; --orb-border-hover: #A6DAC7; --orb-c: #239B7A; }
+.opt-orb-art { margin-bottom: 6px; }
+.opt-orb-illus { display: block; width: 54px; height: 34px; color: var(--orb-c); }
+.opt-orb-title { font-family: 'IBM Plex Sans', -apple-system, Segoe UI, Roboto, sans-serif; font-size: 12.5px; font-weight: 700; line-height: 1.3; letter-spacing: 0; color: var(--wsp-navy); margin: 0 0 4px; text-wrap: balance; }
+.opt-orb p { font-size: 10px; line-height: 1.4; color: var(--wsp-body); margin: 0; }
+@keyframes opt-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+@media (prefers-reduced-motion: reduce) { .opt-cta, .opt-cta span { transition: none; } .opt-cta:hover { transform: none; } .opt-orb { animation: none; } }
+
+/* Below desktop: copy above the circle band, so the circles keep a readable size */
+@media (max-width: 1180px) {
+  .opt-sec { padding: 32px 0 44px; }
+  .opt-grid { grid-template-columns: 1fr; grid-template-areas: "copy" "cards"; gap: 24px; }
+  .opt-lede, .opt-benefits li { max-width: 560px; }
+}
+@media (max-width: 760px) {
+  .opt-sec { padding: 28px 0 40px; }
+  .opt-sec .opt-title { font-size: 14px !important; }
+}
+/* Mobile: copy, then the circles in a single zig-zag column */
+@media (max-width: 600px) {
+  .opt-orbs { display: grid; grid-template-columns: 1fr; aspect-ratio: auto; }
+  .opt-orb { position: relative; width: min(72%, 218px); padding: 0 22px; }
+  .opt-orb:nth-child(n) { left: auto; top: auto; margin: -6px 0 0; }
+  .opt-orb:nth-child(odd) { justify-self: start; }
+  .opt-orb:nth-child(even) { justify-self: end; }
+  .opt-orb:first-child { margin-top: 0; }
+  .opt-orb-illus { width: 56px; height: 36px; }
+  .opt-bg::after { height: 40px; }
 }
