@@ -1180,7 +1180,7 @@ a.cta-v:hover { color: #8EC1F5; }
 .phr-hero .btn.accent { background: var(--phr-blue); border-color: var(--phr-blue); font-weight: 700; }
 .phr-hero .btn.accent:hover { background: #1f6cc4; border-color: #1f6cc4; transform: translateY(-1px); box-shadow: 0 10px 20px -12px rgba(40,124,219,.7); }
 
-.phr-visual { position: relative; width: 100%; max-width: 450px; justify-self: end; padding: 12px 36px; }
+.phr-visual { position: relative; width: 100%; max-width: 510px; justify-self: end; padding: 12px 36px; }
 .phr-blob { position: absolute; inset: 0 8px; width: calc(100% - 16px); height: 100%; z-index: 0; }
 .phr-blob path { fill: var(--phr-light-blue); opacity: .7; }
 .phr-photo { position: relative; z-index: 1; aspect-ratio: 1 / .84; border-radius: 52% 48% 46% 54% / 50% 46% 54% 50%; overflow: hidden; border: 6px solid #fff; box-shadow: 0 18px 40px -26px rgba(23,37,68,.45); }
