@@ -733,19 +733,20 @@ p.copy { font-size: 15px; line-height: 1.7; color: #2b3446; margin: 0; }
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 132 12' fill='none'%3E%3Cpath d='M3 9C36 2.5 96 2.5 129 9' stroke='%23287CDB' stroke-width='3' stroke-linecap='round' opacity='.55'/%3E%3C/svg%3E") center/contain no-repeat; }
 .ops-head p.copy { font-size: 15px; color: #526174; margin-top: 12px; }
 .ops-grid { list-style: none; margin: 0 auto; padding: 0; max-width: 840px; display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); grid-auto-rows: 1fr; gap: 16px; }
-.ops-card { position: relative; overflow: hidden; display: flex; flex-direction: column; padding: 16px 18px 26px; background: var(--oc-bg); border: 1px solid var(--oc-border); border-radius: 12px; transition: transform .22s ease, border-color .22s ease; }
+.ops-card { position: relative; overflow: hidden; display: flex; flex-direction: column; padding: 16px 18px 34px; background: var(--oc-bg); border: 1px solid var(--oc-border); border-radius: 12px; transition: transform .22s ease, border-color .22s ease; }
 .ops-card > * { position: relative; z-index: 1; }
-.ops-card::before,
-.ops-card::after { content: ""; position: absolute; right: 0; bottom: 0; z-index: 0; border-top-left-radius: 100% 100%; background: var(--oc-accent); pointer-events: none; }
-.ops-card::before { width: 72%; height: 16px; opacity: .55; }
-.ops-card::after { width: 46%; height: 24px; }
+.ops-card::after { content: ""; position: absolute; right: 10px; bottom: 8px; z-index: 0; width: 84px; height: 20px; pointer-events: none;
+  background-image: radial-gradient(circle, var(--oc-accent) 1.5px, transparent 2px); background-size: 10px 10px;
+  -webkit-mask-image: linear-gradient(to left, #000 30%, transparent); mask-image: linear-gradient(to left, #000 30%, transparent); }
 .ops-card:hover { transform: translateY(-4px); border-color: var(--oc-border-hover); }
 .ops-card.blue { --oc-bg: #F1F7FD; --oc-border: #D5E7FA; --oc-border-hover: #B3D2F4; --oc-icon-bg: #DCEEFF; --oc-icon: #287CDB; --oc-accent: rgba(40,124,219,.10); }
 .ops-card.mint { --oc-bg: #F0FAF7; --oc-border: #D7F0E8; --oc-border-hover: #ADDCCB; --oc-icon-bg: #DDF4EC; --oc-icon: #239B7A; --oc-accent: rgba(35,155,122,.10); }
+.ops-card.blue,
+.ops-card.mint { --oc-bg: #213259; --oc-border: #2F4472; --oc-border-hover: #4A6299; --oc-accent: #FFFFFF; }
 .ops-icon { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 10px; background: var(--oc-icon-bg); color: var(--oc-icon); }
 .ops-icon svg { width: 20px; height: 20px; }
-.ops-title { font-family: 'IBM Plex Sans', -apple-system, Segoe UI, Roboto, sans-serif; font-size: 14px; font-weight: 700; line-height: 1.3; letter-spacing: 0; color: #172544; margin: 10px 0 4px; }
-.ops-card p { font-size: 11px; line-height: 1.5; color: #526174; }
+.ops-title { font-family: 'IBM Plex Sans', -apple-system, Segoe UI, Roboto, sans-serif; font-size: 14px; font-weight: 700; line-height: 1.3; letter-spacing: 0; color: #FFFFFF; margin: 10px 0 4px; }
+.ops-card p { font-size: 11px; line-height: 1.5; color: #FFFFFF; }
 @media (prefers-reduced-motion: reduce) { .ops-card { transition: none; } .ops-card:hover { transform: none; } }
 @media (max-width: 1024px) { .ops-grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
 @media (max-width: 760px) {
