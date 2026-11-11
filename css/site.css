@@ -918,11 +918,15 @@ p.copy { font-size: 15px; line-height: 1.7; color: #2b3446; margin: 0; }
 /* Services: five equal cards */
 .svc-sec { position: relative; overflow: hidden; isolation: isolate; padding: 48px 0 34px; }
 .svc-sec > .container { position: relative; z-index: 1; }
+/* Same dual-tone background on other sections (e.g. Engagement Models); fade matches the next section */
+.svc-bg-sec { position: relative; overflow: hidden; isolation: isolate; }
+.svc-bg-sec > .container { position: relative; z-index: 1; }
+#models.svc-bg-sec { --svc-fade: var(--tint-pale); }
 /* Soft background: diffused blue glow left, mint glow right, faint blurred curved layers for depth; centre stays white.
    Top layer fades the bottom edge into the Contact section's background. */
 .svc-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
   background:
-    linear-gradient(180deg, rgba(244,246,250,0) calc(100% - 40px), var(--bg)),
+    linear-gradient(180deg, rgba(244,246,250,0) calc(100% - 40px), var(--svc-fade, var(--bg))),
     radial-gradient(ellipse 44% 88% at -6% 40%, #DAECFD 0%, rgba(232,243,253,.9) 40%, rgba(241,247,253,0) 76%),
     radial-gradient(ellipse 44% 88% at 106% 60%, #DAF3E9 0%, rgba(230,246,240,.9) 40%, rgba(240,250,247,0) 76%); }
 /* Translucent curved layers: huge soft ellipses whose inner arcs sweep in from the edges */
@@ -933,7 +937,7 @@ p.copy { font-size: 15px; line-height: 1.7; color: #2b3446; margin: 0; }
   background: radial-gradient(closest-side, rgba(218,243,233,0) 70%, rgba(218,243,233,.95) 86%, rgba(240,250,247,0) 100%); }
 @media (max-width: 760px) {
   .svc-bg { background:
-    linear-gradient(180deg, rgba(244,246,250,0) calc(100% - 32px), var(--bg)),
+    linear-gradient(180deg, rgba(244,246,250,0) calc(100% - 32px), var(--svc-fade, var(--bg))),
     radial-gradient(ellipse 70% 40% at -10% 12%, #E5F1FC, rgba(241,247,253,0) 75%),
     radial-gradient(ellipse 70% 40% at 110% 88%, #E5F5EF, rgba(240,250,247,0) 75%); }
   .svc-bg::before, .svc-bg::after { display: none; }
