@@ -725,7 +725,7 @@ p.copy { font-size: 15px; line-height: 1.7; color: #2b3446; margin: 0; }
 }
 /* Workforce operations: six lifecycle cards, blue/mint alternating, curved footer accent */
 .ops-sec { padding: 48px 0 52px; }
-.sec.pale.ops-sec { background: linear-gradient(135deg, #F3F8FE 0%, #E6F0FC 100%); }
+.sec.pale.ops-sec { background: #fff; }
 .ops-head { max-width: 720px; margin-bottom: 36px; }
 .ops-head .eyebrow { font-size: 12px; font-weight: 700; color: #287CDB; }
 .ops-head h2 { font-size: 28px; font-weight: 700; color: #172544; }
