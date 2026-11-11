@@ -395,6 +395,23 @@ p.copy { font-size: 15px; line-height: 1.7; color: #2b3446; margin: 0; }
 .stat:first-child { border-left: none; }
 .stat-num { font-family: 'Newsreader', Georgia, serif; font-size: 34px; font-weight: 500; color: #fff; line-height: 1.1; }
 .stat-label { font-size: 12.5px; color: #b7c0c9; margin-top: 6px; line-height: 1.45; }
+.stat-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.stat { --glow: 127,176,245; transition: background .3s ease; }
+.stat.teal { --glow: 92,201,167; }
+.stat:hover { background: rgba(var(--glow), .05); }
+.stat-head .icon-badge { width: 36px; height: 36px; background: rgba(var(--glow), .14); color: rgb(var(--glow)); box-shadow: 0 0 0 1px rgba(var(--glow), .28), 0 0 14px rgba(var(--glow), .35); transition: transform .3s ease, box-shadow .3s ease, background .3s ease, color .3s ease; animation: stat-glow 3.2s ease-in-out infinite; }
+.stat:nth-child(2) .icon-badge { animation-delay: .8s; }
+.stat:nth-child(3) .icon-badge { animation-delay: 1.6s; }
+.stat:nth-child(4) .icon-badge { animation-delay: 2.4s; }
+.stat:hover .stat-head .icon-badge { animation: none; transform: scale(1.12) rotate(-6deg); background: rgba(var(--glow), .26); color: #fff; box-shadow: 0 0 0 1px rgba(var(--glow), .6), 0 0 22px rgba(var(--glow), .7), 0 0 40px rgba(var(--glow), .35); }
+@keyframes stat-glow {
+  0%, 100% { box-shadow: 0 0 0 1px rgba(var(--glow), .28), 0 0 10px rgba(var(--glow), .25); }
+  50% { box-shadow: 0 0 0 1px rgba(var(--glow), .45), 0 0 20px rgba(var(--glow), .55); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .stat-head .icon-badge { animation: none; transition: none; }
+  .stat:hover .stat-head .icon-badge { transform: none; }
+}
 @media (max-width: 900px) {
   .stat:nth-child(odd) { border-left: none; }
   .stat:nth-child(-n+2) { border-bottom: 1px solid #22304a; }
@@ -403,6 +420,9 @@ p.copy { font-size: 15px; line-height: 1.7; color: #2b3446; margin: 0; }
   .stat-strip .grid-4 { grid-template-columns: repeat(2, minmax(0,1fr)); }
   .stat { padding: 20px 14px; }
   .stat-num { font-size: 28px; }
+  .stat-head { gap: 8px; }
+  .stat-head .icon-badge { width: 30px; height: 30px; }
+  .stat-head .icon-badge svg { width: 15px; height: 15px; }
 }
 
 /* check list */
