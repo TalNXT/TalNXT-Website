@@ -1916,28 +1916,38 @@ a.cta-v:hover { color: #8EC1F5; }
 .ab-story-copy .ab-lede.strong::before { content: ""; display: block; width: 40px; height: 3px; margin: 0 auto 12px; border-radius: 2px; background: var(--ab-teal); }
 
 /* ---- 3. Purpose: heading column (~18%) on the left, then three equal pastel cards (~26% each) ---- */
-.ab-purpose { padding: 56px 0 72px; background: radial-gradient(ellipse 60% 55% at 50% 0%, rgba(220,238,255,.55), transparent 72%), #fff; }
-.ab-purpose-layout { display: grid; grid-template-columns: minmax(0,18fr) minmax(0,78fr); gap: 32px; align-items: center; }
+.ab-purpose { padding: 40px 0 52px; background: radial-gradient(ellipse 60% 55% at 50% 0%, rgba(220,238,255,.55), transparent 72%), #fff; }
+.ab-purpose-layout { display: grid; grid-template-columns: minmax(0,18fr) minmax(0,78fr); gap: 32px; align-items: center; max-width: 960px; margin: 0 auto; }
 /* Lighter, thinner wave than the shared section break */
 .ab-purpose::after { height: 40px; opacity: .55; }
 .ab-purpose .ab-purpose-eyebrow { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; font-size: 12px; }
 .ab-purpose-eyebrow::before { content: ""; width: 24px; height: 2px; border-radius: 2px; background: var(--ab-blue); }
-.ab-purpose-title { font-family: 'IBM Plex Sans', -apple-system, Segoe UI, Roboto, sans-serif; font-size: 27px; line-height: 1.2; font-weight: 700; letter-spacing: -0.01em; color: var(--ab-navy); }
+.ab-purpose-title { font-family: 'IBM Plex Sans', -apple-system, Segoe UI, Roboto, sans-serif; font-size: 24px; line-height: 1.2; font-weight: 700; letter-spacing: -0.01em; color: var(--ab-navy); }
 .ab-purpose-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 20px; }
-.ab-pcard { display: flex; flex-direction: column; min-height: 232px; padding: 22px; background: var(--pc-bg); border: 1px solid var(--pc-border); border-radius: 20px;
+.ab-pcard { position: relative; overflow: hidden; display: flex; flex-direction: column; min-height: 200px; padding: 20px 20px 24px; background: var(--pc-bg); border: 1px solid var(--pc-border); border-radius: 20px;
   box-shadow: 0 1px 2px rgba(var(--pc-rgb), .06); }
-.ab-pcard.vision { --pc-bg: var(--ab-pale-blue); --pc-border: #D5E7FA; --pc-c: var(--ab-blue); --pc-ico: var(--ab-light-blue); --pc-rgb: 40,124,219; }
-.ab-pcard.mission { --pc-bg: var(--ab-pale-mint); --pc-border: #D7F0E8; --pc-c: var(--ab-teal); --pc-ico: var(--ab-light-mint); --pc-rgb: 35,155,122; }
-.ab-pcard.values { --pc-bg: var(--ab-pale-gold); --pc-border: #F4E7C7; --pc-c: var(--ab-gold); --pc-ico: #FFF0C9; --pc-rgb: 217,155,43; }
+/* Blue footer bar that glows on its own, staggered across the three cards */
+.ab-pcard::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 5px;
+  background: linear-gradient(90deg, var(--ab-blue-dark), #5AAEFF, var(--ab-blue-dark)); background-size: 200% 100%;
+  animation: ab-pcard-glow 3.2s ease-in-out infinite; }
+.ab-pcard.mission::after { animation-delay: 1.07s; }
+.ab-pcard.values::after { animation-delay: 2.13s; }
+@keyframes ab-pcard-glow {
+  0%, 100% { background-position: 0% 0; box-shadow: 0 0 6px 1px rgba(40,124,219,.3); }
+  50% { background-position: 100% 0; box-shadow: 0 0 16px 4px rgba(40,124,219,.65); }
+}
+.ab-pcard.vision { --pc-bg: #fff; --pc-border: #D5E7FA; --pc-c: var(--ab-blue); --pc-ico: var(--ab-light-blue); --pc-rgb: 40,124,219; }
+.ab-pcard.mission { --pc-bg: #fff; --pc-border: #D7F0E8; --pc-c: var(--ab-teal); --pc-ico: var(--ab-light-mint); --pc-rgb: 35,155,122; }
+.ab-pcard.values { --pc-bg: #fff; --pc-border: #F4E7C7; --pc-c: var(--ab-gold); --pc-ico: #FFF0C9; --pc-rgb: 217,155,43; }
 .ab-pcard-head { display: flex; align-items: center; gap: 12px; }
 .ab-pcard-ico { flex-shrink: 0; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: var(--pc-ico); color: var(--pc-c); }
 .ab-pcard-ico svg { width: 22px; height: 22px; }
-.ab-pcard-title { font-family: 'IBM Plex Sans', -apple-system, Segoe UI, Roboto, sans-serif; font-size: 18.5px; font-weight: 700; letter-spacing: 0; color: var(--ab-navy); }
-.ab-pcard-text { margin-top: 14px; font-size: 15.5px; line-height: 1.5; color: var(--ab-body); text-wrap: pretty; hyphens: manual; }
+.ab-pcard-title { font-family: 'IBM Plex Sans', -apple-system, Segoe UI, Roboto, sans-serif; font-size: 15px; font-weight: 700; letter-spacing: 0; color: var(--ab-navy); }
+.ab-pcard-text { margin-top: 14px; font-size: 12.5px; line-height: 1.5; color: var(--ab-body); text-wrap: pretty; hyphens: manual; }
 .ab-pcard-text .nowrap { white-space: nowrap; }
 /* Values: checklist with small green check circles */
 .ab-values { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 6px; }
-.ab-values li { display: flex; align-items: flex-start; gap: 10px; font-size: 14.5px; line-height: 1.4; font-weight: 500; color: var(--ab-navy); }
+.ab-values li { display: flex; align-items: flex-start; gap: 10px; font-size: 11.5px; line-height: 1.4; font-weight: 500; color: var(--ab-navy); }
 .ab-values li::before { content: ""; flex-shrink: 0; width: 16px; height: 16px; margin-top: 2px; border-radius: 50%;
   background: #239B7A url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4.5 8.2l2.3 2.3 4.7-4.9'/%3E%3C/svg%3E") center/100% no-repeat; }
 
@@ -2073,6 +2083,7 @@ a.cta-v:hover { color: #8EC1F5; }
 @media (prefers-reduced-motion: reduce) {
   .ab-btn, .ab-btn span, .ab-link span, .ab-pillar { transition: none; }
   .ab-client-stage i.on { animation: none; }
+  .ab-pcard::after { animation: none; }
   .ab-btn:hover, .ab-pillar:hover, .ab-btn:hover span, .ab-link:hover span { transform: none; }
 }
 
@@ -2093,7 +2104,7 @@ a.cta-v:hover { color: #8EC1F5; }
 @media (max-width: 1024px) {
   .ab-sec { padding: 60px 0; }
   .ab-story { padding: 36px 0; }
-  .ab-purpose { padding: 48px 0 64px; }
+  .ab-purpose { padding: 36px 0 48px; }
   .ab-clients { padding: 32px 0 60px; }
   .ab-h2 { font-size: 28px; }
   .ab-purpose-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
@@ -2118,10 +2129,10 @@ a.cta-v:hover { color: #8EC1F5; }
 @media (max-width: 760px) {
   .ab-sec { padding: 48px 0; }
   .ab-story { padding: 32px 0; }
-  .ab-purpose { padding: 40px 0 56px; }
+  .ab-purpose { padding: 32px 0 44px; }
   .ab-clients { padding: 28px 0 56px; }
   .ab-clients .ab-h2 { font-size: 22px; }
-  .ab-purpose-title { font-size: 24px; }
+  .ab-purpose-title { font-size: 22px; }
   .ab-purpose-grid { grid-template-columns: 1fr; gap: 16px; }
   .ab-pcard.values .ab-values { grid-template-columns: 1fr; }
   .ab-h2 { font-size: 26px; }
