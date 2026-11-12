@@ -1912,7 +1912,7 @@ a.cta-v:hover { color: #8EC1F5; }
 .ab-story-copy .ab-lede { max-width: 760px; margin: 14px auto 0; font-size: 16px; line-height: 1.7; }
 .ab-story-copy .ab-h2 + .ab-lede { margin-top: 22px; }
 /* Closing line: a short teal bar above it, since a left border reads oddly on centred text */
-.ab-story-copy .ab-lede.strong { color: var(--ab-navy); font-weight: 600; }
+.ab-story-copy .ab-lede.strong { color: var(--ab-navy); font-weight: 600; font-size: 14px; }
 .ab-story-copy .ab-lede.strong::before { content: ""; display: block; width: 40px; height: 3px; margin: 0 auto 12px; border-radius: 2px; background: var(--ab-teal); }
 
 /* ---- 3. Purpose: heading column (~18%) on the left, then three equal pastel cards (~26% each) ---- */
