@@ -1895,17 +1895,21 @@ a.cta-v:hover { color: #8EC1F5; }
 /* Small floating accents for technology, people and growth, sitting on the photo's edge */
 
 /* ---- 2. Our Story: organic-masked photo left, story right ---- */
-.ab-story { background: #fff; }
+.ab-story { background: #fff; padding: 40px 0; }
 .ab-story-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none;
   background: radial-gradient(ellipse 46% 70% at 22% 50%, rgba(220,238,255,.7), transparent 72%), radial-gradient(ellipse 30% 50% at 100% 100%, rgba(239,246,255,.9), transparent 72%); }
-.ab-story-grid { display: grid; grid-template-columns: 46fr 54fr; align-items: center; gap: 64px; }
-.ab-story-photo { position: relative; margin: 0; width: 100%; aspect-ratio: 1 / 1.02; max-width: 500px; }
+.ab-story-grid { display: grid; grid-template-columns: 46fr 54fr; align-items: center; gap: 48px; }
+.ab-story-photo { position: relative; margin: 0; width: 100%; aspect-ratio: 1 / 1.02; max-width: 290px; justify-self: center; }
 .ab-story-photo::before { content: ""; position: absolute; inset: 6% -5% -4% 6%; z-index: 0; border: 2px solid rgba(40,124,219,.22); border-radius: 48% 52% 44% 56% / 54% 44% 56% 46%; }
 .ab-story-frame { position: relative; z-index: 1; width: 100%; height: 100%; overflow: hidden; border-radius: 48% 52% 44% 56% / 54% 44% 56% 46%; box-shadow: 0 24px 48px -32px rgba(23,37,68,.5); }
 .ab-story-frame img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; }
-.ab-story-copy .ab-h2 { max-width: 560px; }
-.ab-story-copy .ab-lede { max-width: 580px; margin-top: 16px; }
-.ab-story-copy .ab-h2 + .ab-lede { margin-top: 22px; }
+.ab-story-copy .ab-h2 { max-width: 640px; font-size: 24px; line-height: 1.28; }
+/* Second heading line in blue, with a hand-drawn curved underline */
+.ab-story-hl { position: relative; display: table; padding-bottom: 18px; color: var(--ab-blue); font-weight: 600; }
+.ab-story-hl::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 20px; pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 20' preserveAspectRatio='none' fill='none' stroke='%23287CDB' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 12C70 6 160 6 234 10'/%3E%3C/svg%3E") left bottom/100% 100% no-repeat; }
+.ab-story-copy .ab-lede { max-width: 580px; margin-top: 12px; font-size: 12px; line-height: 1.65; }
+.ab-story-copy .ab-h2 + .ab-lede { margin-top: 18px; }
 .ab-story-copy .ab-lede.strong { color: var(--ab-navy); font-weight: 600; padding-left: 16px; border-left: 3px solid var(--ab-teal); }
 
 /* ---- 3. Purpose: Vision, Mission, Values — three equal pastel cards ---- */
@@ -2076,6 +2080,7 @@ a.cta-v:hover { color: #8EC1F5; }
 /* Tablet: purpose cards stack, Why TalNXT panel sits above its list */
 @media (max-width: 1024px) {
   .ab-sec { padding: 60px 0; }
+  .ab-story { padding: 36px 0; }
   .ab-h2 { font-size: 28px; }
   .ab-purpose-grid { grid-template-columns: 1fr; max-width: 640px; margin: 0 auto; }
   .ab-pillar-media { height: 220px; }
@@ -2091,7 +2096,7 @@ a.cta-v:hover { color: #8EC1F5; }
   .ab-hero { padding: 18px 0 0; background: #0F2147; }
   .ab-hero-grid, .ab-story-grid, .ab-lead-grid { grid-template-columns: 1fr; }
   .ab-hero-visual { justify-self: center; max-width: 380px; }
-  .ab-story-photo { max-width: 420px; justify-self: center; }
+  .ab-story-photo { max-width: 260px; justify-self: center; }
   .ab-lead-portrait { max-width: 340px; justify-self: center; }
   .ab-pillar-grid { grid-template-columns: 1fr; max-width: 640px; margin: 0 auto; }
   .ab-cta { grid-template-columns: minmax(0,1fr) 200px; gap: 36px; padding: 40px 36px 56px; }
@@ -2107,6 +2112,7 @@ a.cta-v:hover { color: #8EC1F5; }
 /* Mobile */
 @media (max-width: 760px) {
   .ab-sec { padding: 48px 0; }
+  .ab-story { padding: 32px 0; }
   .ab-h2 { font-size: 26px; }
   .ab-head { margin-bottom: 28px; }
   .ab-pcard { padding: 26px 22px 28px; }
