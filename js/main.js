@@ -416,31 +416,34 @@ document.addEventListener('DOMContentLoaded', function () {
     tstStart();
   }
 
-  // People & HR — HR Tech marquee: clone the capability cards once (hidden from
-  // assistive tech) so the CSS animation loops seamlessly, and add a pause button
-  // below the strip. Reduced-motion users keep the static, scrollable row.
-  var htaTrack = document.querySelector('.hta-track');
-  if (htaTrack && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    var htaMarquee = htaTrack.parentNode;
-    Array.prototype.slice.call(htaTrack.children).forEach(function (card) {
+  // Card marquees (People & HR — HR Tech capabilities, About — Why TalNXT): clone the
+  // cards once (hidden from assistive tech) so the CSS animation loops seamlessly, and
+  // add a pause button below the strip. Reduced-motion users keep the static, scrollable row.
+  function initMarquee(trackSel, prefix, label) {
+    var track = document.querySelector(trackSel);
+    if (!track || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var marquee = track.parentNode;
+    Array.prototype.slice.call(track.children).forEach(function (card) {
       var clone = card.cloneNode(true);
       clone.setAttribute('aria-hidden', 'true');
       clone.setAttribute('inert', '');
-      htaTrack.appendChild(clone);
+      track.appendChild(clone);
     });
-    htaMarquee.classList.add('is-looping');
+    marquee.classList.add('is-looping');
 
-    var htaControls = document.createElement('div');
-    htaControls.className = 'container hta-controls';
-    var htaToggle = document.createElement('button');
-    htaToggle.type = 'button';
-    htaToggle.className = 'hta-toggle';
-    htaToggle.setAttribute('aria-label', 'Pause moving capability cards');
-    htaToggle.setAttribute('aria-pressed', 'false');
-    htaToggle.addEventListener('click', function () {
-      htaToggle.setAttribute('aria-pressed', String(htaMarquee.classList.toggle('is-paused')));
+    var controls = document.createElement('div');
+    controls.className = 'container ' + prefix + '-controls';
+    var toggle = document.createElement('button');
+    toggle.type = 'button';
+    toggle.className = prefix + '-toggle';
+    toggle.setAttribute('aria-label', label);
+    toggle.setAttribute('aria-pressed', 'false');
+    toggle.addEventListener('click', function () {
+      toggle.setAttribute('aria-pressed', String(marquee.classList.toggle('is-paused')));
     });
-    htaControls.appendChild(htaToggle);
-    htaMarquee.parentNode.insertBefore(htaControls, htaMarquee.nextSibling);
+    controls.appendChild(toggle);
+    marquee.parentNode.insertBefore(controls, marquee.nextSibling);
   }
+  initMarquee('.hta-track', 'hta', 'Pause moving capability cards');
+  initMarquee('.ab-why-track', 'ab-why', 'Pause moving Why TalNXT cards');
 });

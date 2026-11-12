@@ -2031,19 +2031,78 @@ a.cta-v:hover { color: #8EC1F5; }
 .ab-client-title { margin: 10px 0 4px; font-family: 'IBM Plex Sans', -apple-system, Segoe UI, Roboto, sans-serif; font-size: 12.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ab-navy); }
 .ab-client p { font-size: 12.5px; line-height: 1.5; color: var(--ab-body); }
 
-/* ---- 8. Why TalNXT: headline panel left, five check-marked differentiators right ---- */
-.ab-why { background: #fff; }
-.ab-why-wrap { display: grid; grid-template-columns: 40fr 60fr; overflow: hidden; border: 1px solid var(--ab-border); border-radius: 28px; background: #fff; box-shadow: 0 24px 50px -40px rgba(23,37,68,.35); }
-.ab-why-intro { position: relative; overflow: hidden; padding: 48px 44px; background: radial-gradient(ellipse 80% 60% at 0% 100%, rgba(221,244,236,.9), transparent 70%), linear-gradient(160deg, #EFF6FF 0%, #DCEEFF 100%); }
-.ab-why-intro .ab-lede { margin-top: 18px; color: var(--ab-navy); font-size: 16px; }
-.ab-why-intro::after { content: ""; position: absolute; right: -60px; bottom: -60px; width: 200px; height: 200px; border-radius: 50%; border: 2px solid rgba(40,124,219,.16); box-shadow: 0 0 0 26px rgba(40,124,219,.04); }
-.ab-why-list { list-style: none; margin: 0; padding: 20px 44px; display: flex; flex-direction: column; justify-content: center; }
-.ab-why-item { display: grid; grid-template-columns: 34px minmax(0,1fr); gap: 4px 16px; padding: 18px 0; }
-.ab-why-item + .ab-why-item { border-top: 1px solid var(--ab-border); }
-.ab-why-check { grid-row: span 2; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--ab-light-mint); color: var(--ab-teal); }
-.ab-why-check svg { width: 18px; height: 18px; }
-.ab-why-title { font-family: 'IBM Plex Sans', -apple-system, Segoe UI, Roboto, sans-serif; font-size: 14px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ab-navy); align-self: center; }
-.ab-why-item p { font-size: 15px; line-height: 1.6; color: var(--ab-body); }
+/* ---- 8. Why TalNXT: centred header, five colour-coded differentiator cards scrolling in a full-width marquee.
+   The background layers (all in .ab-why-bg) are: soft blue / mint / lavender glows, a pale-blue curve
+   from the upper-left, a mint curve from the upper-right and three layered waves along the foot. ---- */
+.ab-why { position: relative; overflow: hidden; isolation: isolate; padding: 36px 0 50px; background: #fff; }
+.ab-why-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 520 300' preserveAspectRatio='none'%3E%3Cpath d='M0 0h520C430 34 340 70 250 128S90 248 0 300z' fill='%23E7F2FF' fill-opacity='.5'/%3E%3Cpath d='M0 0h380C300 30 230 72 162 130S56 226 0 248z' fill='%23E7F2FF' fill-opacity='.9'/%3E%3C/svg%3E") left top/min(34vw, 520px) 300px no-repeat,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 280' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='m' x1='1' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23E5F7F1'/%3E%3Cstop offset='1' stop-color='%23E5F7F1' stop-opacity='0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M480 0H90c70 30 150 58 220 116s120 130 170 164z' fill='url(%23m)'/%3E%3C/svg%3E") right top/min(32vw, 480px) 280px no-repeat,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 90' preserveAspectRatio='none'%3E%3Cpath d='M0 40C220 12 470 8 720 34s520 36 720 4v52H0z' fill='%23DDF4EC' fill-opacity='.75'/%3E%3Cpath d='M0 58C300 26 560 30 820 52s420 18 620-12v50H0z' fill='%23DCEEFF' fill-opacity='.8'/%3E%3Cpath d='M0 74C280 56 600 58 880 72s380 4 560-10v28H0z' fill='%23EAF4FF'/%3E%3C/svg%3E") center bottom/100% 40px no-repeat,
+    radial-gradient(ellipse 55% 46% at 50% 62%, rgba(232,242,255,.9), transparent 72%),
+    radial-gradient(ellipse 30% 40% at 78% 58%, rgba(229,247,241,.6), transparent 72%),
+    radial-gradient(ellipse 30% 46% at 100% 0%, rgba(221,244,236,.7), transparent 72%),
+    radial-gradient(ellipse 28% 40% at 0% 0%, rgba(233,227,250,.45), transparent 72%); }
+.ab-why-inner { position: relative; z-index: 1; max-width: 1240px; margin: 0 auto; padding: 0 40px; box-sizing: border-box; }
+
+.ab-why-head { max-width: 760px; margin: 0 auto 22px; text-align: center; }
+.ab-page .ab-why .eyebrow { font-size: 12.5px; margin-bottom: 8px; }
+.ab-page .ab-why .eyebrow.lined::before, .ab-page .ab-why .eyebrow.lined::after { width: 32px; height: 1.5px; border-radius: 1px; background: var(--ab-blue); box-shadow: none; }
+.ab-why-head .ab-h2 { font-size: clamp(26px, 2.4vw, 34px); line-height: 1.18; }
+.ab-why-accent { color: var(--ab-blue); }
+.ab-why-head .ab-lede { max-width: 700px; margin: 8px auto 0; font-size: 11px; line-height: 1.6; color: var(--ab-body); }
+
+/* Marquee: main.js clones the set once (aria-hidden, inert) and adds .is-looping, so the track moves by exactly
+   one set (half its width plus half a gap). Hover or the pause button stops it. Without JS, or for reduced-motion
+   users, the cards sit in a static row that scrolls horizontally. */
+.ab-why-marquee { position: relative; z-index: 1; overflow-x: auto; scrollbar-width: none; }
+.ab-why-marquee::-webkit-scrollbar { display: none; }
+.ab-why-track { list-style: none; margin: 0 auto; padding: 6px 20px 10px; display: flex; gap: 14px; width: max-content; }
+.ab-why-marquee.is-looping { overflow: hidden;
+  -webkit-mask: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+.ab-why-marquee.is-looping .ab-why-track { padding-inline: 0; animation: ab-why-scroll 36s linear infinite; }
+.ab-why-marquee.is-looping:hover .ab-why-track, .ab-why-marquee.is-paused .ab-why-track { animation-play-state: paused; }
+@keyframes ab-why-scroll { to { transform: translateX(calc(-50% - 7px)); } }
+.ab-why-controls { position: relative; z-index: 1; display: flex; justify-content: flex-end; margin-top: 2px; }
+.ab-why-toggle { display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; padding: 0; border-radius: 50%; border: 1px solid #D5E7FA; background: #fff; color: var(--ab-blue); cursor: pointer;
+  transition: border-color .2s ease, background-color .2s ease; }
+.ab-why-toggle:hover { border-color: #A9CCF2; background: var(--ab-pale-blue); }
+.ab-why-toggle:focus-visible { outline: 2px solid var(--ab-navy); outline-offset: 2px; }
+/* Pause bars while moving, a play triangle once paused */
+.ab-why-toggle::before { content: ""; width: 8px; height: 10px; border-left: 3px solid currentColor; border-right: 3px solid currentColor; box-sizing: border-box; }
+.ab-why-toggle[aria-pressed="true"]::before { width: 0; height: 0; margin-left: 3px; border-style: solid; border-width: 6px 0 6px 10px; border-color: transparent transparent transparent currentColor; }
+
+/* Cards: icon and number on top, heading with a short accent underline, description, then a curved colour
+   wash rising into the lower-right corner holding a white check badge. */
+.ab-why-card { --wc-pad: 14px; position: relative; overflow: hidden; flex: 0 0 200px; display: flex; flex-direction: column; min-height: 0; box-sizing: border-box;
+  padding: var(--wc-pad) var(--wc-pad) 34px; border-radius: 16px; background: var(--wc-bg); border: 1px solid var(--wc-border); box-shadow: 0 18px 40px -30px rgba(23,37,68,.28);
+  transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease; }
+/* Footer accent: two stacked curves masked from a gradient, a pale outer swell and a stronger inner one */
+.ab-why-card::before, .ab-why-card::after { content: ""; position: absolute; right: 0; bottom: 0; pointer-events: none; transition: opacity .22s ease; }
+.ab-why-card::before { width: 78%; height: 40px; opacity: .45; background: linear-gradient(110deg, var(--wc-tint), var(--wc-c));
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 100' preserveAspectRatio='none'%3E%3Cpath d='M0 100C60 96 120 78 160 44S192 6 200 0v100z'/%3E%3C/svg%3E") center/100% 100% no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 100' preserveAspectRatio='none'%3E%3Cpath d='M0 100C60 96 120 78 160 44S192 6 200 0v100z'/%3E%3C/svg%3E") center/100% 100% no-repeat; }
+.ab-why-card::after { width: 60%; height: 30px; opacity: .85; background: linear-gradient(115deg, var(--wc-tint), var(--wc-c) 70%);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 80' preserveAspectRatio='none'%3E%3Cpath d='M0 80C50 78 96 64 124 36S154 4 160 0v80z'/%3E%3C/svg%3E") center/100% 100% no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 80' preserveAspectRatio='none'%3E%3Cpath d='M0 80C50 78 96 64 124 36S154 4 160 0v80z'/%3E%3C/svg%3E") center/100% 100% no-repeat; }
+.ab-why-card > * { position: relative; z-index: 1; }
+.ab-why-card:hover { transform: translateY(-3px); border-color: var(--wc-border-hover); box-shadow: 0 24px 44px -26px rgba(23,37,68,.32); }
+.ab-why-card:hover::before { opacity: .6; }
+.ab-why-card:hover::after { opacity: 1; }
+.ab-why-card.blue { --wc-bg: #F1F7FD; --wc-border: #D5E7FA; --wc-border-hover: #A9CCF2; --wc-c: #287CDB; --wc-tint: #DCEEFF; --wc-ico: #287CDB; --wc-num: #B9D8FF; }
+.ab-why-card.mint { --wc-bg: #F0FAF7; --wc-border: #D7F0E8; --wc-border-hover: #A6DAC7; --wc-c: #239B7A; --wc-tint: #DDF4EC; --wc-ico: #239B7A; --wc-num: #B9E8D8; }
+.ab-why-card.gold { --wc-bg: #FFFAEF; --wc-border: #F4E7C7; --wc-border-hover: #E9CF8E; --wc-c: #E9B443; --wc-tint: #FFF0C9; --wc-ico: #D99B2B; --wc-num: #F8D98B; }
+.ab-why-card.lav  { --wc-bg: #F7F4FD; --wc-border: #E6DDF8; --wc-border-hover: #C9B5EE; --wc-c: #8063D6; --wc-tint: #EDE3FA; --wc-ico: #8063D6; --wc-num: #D3C1F5; }
+.ab-why-card.aqua { --wc-bg: #F0FAFA; --wc-border: #D7EEEE; --wc-border-hover: #A3D9DD; --wc-c: #16A6B4; --wc-tint: #DDF4F4; --wc-ico: #16A6B4; --wc-num: #B6E5E8; }
+.ab-why-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
+.ab-why-ico { flex-shrink: 0; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; background: var(--wc-tint); color: var(--wc-ico); }
+.ab-why-ico svg { width: 46%; height: 46%; }
+.ab-why-num { font-family: 'IBM Plex Sans', -apple-system, Segoe UI, Roboto, sans-serif; font-size: 20px; font-weight: 700; line-height: 1; color: var(--wc-num); }
+.ab-why-title { margin: 0; font-family: 'IBM Plex Sans', -apple-system, Segoe UI, Roboto, sans-serif; font-size: 12px; font-weight: 700; line-height: 1.25; letter-spacing: .03em; text-transform: uppercase; color: var(--ab-navy);
+  }
+.ab-why-title::after { content: ""; display: block; width: 30px; height: 3px; margin: 7px 0; border-radius: 3px; background: var(--wc-c); }
+.ab-why-card p { margin: 0; font-size: 12px; line-height: 1.45; color: var(--ab-body); }
+.ab-why-check { position: absolute; right: 10px; bottom: 7px; display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: #fff; color: var(--ab-teal); box-shadow: 0 6px 14px -6px rgba(23,37,68,.35); }
+.ab-why-check svg { width: 11px; height: 11px; }
 
 /* ---- 9. Leadership & experience: editorial split, portrait frame left ---- */
 .ab-lead { background: linear-gradient(180deg, #F8FBFF 0%, #fff 100%); border-top: 1px solid var(--ab-border); }
@@ -2084,6 +2143,8 @@ a.cta-v:hover { color: #8EC1F5; }
   .ab-btn, .ab-btn span, .ab-link span, .ab-pillar { transition: none; }
   .ab-client-stage i.on { animation: none; }
   .ab-pcard::after { animation: none; }
+  .ab-why-card, .ab-why-card::before, .ab-why-card::after, .ab-why-toggle { transition: none; }
+  .ab-why-card:hover { transform: none; }
   .ab-btn:hover, .ab-pillar:hover, .ab-btn:hover span, .ab-link:hover span { transform: none; }
 }
 
@@ -2100,9 +2161,11 @@ a.cta-v:hover { color: #8EC1F5; }
   .ab-purpose .ab-purpose-eyebrow { justify-content: center; }
   .ab-purpose-title br { display: none; }
 }
-/* Tablet: purpose cards go two-up with Values full width, Why TalNXT panel sits above its list */
+/* Tablet: purpose cards go two-up with Values full width */
 @media (max-width: 1024px) {
   .ab-sec { padding: 60px 0; }
+  .ab-why { padding: 32px 0 46px; }
+  .ab-why-inner { padding: 0 36px; }
   .ab-story { padding: 36px 0; }
   .ab-purpose { padding: 36px 0 48px; }
   .ab-clients { padding: 32px 0 60px; }
@@ -2112,9 +2175,6 @@ a.cta-v:hover { color: #8EC1F5; }
   .ab-pcard.values .ab-values { grid-template-columns: repeat(2, minmax(0,1fr)); column-gap: 24px; }
   .ab-pillars { padding: 34px 0 40px; }
   .ab-pillar-media { height: 140px; }
-  .ab-why-wrap { grid-template-columns: 1fr; }
-  .ab-why-intro { padding: 40px 36px; }
-  .ab-why-list { padding: 12px 36px 20px; }
 }
 /* Narrow tablet: editorial splits stack, pillars stack */
 @media (max-width: 900px) {
@@ -2142,8 +2202,16 @@ a.cta-v:hover { color: #8EC1F5; }
   .ab-pillars .ab-head { margin-bottom: 20px; }
   .ab-pillar-body { padding: 14px 18px 32px; }
   .ab-lead-areas { grid-template-columns: 1fr; }
-  .ab-why-intro { padding: 32px 24px; }
-  .ab-why-list { padding: 6px 24px 14px; }
+  .ab-why { padding: 28px 0 40px; }
+  .ab-why-bg { background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 90' preserveAspectRatio='none'%3E%3Cpath d='M0 50C300 22 600 26 900 48s380 16 540-6v48H0z' fill='%23DCEEFF' fill-opacity='.8'/%3E%3Cpath d='M0 70C320 54 640 56 940 68s360 4 500-8v30H0z' fill='%23EAF4FF'/%3E%3C/svg%3E") center bottom/100% 40px no-repeat,
+    radial-gradient(ellipse 80% 30% at 50% 50%, rgba(232,242,255,.9), transparent 72%),
+    radial-gradient(ellipse 50% 20% at 100% 0%, rgba(221,244,236,.7), transparent 72%); }
+  .ab-why-inner { padding: 0 16px; }
+  .ab-why-head { margin-bottom: 18px; }
+  .ab-why-br { display: none; }
+  .ab-why-head .ab-lede { margin-top: 14px; }
+  .ab-why-card { flex-basis: 184px; }
   .ab-page .ab-cta-sec { padding: 8px 0 56px; }
   .ab-cta { grid-template-columns: 1fr; gap: 28px; padding: 36px 22px 52px; text-align: center; }
   .ab-cta-photo { grid-row: 1; width: 150px; justify-self: center; }
@@ -2161,4 +2229,5 @@ a.cta-v:hover { color: #8EC1F5; }
 @media (max-width: 760px) {
   .ab-hero h1 { font-size: 24px !important; }
   .ab-page .ab-h2 { font-size: 25px !important; }
+  .ab-page .ab-why-head .ab-h2 { font-size: 24px !important; }
 }
