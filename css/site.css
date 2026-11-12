@@ -1915,38 +1915,30 @@ a.cta-v:hover { color: #8EC1F5; }
 .ab-story-copy .ab-lede.strong { color: var(--ab-navy); font-weight: 600; }
 .ab-story-copy .ab-lede.strong::before { content: ""; display: block; width: 40px; height: 3px; margin: 0 auto 12px; border-radius: 2px; background: var(--ab-teal); }
 
-/* ---- 3. Purpose: heading column on the left, then three equal pastel cards ---- */
-.ab-purpose { padding: 34px 0 42px; background: radial-gradient(ellipse 60% 55% at 50% 0%, rgba(220,238,255,.55), transparent 72%), #fff; }
-.ab-purpose-layout { display: grid; grid-template-columns: max-content minmax(0,1fr); gap: 36px; align-items: center; }
+/* ---- 3. Purpose: heading column (~18%) on the left, then three equal pastel cards (~26% each) ---- */
+.ab-purpose { padding: 56px 0 72px; background: radial-gradient(ellipse 60% 55% at 50% 0%, rgba(220,238,255,.55), transparent 72%), #fff; }
+.ab-purpose-layout { display: grid; grid-template-columns: minmax(0,18fr) minmax(0,78fr); gap: 32px; align-items: center; }
 /* Lighter, thinner wave than the shared section break */
 .ab-purpose::after { height: 40px; opacity: .55; }
-.ab-purpose .ab-purpose-eyebrow { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-size: 11px; }
+.ab-purpose .ab-purpose-eyebrow { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; font-size: 12px; }
 .ab-purpose-eyebrow::before { content: ""; width: 24px; height: 2px; border-radius: 2px; background: var(--ab-blue); }
-.ab-purpose-title { font-family: 'IBM Plex Sans', -apple-system, Segoe UI, Roboto, sans-serif; font-size: 21px; line-height: 1.2; font-weight: 700; letter-spacing: -0.01em; color: var(--ab-navy); }
+.ab-purpose-title { font-family: 'IBM Plex Sans', -apple-system, Segoe UI, Roboto, sans-serif; font-size: 27px; line-height: 1.2; font-weight: 700; letter-spacing: -0.01em; color: var(--ab-navy); }
 .ab-purpose-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 20px; }
-.ab-pcard { position: relative; overflow: hidden; display: flex; flex-direction: column; padding: 16px 18px 38px; background: #fff; border: 1px solid var(--pc-border); border-radius: 18px;
+.ab-pcard { display: flex; flex-direction: column; min-height: 232px; padding: 22px; background: var(--pc-bg); border: 1px solid var(--pc-border); border-radius: 20px;
   box-shadow: 0 1px 2px rgba(var(--pc-rgb), .06); }
-/* Values runs slightly tighter at the sides so its longest item fits on one line */
-.ab-pcard.values { padding-left: 18px; padding-right: 16px; }
-/* Blue frame along the left edge of each card */
-.ab-pcard { border-left: 4px solid var(--ab-blue); }
-/* Card footer: band of blue dots fading upwards */
-.ab-pcard::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 30px; pointer-events: none;
-  background: radial-gradient(circle, rgba(40,124,219,.75) 1.6px, transparent 2.1px) center bottom/10px 10px;
-  -webkit-mask-image: linear-gradient(to top, #000 35%, transparent); mask-image: linear-gradient(to top, #000 35%, transparent); }
 .ab-pcard.vision { --pc-bg: var(--ab-pale-blue); --pc-border: #D5E7FA; --pc-c: var(--ab-blue); --pc-ico: var(--ab-light-blue); --pc-rgb: 40,124,219; }
 .ab-pcard.mission { --pc-bg: var(--ab-pale-mint); --pc-border: #D7F0E8; --pc-c: var(--ab-teal); --pc-ico: var(--ab-light-mint); --pc-rgb: 35,155,122; }
 .ab-pcard.values { --pc-bg: var(--ab-pale-gold); --pc-border: #F4E7C7; --pc-c: var(--ab-gold); --pc-ico: #FFF0C9; --pc-rgb: 217,155,43; }
-.ab-pcard-head { display: flex; align-items: center; gap: 10px; }
-.ab-pcard-ico { flex-shrink: 0; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: var(--pc-ico); color: var(--pc-c); }
-.ab-pcard-ico svg { width: 18px; height: 18px; }
-.ab-pcard-title { font-family: 'IBM Plex Sans', -apple-system, Segoe UI, Roboto, sans-serif; font-size: 15px; font-weight: 700; letter-spacing: 0; color: var(--ab-navy); }
-.ab-pcard-text { margin-top: 12px; font-size: 12.5px; line-height: 1.5; font-weight: 500; color: var(--ab-body); text-wrap: pretty; hyphens: manual; }
+.ab-pcard-head { display: flex; align-items: center; gap: 12px; }
+.ab-pcard-ico { flex-shrink: 0; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: var(--pc-ico); color: var(--pc-c); }
+.ab-pcard-ico svg { width: 22px; height: 22px; }
+.ab-pcard-title { font-family: 'IBM Plex Sans', -apple-system, Segoe UI, Roboto, sans-serif; font-size: 18.5px; font-weight: 700; letter-spacing: 0; color: var(--ab-navy); }
+.ab-pcard-text { margin-top: 14px; font-size: 15.5px; line-height: 1.5; color: var(--ab-body); text-wrap: pretty; hyphens: manual; }
 .ab-pcard-text .nowrap { white-space: nowrap; }
-/* Values: compact checklist with small green check circles */
-.ab-values { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 6px; }
-.ab-values li { display: flex; align-items: flex-start; gap: 8px; font-size: 12px; line-height: 1.4; font-weight: 500; color: var(--ab-navy); }
-.ab-values li::before { content: ""; flex-shrink: 0; width: 14px; height: 14px; margin-top: 2px; border-radius: 50%;
+/* Values: checklist with small green check circles */
+.ab-values { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 6px; }
+.ab-values li { display: flex; align-items: flex-start; gap: 10px; font-size: 14.5px; line-height: 1.4; font-weight: 500; color: var(--ab-navy); }
+.ab-values li::before { content: ""; flex-shrink: 0; width: 16px; height: 16px; margin-top: 2px; border-radius: 50%;
   background: #239B7A url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4.5 8.2l2.3 2.3 4.7-4.9'/%3E%3C/svg%3E") center/100% no-repeat; }
 
 /* ---- 4. Business pillars: two equal cards, media band on top (~38%), curved foot ---- */
@@ -1992,25 +1984,42 @@ a.cta-v:hover { color: #8EC1F5; }
   mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 60' preserveAspectRatio='none'%3E%3Cpath d='M0 40C90 10 180 52 280 30S370 8 400 14v46H0z'/%3E%3C/svg%3E") center/100% 100% no-repeat; }
 
 /* ---- 7. Who we work with: four growth-stage cards, stage bars rising left to right ---- */
-.ab-clients { background: linear-gradient(180deg, #fff 0%, #F8FBFF 100%); }
-.ab-client-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 20px; }
-.ab-client { display: flex; flex-direction: column; padding: 24px 22px 26px; border-radius: 18px; background: var(--cl-tint); border: 1px solid var(--cl-border); }
+.ab-clients { padding: 36px 0 64px; background: linear-gradient(180deg, #fff 0%, #F8FBFF 100%); }
+/* Thinner wave than the shared section break, with room below the cards so they clear it */
+.ab-clients::after { height: 40px; opacity: .55; }
+.ab-clients .ab-head { margin-bottom: 18px; }
+.ab-clients .ab-h2 { font-size: 24px; }
+.ab-client-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 16px; }
+.ab-client { display: flex; flex-direction: column; padding: 14px 16px 16px; border-radius: 18px; background: #fff; border: 1px solid var(--cl-border); }
 .ab-client.blue { --cl-c: var(--ab-blue); --cl-tint: var(--ab-pale-blue); --cl-border: #D5E7FA; }
 .ab-client.mint { --cl-c: var(--ab-teal); --cl-tint: var(--ab-pale-mint); --cl-border: #D3EFE6; }
 .ab-client.gold { --cl-c: var(--ab-gold); --cl-tint: var(--ab-pale-gold); --cl-border: #F5E5C4; }
 .ab-client.lav { --cl-c: var(--ab-lav); --cl-tint: var(--ab-pale-lav); --cl-border: #E4DCF7; }
-.ab-client-top { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; }
+.ab-client-top { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; min-height: 36px; }
 .ab-client-ico { color: var(--cl-c); }
-.ab-client-ico svg { display: block; width: 38px; height: 38px; }
-.ab-client-stage { display: flex; align-items: flex-end; gap: 4px; height: 30px; }
-.ab-client-stage i { width: 6px; border-radius: 3px; background: var(--cl-c); opacity: .18; }
+.ab-client-ico svg { display: block; width: 26px; height: 26px; }
+/* 3D image icon sitting on a soft blurred circle in the card colour */
+.ab-client-ico.photo { position: relative; display: grid; place-items: center; width: 36px; height: 36px; }
+.ab-client-ico.photo::before { content: ""; position: absolute; inset: 2px; border-radius: 50%; background: var(--cl-c); opacity: .28; filter: blur(8px); }
+.ab-client-ico.photo img { position: relative; display: block; width: 32px; height: 32px; }
+.ab-client-stage { display: flex; align-items: flex-end; gap: 3px; height: 20px; }
+.ab-client-stage i { width: 5px; border-radius: 3px; background: var(--cl-c); opacity: .18; }
 .ab-client-stage i:nth-child(1) { height: 30%; }
 .ab-client-stage i:nth-child(2) { height: 55%; }
 .ab-client-stage i:nth-child(3) { height: 78%; }
 .ab-client-stage i:nth-child(4) { height: 100%; }
-.ab-client-stage i.on { opacity: 1; }
-.ab-client-title { margin: 20px 0 8px; font-family: 'IBM Plex Sans', -apple-system, Segoe UI, Roboto, sans-serif; font-size: 15px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ab-navy); }
-.ab-client p { font-size: 14.5px; line-height: 1.6; color: var(--ab-body); }
+.ab-client-stage i.on { opacity: 1; transform-origin: bottom; animation: ab-stage-fill 3.2s ease-in-out infinite both; }
+/* Lit bars fill up one after another to the card's level, hold, then reset */
+.ab-client-stage i:nth-child(2).on { animation-delay: .25s; }
+.ab-client-stage i:nth-child(3).on { animation-delay: .5s; }
+.ab-client-stage i:nth-child(4).on { animation-delay: .75s; }
+@keyframes ab-stage-fill {
+  0%, 100% { opacity: .18; transform: scaleY(.7); }
+  12%, 72% { opacity: 1; transform: scaleY(1); }
+  86% { opacity: .18; transform: scaleY(.7); }
+}
+.ab-client-title { margin: 10px 0 4px; font-family: 'IBM Plex Sans', -apple-system, Segoe UI, Roboto, sans-serif; font-size: 12.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ab-navy); }
+.ab-client p { font-size: 12.5px; line-height: 1.5; color: var(--ab-body); }
 
 /* ---- 8. Why TalNXT: headline panel left, five check-marked differentiators right ---- */
 .ab-why { background: #fff; }
@@ -2063,6 +2072,7 @@ a.cta-v:hover { color: #8EC1F5; }
 
 @media (prefers-reduced-motion: reduce) {
   .ab-btn, .ab-btn span, .ab-link span, .ab-pillar { transition: none; }
+  .ab-client-stage i.on { animation: none; }
   .ab-btn:hover, .ab-pillar:hover, .ab-btn:hover span, .ab-link:hover span { transform: none; }
 }
 
@@ -2083,7 +2093,8 @@ a.cta-v:hover { color: #8EC1F5; }
 @media (max-width: 1024px) {
   .ab-sec { padding: 60px 0; }
   .ab-story { padding: 36px 0; }
-  .ab-purpose { padding: 32px 0 40px; }
+  .ab-purpose { padding: 48px 0 64px; }
+  .ab-clients { padding: 32px 0 60px; }
   .ab-h2 { font-size: 28px; }
   .ab-purpose-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
   .ab-pcard.values { grid-column: 1 / -1; }
@@ -2107,13 +2118,15 @@ a.cta-v:hover { color: #8EC1F5; }
 @media (max-width: 760px) {
   .ab-sec { padding: 48px 0; }
   .ab-story { padding: 32px 0; }
-  .ab-purpose { padding: 28px 0 36px; }
-  .ab-purpose-title { font-size: 20px; }
+  .ab-purpose { padding: 40px 0 56px; }
+  .ab-clients { padding: 28px 0 56px; }
+  .ab-clients .ab-h2 { font-size: 22px; }
+  .ab-purpose-title { font-size: 24px; }
   .ab-purpose-grid { grid-template-columns: 1fr; gap: 16px; }
   .ab-pcard.values .ab-values { grid-template-columns: 1fr; }
   .ab-h2 { font-size: 26px; }
   .ab-head { margin-bottom: 28px; }
-  .ab-pcard { padding: 16px 16px 36px; }
+  .ab-pcard { min-height: 0; padding: 22px 20px; }
   .ab-pillars { padding: 30px 0 36px; }
   .ab-pillars .ab-head { margin-bottom: 20px; }
   .ab-pillar-body { padding: 14px 18px 32px; }
