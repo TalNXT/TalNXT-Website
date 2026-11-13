@@ -855,6 +855,19 @@ p.copy { font-size: 15px; line-height: 1.7; color: #2b3446; margin: 0; }
   .sec-divider-icon { width: 42px; height: 42px; }
   .sec-divider-icon svg { width: 22px; height: 22px; }
 }
+
+/* section wave break: soft blue/mint curves along a section's bottom edge (same treatment as the People & HR sections).
+   .sec-wave = filled waves + line, .sec-wave-line = lines only */
+.sec-wave, .sec-wave-line { position: relative; isolation: isolate; }
+.sec-wave > .container, .sec-wave-line > .container { position: relative; z-index: 1; }
+.sec-wave::after, .sec-wave-line::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; z-index: 0; pointer-events: none; }
+.sec-wave::after { height: 64px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 90' preserveAspectRatio='none'%3E%3Cpath d='M0 52C240 20 500 18 740 44s480 30 700-4v50H0z' fill='%23287CDB' fill-opacity='.05'/%3E%3Cpath d='M0 70C300 44 560 40 820 62s420 18 620-8v36H0z' fill='%23239B7A' fill-opacity='.07'/%3E%3Cpath d='M0 40C260 8 520 6 760 32s460 28 680-8' fill='none' stroke='%23287CDB' stroke-opacity='.12' stroke-width='2'/%3E%3C/svg%3E") center bottom/100% 100% no-repeat; }
+.sec-wave-line::after { height: 60px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 90' preserveAspectRatio='none' fill='none'%3E%3Cpath d='M0 62C260 22 520 18 760 48s460 30 680-6' stroke='%23287CDB' stroke-opacity='.14' stroke-width='2'/%3E%3Cpath d='M0 78C280 46 540 42 780 64s440 18 660-10' stroke='%23239B7A' stroke-opacity='.14' stroke-width='2'/%3E%3C/svg%3E") center bottom/100% 100% no-repeat; }
+@media (max-width: 760px) {
+  .sec-wave::after, .sec-wave-line::after { height: 40px; }
+}
 .cta-box { padding: 32px 36px; border-radius: 12px; background: var(--navy-deep); display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
 .cta-box .cta-title { font-size: 20px; font-weight: 600; color: #fff; font-family: 'Newsreader', Georgia, serif; }
 .cta-box .cta-sub { font-size: 13.5px; color: #b7c0c9; margin-top: 4px; }
