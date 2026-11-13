@@ -2451,6 +2451,7 @@ a.cta-v:hover { color: #287CDB; }
 /* Thought Leadership (thought-leadership.html): reuses the Contingent Staffing hero, strip and CTA;
    only the LinkedIn post cards and empty state are its own */
 .tl-feed-sec { border-top: 1px solid #DCE7F1; border-bottom: 1px solid #DCE7F1; }
+.tl-feed-sec .sec-head .copy { font-size: 12px; }
 .li-feed { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 24px; align-items: start; max-width: 1080px; margin: 0 auto; }
 .li-post { border: 1px solid #DCE7F1; border-radius: 16px; background: #fff; overflow: hidden; box-shadow: 0 18px 36px -30px rgba(23,37,68,.35); transition: box-shadow .2s, transform .2s; }
 .li-post:hover { box-shadow: 0 22px 40px -26px rgba(23,37,68,.4); transform: translateY(-2px); }
