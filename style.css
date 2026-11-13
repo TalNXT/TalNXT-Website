@@ -199,10 +199,10 @@
   }
   .section-eyebrow {
     text-transform: uppercase;
-    letter-spacing: 0.18em;
-    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    font-size: 11px;
     color: var(--primary);
-    font-weight: 600;
+    font-weight: 700;
   }
   .section-title {
     font-weight: 700;
