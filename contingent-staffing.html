@@ -50,7 +50,7 @@
         <h1>Flexible Talent.<br><span class="cs-h1-accent">Built Around Your Workforce Needs</span></h1>
         <p class="lede">Scale teams faster, meet project deadlines and stay flexible as business demands change</p>
         <div class="hero-actions">
-          <a class="btn accent" href="index.html#contact">Share Your Requirement →</a>
+          <a class="btn accent js-enquiry" data-enquiry="staffing" href="index.html#contact" aria-haspopup="dialog">Share Your Requirement →</a>
         </div>
       </div>
       <div class="cs-visual">
@@ -202,8 +202,8 @@
           <li class="cs-cta-cue gold"><span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 9 4.5-9 4.5-9-4.5z"/><path d="m3 12 9 4.5 9-4.5"/><path d="m3 16.5 9 4.5 9-4.5"/></svg></span>Flexible Engagement Models</li>
         </ul>
         <div class="cta-actions">
-          <a class="cta-btn" href="mailto:info@talnxt.com?subject=Contingent%20staffing%20requirement">Share Your Requirement <span aria-hidden="true">→</span></a>
-          <a class="cta-btn-alt" href="tel:+919606629269"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12.5c0 4-3.6 7-8 7-1.2 0-2.3-.2-3.3-.6L4 20l1.2-3.6C4.4 15.3 4 14 4 12.5c0-4 3.6-7 8-7s8 3 8 7z"/><path d="M8.5 12.5h.01M12 12.5h.01M15.5 12.5h.01"/></svg>Talk to Our Team</a>
+          <a class="cta-btn js-enquiry" data-enquiry="staffing" href="mailto:info@talnxt.com?subject=Contingent%20staffing%20requirement" aria-haspopup="dialog">Share Your Requirement <span aria-hidden="true">→</span></a>
+          <a class="cta-btn-alt" href="index.html#contact"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12.5c0 4-3.6 7-8 7-1.2 0-2.3-.2-3.3-.6L4 20l1.2-3.6C4.4 15.3 4 14 4 12.5c0-4 3.6-7 8-7s8 3 8 7z"/><path d="M8.5 12.5h.01M12 12.5h.01M15.5 12.5h.01"/></svg>Talk to Our Team</a>
         </div>
       </div>
       <figure class="cs-cta-photo">
@@ -219,6 +219,56 @@
     </div>
   </div>
 </section>
+
+<!-- Client enquiry popup: opened by the "Share Your Requirement" CTAs (js/main.js); same form as index.html.
+     Set data-endpoint on the form (e.g. a Formspree URL) to receive submissions directly;
+     left empty, submitting opens a pre-filled email to info@talnxt.com. -->
+<div class="modal-overlay cr-modal" id="enq-modal">
+  <div class="modal-box cr-modal-box" role="dialog" aria-modal="true" aria-labelledby="enq-title">
+    <button type="button" class="modal-close" id="enq-close" aria-label="Close">✕</button>
+    <div id="enq-form-wrap">
+      <div class="cr-modal-head">
+        <div class="eyebrow" id="enq-eyebrow">Submit your requirement</div>
+        <h2 id="enq-title" class="cr-modal-title">Tell us what you need</h2>
+      </div>
+      <form id="enq-form" class="cr-form" data-endpoint="" novalidate>
+        <div class="cr-form-grid">
+          <!-- Staffing-only form: the enquiry type is fixed, so no "I'm looking for" choice and no HR fields -->
+          <input type="hidden" id="enq-f-type" name="enquiry_type" value="staffing">
+          <div class="modal-field"><label for="enq-f-name">Full name <span aria-hidden="true">*</span></label><input id="enq-f-name" name="name" type="text" autocomplete="name" required></div>
+          <div class="modal-field"><label for="enq-f-company">Company <span aria-hidden="true">*</span></label><input id="enq-f-company" name="company" type="text" autocomplete="organization" required></div>
+          <div class="modal-field"><label for="enq-f-email">Work email <span aria-hidden="true">*</span></label><input id="enq-f-email" name="email" type="email" autocomplete="email" required></div>
+          <div class="modal-field"><label for="enq-f-phone">Phone <span aria-hidden="true">*</span></label><input id="enq-f-phone" name="phone" type="tel" autocomplete="tel" required></div>
+
+          <div class="modal-field cr-span" data-enq="staffing"><label for="enq-f-roles">Role(s) / skills required <span aria-hidden="true">*</span></label><input id="enq-f-roles" name="roles" type="text" placeholder="e.g. 2 Java developers, 1 DevOps engineer" required></div>
+          <div class="modal-field" data-enq="staffing"><label for="enq-f-positions">Number of positions</label><input id="enq-f-positions" name="positions" type="number" min="1" max="500" inputmode="numeric"></div>
+          <div class="modal-field" data-enq="staffing"><label for="enq-f-model">Engagement model</label>
+            <select id="enq-f-model" name="engagement_model">
+              <option value="">Select</option><option>Contract (C2C)</option><option>Contract-to-hire (C2H)</option><option>Permanent</option><option>Not sure yet</option>
+            </select>
+          </div>
+          <div class="modal-field" data-enq="staffing"><label for="enq-f-location">Work location / mode</label><input id="enq-f-location" name="location" type="text" placeholder="e.g. Bengaluru, hybrid"></div>
+          <div class="modal-field" data-enq="staffing"><label for="enq-f-start">Needed by</label>
+            <select id="enq-f-start" name="start">
+              <option value="">Select</option><option>Immediately</option><option>Within 2 weeks</option><option>Within a month</option><option>1–3 months</option>
+            </select>
+          </div>
+
+          <div class="modal-field cr-span"><label for="enq-f-msg" id="enq-f-msg-label">Additional details</label><textarea id="enq-f-msg" name="message" rows="3"></textarea></div>
+        </div>
+        <label class="cr-consent"><input type="checkbox" id="enq-f-consent" name="consent" required> I agree to TalNXT storing these details to respond to my enquiry.</label>
+        <p class="cr-form-error" id="enq-error" role="alert"></p>
+        <button type="submit" class="cta-btn cr-submit">Submit Requirement <span aria-hidden="true">→</span></button>
+      </form>
+    </div>
+    <div id="enq-thanks" class="cr-thanks" hidden>
+      <span class="cr-thanks-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+      <h2 class="cr-modal-title">Thank you</h2>
+      <p id="enq-thanks-msg"></p>
+      <button type="button" class="cta-btn-alt cr-thanks-close" id="enq-done">Close</button>
+    </div>
+  </div>
+</div>
 
 </main>
 
