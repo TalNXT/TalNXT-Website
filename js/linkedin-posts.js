@@ -1,4 +1,4 @@
-/* TalNXT LinkedIn posts shown on linkedin-updates.html.
+/* TalNXT LinkedIn posts shown on thought-leadership.html.
 
    To add a post:
      1. On LinkedIn, open the post on the TalNXT company page.
@@ -11,5 +11,12 @@
 
    To remove a post, delete its line. */
 window.TALNXT_LINKEDIN_POSTS = [
-
+  `https://www.linkedin.com/feed/update/urn:li:activity:7526541053911339008`,
+  `https://www.linkedin.com/feed/update/urn:li:activity:7526164333177929728`,
+  `https://www.linkedin.com/feed/update/urn:li:activity:7525808294402260992`,
+  `https://www.linkedin.com/feed/update/urn:li:activity:7525461758023782400`,
+  `https://www.linkedin.com/feed/update/urn:li:activity:7525451830915690496`,
+  `https://www.linkedin.com/feed/update/urn:li:activity:7523265554959368192`,
+  `https://www.linkedin.com/feed/update/urn:li:activity:7522907867184795649`,
+  `https://www.linkedin.com/feed/update/urn:li:activity:7520743091700510721`,
 ];
