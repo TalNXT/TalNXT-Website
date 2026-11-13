@@ -231,7 +231,10 @@ p.copy { font-size: 15px; line-height: 1.7; color: #2b3446; margin: 0; }
 .mega-candidate-desc { font-size: 11.5px; color: var(--muted); margin-top: 3px; line-height: 1.45; }
 .nav-toggle { display: none; background: none; border: none; padding: 6px; cursor: pointer; }
 .nav-toggle span { display: block; width: 22px; height: 2px; background: var(--ink); margin: 5px 0; }
-.nav-cta { flex-shrink: 0; }
+.nav-cta { flex-shrink: 0; display: flex; align-items: center; gap: 22px; }
+.nav-phone { display: inline-flex; align-items: center; gap: 8px; color: var(--ink); font-size: 14px; font-weight: 600; white-space: nowrap; }
+.nav-phone svg { color: var(--accent); flex-shrink: 0; }
+.nav-phone:hover { color: var(--accent); }
 
 /* ================= FOOTER ================= */
 .site-footer { margin-top: 56px; border-top: 1px solid #DCE7F1; background: #fff; padding: 36px 0 0; color: #526174; font-size: 14px; line-height: normal; }
