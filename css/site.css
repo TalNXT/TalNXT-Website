@@ -234,7 +234,7 @@ p.copy { font-size: 15px; line-height: 1.7; color: #2b3446; margin: 0; }
 .nav-cta { flex-shrink: 0; }
 
 /* ================= FOOTER ================= */
-.site-footer { margin-top: 56px; border-top: 1px solid #DCE7F1; background: #fff; padding: 36px 0 0; color: #526174; font-size: 14px; }
+.site-footer { margin-top: 56px; border-top: 1px solid #DCE7F1; background: #fff; padding: 36px 0 0; color: #526174; font-size: 14px; line-height: normal; }
 .footer-grid { display: grid; grid-template-columns: 1.3fr .95fr 1.45fr .85fr; padding-bottom: 28px; }
 .footer-col { min-width: 0; padding: 0 32px; border-left: 1px solid #DCE7F1; }
 .footer-col:first-child { padding-left: 0; border-left: none; }
@@ -252,13 +252,13 @@ p.copy { font-size: 15px; line-height: 1.7; color: #2b3446; margin: 0; }
 .soc-yt:hover, .soc-yt:focus-visible { background: #FF0000; }
 .soc-ig:hover, .soc-ig:focus-visible { background: linear-gradient(45deg, #FA7E1E, #D62976 50%, #962FBF); }
 .soc-ig:hover svg, .soc-ig:focus-visible svg { stroke: #fff; }
-.footer-heading { font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #172544; margin-bottom: 12px; }
+.footer-heading { font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #172544; margin: 0 0 12px; }
 .footer-links-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; font-size: 14px; line-height: 1.4; }
 .footer-links-list a { color: #526174; transition: color .2s; }
 .footer-links-list a:hover, .footer-links-list a:focus-visible { color: #287CDB; }
 .site-footer a:focus-visible { outline: 2px solid #287CDB; outline-offset: 3px; border-radius: 4px; }
 .soc:focus-visible { border-radius: 50%; }
-.footer-bottom { border-top: 1px solid #DCE7F1; padding: 14px 0 16px; font-size: 13px; color: #526174; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px 24px; }
+.footer-bottom { border-top: 1px solid #DCE7F1; margin-top: 0; padding: 14px 0 16px; font-size: 13px; color: #526174; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px 24px; }
 @media (max-width: 1080px) {
   .footer-col { padding: 0 22px; }
 }
