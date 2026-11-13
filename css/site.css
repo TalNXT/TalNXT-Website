@@ -700,9 +700,27 @@ p.copy { font-size: 15px; line-height: 1.7; color: #2b3446; margin: 0; }
 .sla-sec .sec-head .eyebrow::before,
 .sla-sec .sec-head .eyebrow::after { content: ""; width: 40px; height: 4px; border-radius: 2px; background: linear-gradient(180deg, #6fb394 0%, var(--green) 55%, #2a5a47 100%); box-shadow: 0 1px 2px rgba(20,32,58,.25), inset 0 1px 0 rgba(255,255,255,.35); }
 .sla-sec .sec-head h2 { font-size: 25px; }
-.sla-sec .sec-head .copy { max-width: 640px; margin: 8px auto 0; font-size: 12px; }
-.sla-group + .sla-group { margin-top: 26px; }
-.sla-group-head { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+.sla-sec .sec-head .copy { max-width: 640px; margin: 6px auto 0; font-size: 12px; }
+.sec.sla-sec { padding: 24px 0 72px; }
+.sla-sec .sec-head { margin-bottom: 12px; }
+.sla-sec .grid-4 { gap: 12px; }
+.sla-sec .grid-4 .sla-card { padding: 10px 14px; }
+.sla-sec .sla-card .sla-time { font-size: 22px; }
+.sla-sec .sla-head .icon-badge { width: 30px; height: 30px; animation: sla-glow 2.8s ease-in-out infinite; }
+.sla-sec .sla-head .icon-badge svg { animation: sla-bob 2.8s ease-in-out infinite; }
+.sla-sec .sla-card:nth-child(2) .icon-badge, .sla-sec .sla-card:nth-child(2) .icon-badge svg { animation-delay: .35s; }
+.sla-sec .sla-card:nth-child(3) .icon-badge, .sla-sec .sla-card:nth-child(3) .icon-badge svg { animation-delay: .7s; }
+.sla-sec .sla-card:nth-child(4) .icon-badge, .sla-sec .sla-card:nth-child(4) .icon-badge svg { animation-delay: 1.05s; }
+@keyframes sla-glow {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--sla-c, var(--accent)) 0%, transparent); }
+  50% { box-shadow: 0 0 0 5px color-mix(in srgb, var(--sla-c, var(--accent)) 18%, transparent), 0 0 14px 2px color-mix(in srgb, var(--sla-c, var(--accent)) 35%, transparent); }
+}
+@keyframes sla-bob { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-1.5px) scale(1.08); } }
+@media (prefers-reduced-motion: reduce) { .sla-sec .sla-head .icon-badge, .sla-sec .sla-head .icon-badge svg { animation: none; } }
+.sla-sec .sla-card .sla-label { margin-top: 4px; }
+.sla-sec .sla-card p { margin-top: 2px; line-height: 1.45; font-size: 11.5px; }
+.sla-group + .sla-group { margin-top: 16px; }
+.sla-group-head { display: flex; align-items: center; gap: 14px; margin-bottom: 8px; }
 .sla-group-title { font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #1e3a8a; white-space: nowrap; }
 .sla-group-line { flex: 1; position: relative; height: 8px; margin-right: 4px; background: radial-gradient(circle, var(--accent) 1.5px, transparent 2px) 0 50% / 10px 8px repeat-x; -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 35%); mask-image: linear-gradient(90deg, transparent 0%, #000 35%); animation: sla-flow .9s linear infinite; }
 @keyframes sla-flow { to { background-position: 10px 50%; } }
