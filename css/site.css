@@ -258,6 +258,22 @@ p.copy { font-size: 15px; line-height: 1.7; color: #2b3446; margin: 0; }
 .footer-links-list a:hover, .footer-links-list a:focus-visible { color: #287CDB; }
 .site-footer a:focus-visible { outline: 2px solid #287CDB; outline-offset: 3px; border-radius: 4px; }
 .soc:focus-visible { border-radius: 50%; }
+/* .soc-lit: brand-tinted icons that light up in turn (fill, lift, glow), 2s each over an 8s cycle */
+.soc-lit .soc { position: relative; isolation: isolate; background: var(--sc-bg); animation: soc-lit 8s ease-in-out infinite var(--d, 0s); }
+.soc-lit .soc::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: 50%; background: var(--sc-fill); opacity: 0; animation: soc-lit-fill 8s ease-in-out infinite var(--d, 0s); }
+.soc-lit .soc-li { --sc: #0A66C2; --sc-bg: #E7F0FA; --sc-fill: #0A66C2; --sc-glow: rgba(10,102,194,.35); }
+.soc-lit .soc-fb { --sc: #1877F2; --sc-bg: #E8F1FE; --sc-fill: #1877F2; --sc-glow: rgba(24,119,242,.35); --d: 2s; }
+.soc-lit .soc-ig { --sc: #D62976; --sc-bg: #FCEAF3; --sc-fill: linear-gradient(45deg, #FA7E1E, #D62976 50%, #962FBF); --sc-glow: rgba(214,41,118,.35); --d: 4s; }
+.soc-lit .soc-yt { --sc: #FF0000; --sc-bg: #FFEAEA; --sc-fill: #FF0000; --sc-glow: rgba(255,0,0,.3); --d: 6s; }
+.soc-lit .soc-ig svg { animation: soc-lit-ig 8s ease-in-out infinite var(--d); }
+.soc-lit .soc:hover, .soc-lit .soc:focus-visible, .soc-lit .soc:hover::before, .soc-lit .soc:focus-visible::before, .soc-lit .soc-ig:hover svg, .soc-lit .soc-ig:focus-visible svg { animation: none; }
+.soc-lit .soc:hover::before, .soc-lit .soc:focus-visible::before { opacity: 1; }
+@keyframes soc-lit {
+  0%, 25%, 100% { transform: none; color: var(--sc); box-shadow: none; }
+  4%, 21% { transform: translateY(-2px) scale(1.08); color: #fff; box-shadow: 0 0 0 3px var(--sc-bg), 0 6px 14px var(--sc-glow); }
+}
+@keyframes soc-lit-fill { 0%, 25%, 100% { opacity: 0; } 4%, 21% { opacity: 1; } }
+@keyframes soc-lit-ig { 0%, 2%, 23%, 100% { stroke: url(#soc-ig-grad); } 3%, 22% { stroke: #fff; } }
 .footer-bottom { border-top: 1px solid #DCE7F1; margin-top: 0; padding: 14px 0 16px; font-size: 13px; color: #526174; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px 24px; }
 @media (max-width: 1080px) {
   .footer-col { padding: 0 22px; }
@@ -274,7 +290,7 @@ p.copy { font-size: 15px; line-height: 1.7; color: #2b3446; margin: 0; }
   .footer-links-list a { display: inline-block; padding: 3px 0; }
   .footer-bottom { flex-direction: column; align-items: flex-start; }
 }
-@media (prefers-reduced-motion: reduce) { .soc { transition: none; } .soc:hover, .soc:focus-visible { transform: none; } }
+@media (prefers-reduced-motion: reduce) { .soc { transition: none; } .soc:hover, .soc:focus-visible { transform: none; } .soc-lit .soc, .soc-lit .soc::before, .soc-lit .soc-ig svg { animation: none; } }
 
 /* ================= responsive breakpoints ================= */
 /* The nav now carries 7 top-level items plus a rich mega menu, which no
