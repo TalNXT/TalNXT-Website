@@ -619,7 +619,7 @@ p.copy { font-size: 15px; line-height: 1.7; color: #2b3446; margin: 0; }
 .sec.why-light { position: relative; background:
     radial-gradient(ellipse 32% 42% at 100% 0%, rgba(221,244,236,.75), transparent 72%),
     linear-gradient(100deg, #F3F8FF 0%, #F8FBFF 42%, #fff 72%); }
-.why-light .eyebrow { color: #287CDB; }
+.why-light .eyebrow { color: #287CDB; font-size: 13px; font-weight: 700; }
 .why-light h2 { color: #172544; }
 .why-light p.copy { color: #526174; }
 .why-split { display: grid; grid-template-columns: minmax(0,0.75fr) minmax(0,1.25fr); gap: 32px; align-items: center; }
@@ -1080,16 +1080,14 @@ p.copy { font-size: 15px; line-height: 1.7; color: #2b3446; margin: 0; }
 .svc-card > .svc-arrow { position: absolute; top: 14px; right: 16px; color: var(--s-c); font-weight: 700; transition: transform .2s; }
 .svc-card:hover .svc-arrow { transform: translateX(3px); }
 
-/* Contact CTA: light two-column panel */
-.cta-sec { padding: 24px 0 30px; background: var(--bg); }
-.cta-panel { position: relative; overflow: hidden; display: grid; grid-template-columns: 55fr 45fr; padding: 26px 44px; border-radius: 28px; border: 1px solid #3A5383; background: #2C4372; }
-.cta-curves { position: absolute; top: 0; right: 0; width: 240px; height: 160px; pointer-events: none; }
-.cta-main { position: relative; min-width: 0; padding-right: 44px; border-right: 1px solid rgba(255,255,255,.16); }
-.cta-main .eyebrow { color: #8EC1F5; font-weight: 700; margin-bottom: 8px; }
-.cta-main h2 { color: #fff; font-size: 29px; line-height: 1.15; max-width: 520px; }
-.cta-hl { color: #A9D0F8; font-style: italic; white-space: nowrap; }
-.cta-main .copy { color: rgba(255,255,255,.78); font-size: 14.5px; line-height: 1.5; margin-top: 8px; max-width: 560px; }
-.cta-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
+/* Contact CTA: light-blue banner matching the inner-page closing CTAs; copy left, contact details right */
+.cta-sec { padding: 20px 0 32px; background: var(--bg); }
+.cta-panel { position: relative; overflow: hidden; display: grid; grid-template-columns: 58fr 42fr; align-items: center; padding: 22px 48px 28px; border-radius: 28px; border: 1px solid #A9CDF3; background: linear-gradient(120deg, #DCEBFC 0%, #C2DCF8 100%); }
+.cta-main { position: relative; min-width: 0; padding-right: 36px; border-right: 1px solid rgba(23,37,68,.14); }
+.cta-main .eyebrow { color: #287CDB; font-weight: 700; margin-bottom: 8px; }
+.cta-main h2 { color: #172544; font-size: 30px; font-weight: 600; line-height: 1.15; max-width: 520px; text-wrap: balance; }
+.cta-main .copy { color: #3E4D61; font-size: 11px; line-height: 1.55; margin-top: 10px; max-width: 520px; }
+.cta-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 14px; }
 .cta-btn, .cta-btn-alt { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 11px 20px; border-radius: 10px; font-size: 14.5px; font-weight: 600; white-space: nowrap; border: 1.5px solid #287CDB; transition: background .2s, color .2s, border-color .2s; }
 .cta-btn { background: #287CDB; border-color: #287CDB; color: #fff; }
 .cta-btn:hover, .cta-btn:focus-visible { background: #1F6AC0; border-color: #1F6AC0; color: #fff; }
@@ -1097,28 +1095,32 @@ p.copy { font-size: 15px; line-height: 1.7; color: #2b3446; margin: 0; }
 .cta-btn-alt svg { color: #287CDB; flex-shrink: 0; }
 .cta-btn-alt:hover, .cta-btn-alt:focus-visible { background: #EAF3FD; color: #172544; }
 .cta-btn:focus-visible, .cta-btn-alt:focus-visible, .cta-v:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
-.cta-contacts { position: relative; min-width: 0; list-style: none; margin: 0; padding: 0 0 0 44px; display: flex; flex-direction: column; justify-content: center; gap: 12px; }
-.cta-item { display: flex; align-items: center; gap: 16px; }
-.cta-ico { width: 38px; height: 38px; border-radius: 12px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,.1); color: #8EC1F5; }
-.cta-k { display: block; font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: #A9BAD3; margin-bottom: 3px; }
-.cta-v { display: block; font-size: 15.5px; font-weight: 600; line-height: 1.4; color: #fff; }
-a.cta-v:hover { color: #8EC1F5; }
+.cta-sec .cta-btn, .cta-sec .cta-btn-alt { padding: 9px 18px; font-size: 14px; }
+.cta-sec .cta-btn { box-shadow: 0 6px 16px rgba(40,124,219,.22); }
+.cta-sec .cta-btn-alt { border-color: #287CDB; }
+.cta-sec .cta-btn:focus-visible, .cta-sec .cta-btn-alt:focus-visible, .cta-sec .cta-v:focus-visible { outline-color: #287CDB; }
+.cta-contacts { position: relative; min-width: 0; list-style: none; margin: 0; padding: 0 0 0 36px; display: flex; flex-direction: column; justify-content: center; gap: 10px; }
+.cta-item { display: flex; align-items: center; gap: 12px; }
+.cta-ico { width: 34px; height: 34px; border-radius: 10px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; background: #F1F7FD; border: 1px solid #D5E7FA; color: #287CDB; }
+.cta-ico svg { width: 17px; height: 17px; }
+.cta-k { display: block; font-size: 10.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: #526174; margin-bottom: 2px; }
+.cta-v { display: block; font-size: 14px; font-weight: 600; line-height: 1.4; color: #172544; }
+a.cta-v:hover { color: #287CDB; }
 @media (max-width: 1080px) {
-  .cta-panel { padding: 24px 32px; }
-  .cta-main { padding-right: 36px; }
-  .cta-contacts { padding-left: 36px; }
-  .cta-main h2 { font-size: 27px; }
+  .cta-panel { padding: 22px 36px 28px; }
+  .cta-main { padding-right: 28px; }
+  .cta-contacts { padding-left: 28px; }
+  .cta-main h2 { font-size: 28px; }
 }
 @media (max-width: 900px) {
-  .cta-panel { grid-template-columns: 1fr; padding: 30px 32px; }
-  .cta-main { padding: 0 0 22px; border-right: none; border-bottom: 1px solid rgba(255,255,255,.16); }
-  .cta-contacts { padding: 22px 0 0; gap: 14px; }
+  .cta-panel { grid-template-columns: 1fr; padding: 22px 26px 30px; }
+  .cta-main { padding: 0 0 18px; border-right: none; border-bottom: 1px solid rgba(23,37,68,.14); }
+  .cta-main h2 { font-size: 25px; }
+  .cta-contacts { padding: 18px 0 0; }
 }
 @media (max-width: 760px) {
-  .cta-panel { padding: 24px 20px; border-radius: 22px; }
-  .cta-main h2 { font-size: 26px !important; }
-  .cta-main .copy { font-size: 14px; }
-  .cta-curves { width: 105px; height: 70px; }
+  .cta-panel { padding: 22px 18px 30px; border-radius: 22px; }
+  .cta-main h2 { font-size: 23px !important; }
 }
 @media (max-width: 560px) {
   .cta-actions { flex-direction: column; align-items: stretch; }
