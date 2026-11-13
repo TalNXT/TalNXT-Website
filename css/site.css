@@ -1949,7 +1949,7 @@ a.cta-v:hover { color: #287CDB; }
 /* Small floating accents for technology, people and growth, sitting on the photo's edge */
 
 /* ---- 2. Our Story: centred story copy ---- */
-.ab-story { background: #fff; padding: 40px 0; }
+.ab-story { background: #fff; padding: 40px 0 64px; }
 .ab-story-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none;
   background: radial-gradient(ellipse 46% 70% at 50% 50%, rgba(220,238,255,.7), transparent 72%), radial-gradient(ellipse 30% 50% at 100% 100%, rgba(239,246,255,.9), transparent 72%); }
 /* Two hands holding magnifying glasses, faded right back so the centred copy stays readable over it */
@@ -1960,11 +1960,11 @@ a.cta-v:hover { color: #287CDB; }
 .ab-story-hl { position: relative; display: table; margin: 0 auto; padding-bottom: 18px; color: var(--ab-blue); font-weight: 600; }
 .ab-story-hl::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 20px; pointer-events: none;
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 20' preserveAspectRatio='none' fill='none' stroke='%23287CDB' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 12C70 6 160 6 234 10'/%3E%3C/svg%3E") left bottom/100% 100% no-repeat; }
-.ab-story-copy .ab-lede { max-width: 760px; margin: 14px auto 0; font-size: 16px; line-height: 1.7; }
+.ab-story-copy .ab-lede { max-width: 760px; margin: 14px auto 0; font-size: 14px; line-height: 1.7; }
 .ab-story-copy .ab-h2 + .ab-lede { margin-top: 22px; }
 /* Closing line: a short teal bar above it, since a left border reads oddly on centred text */
-.ab-story-copy .ab-lede.strong { color: var(--ab-navy); font-weight: 600; font-size: 14px; }
-.ab-story-copy .ab-lede.strong::before { content: ""; display: block; width: 40px; height: 3px; margin: 0 auto 12px; border-radius: 2px; background: var(--ab-teal); }
+.ab-story-copy .ab-lede.strong { margin-top: 24px; color: var(--ab-navy); font-weight: 600; font-size: 14px; }
+.ab-story-copy .ab-lede.strong::before { content: ""; display: block; width: 40px; height: 3px; margin: 0 auto 20px; border-radius: 2px; background: var(--ab-teal); }
 
 /* ---- 3. Purpose: heading column (~18%) on the left, then three equal pastel cards (~26% each) ---- */
 .ab-purpose { padding: 40px 0 52px; background: radial-gradient(ellipse 60% 55% at 50% 0%, rgba(220,238,255,.55), transparent 72%), #fff; }
@@ -2325,7 +2325,7 @@ a.cta-v:hover { color: #287CDB; }
   .ab-sec { padding: 60px 0; }
   .ab-why { padding: 32px 0 46px; }
   .ab-why-inner { padding: 0 36px; }
-  .ab-story { padding: 36px 0; }
+  .ab-story { padding: 36px 0 56px; }
   .ab-purpose { padding: 36px 0 48px; }
   .ab-clients { padding: 32px 0 60px; }
   .ab-h2 { font-size: 28px; }
@@ -2359,7 +2359,7 @@ a.cta-v:hover { color: #287CDB; }
 /* Mobile */
 @media (max-width: 760px) {
   .ab-sec { padding: 48px 0; }
-  .ab-story { padding: 32px 0; }
+  .ab-story { padding: 32px 0 48px; }
   .ab-purpose { padding: 32px 0 44px; }
   .ab-clients { padding: 28px 0 56px; }
   .ab-clients .ab-h2 { font-size: 22px; }
