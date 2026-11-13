@@ -1949,9 +1949,20 @@ a.cta-v:hover { color: #287CDB; }
 .ab-hero-strip .value-strip { margin: 0; padding: 10px 0 12px; }
 .ab-hero-strip .value-item + .value-item { border-left: none; }
 .ab-hero-strip .value-item + .value-item::before { background: transparent; }
-.ab-hero-strip .value-icon { width: 38px; height: 38px; border-radius: 12px; background: #E6EDF8; color: #0F2147; }
+.ab-hero-strip .value-icon { width: 38px; height: 38px; border-radius: 12px; border: 1px solid var(--ic-bd); background: var(--ic-bg); color: var(--ic); animation: ab-strip-lit 8s ease-in-out infinite var(--d, 0s); }
 .ab-hero-strip .value-icon svg { width: 22px; height: 22px; }
 .ab-hero-strip .value-label { font-size: 13px; font-weight: 600; color: var(--ab-navy); }
+/* Brand-tinted tiles, alternating blue / teal, that light up in turn (fill, lift, glow), 2s each over an 8s cycle */
+.ab-hero-strip .value-item:nth-child(odd) .value-icon { --ic: var(--ab-blue); --ic-bg: var(--ab-pale-blue); --ic-bd: var(--ab-light-blue); --ic-glow: rgba(40,124,219,.35); }
+.ab-hero-strip .value-item:nth-child(even) .value-icon { --ic: var(--ab-teal); --ic-bg: var(--ab-pale-mint); --ic-bd: var(--ab-light-mint); --ic-glow: rgba(35,155,122,.35); }
+.ab-hero-strip .value-item:nth-child(2) .value-icon { --d: 2s; }
+.ab-hero-strip .value-item:nth-child(3) .value-icon { --d: 4s; }
+.ab-hero-strip .value-item:nth-child(4) .value-icon { --d: 6s; }
+@keyframes ab-strip-lit {
+  0%, 25%, 100% { transform: none; background: var(--ic-bg); border-color: var(--ic-bd); color: var(--ic); box-shadow: none; }
+  4%, 21% { transform: translateY(-2px) scale(1.08); background: var(--ic); border-color: var(--ic); color: #fff; box-shadow: 0 0 0 3px var(--ic-bd), 0 6px 14px var(--ic-glow); }
+}
+@media (prefers-reduced-motion: reduce) { .ab-hero-strip .value-icon { animation: none; } }
 .ab-hero-grid { display: grid; grid-template-columns: 54fr 46fr; align-items: center; gap: 24px; }
 .ab-hero h1 { font-size: 30px; line-height: 1.22; font-weight: 700; color: #fff; max-width: 540px; }
 .ab-hero h1 .ab-accent { color: #8EC8FF; font-weight: 700; font-size: calc(1em + 8px); }
