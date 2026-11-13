@@ -892,8 +892,8 @@ p.copy { font-size: 15px; line-height: 1.7; color: #2b3446; margin: 0; }
 .home-hero-row { gap: 32px; }
 .home-hero-text { flex: 0 1 540px; }
 .home-hero-media { flex: 1 1 0; }
-.home-hero .ph-img.hero-frame { height: 260px; border-radius: 18px; box-shadow: 0 6px 18px -10px rgba(14,46,99,.18); }
-.home-hero .ph-img.hero-frame img { object-position: center 35%; }
+.home-hero .ph-img.hero-frame { height: 290px; border-radius: 0; background: transparent; box-shadow: none; transform: translateY(-20px); }
+.home-hero .ph-img.hero-frame img { object-fit: contain; object-position: center bottom; }
 .home-hero { background: #fff; }
 .home-hero .hero-orb { display: none; }
 @media (max-width: 760px) {
@@ -901,7 +901,7 @@ p.copy { font-size: 15px; line-height: 1.7; color: #2b3446; margin: 0; }
   .home-hero h1 { font-size: 24px !important; }
   .home-hero .ph-img { height: 200px; }
   .home-hero-text, .home-hero-media { flex-basis: auto; }
-  .home-hero .ph-img.hero-frame { height: auto; aspect-ratio: 16 / 9; border-radius: 14px; }
+  .home-hero .ph-img.hero-frame { height: auto; aspect-ratio: 3 / 2; }
 }
 
 /* Home hero: C2C / C2H engagement model cards */
