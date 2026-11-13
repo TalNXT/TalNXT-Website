@@ -1027,8 +1027,16 @@ p.copy { font-size: 15px; line-height: 1.7; color: #2b3446; margin: 0; }
 .cs-benefits .value-item { padding-top: 2px; padding-bottom: 2px; }
 .cs-benefits .value-item + .value-item { border-left: none; }
 .cs-benefits .value-item + .value-item::before { background: transparent; }
-.cs-benefits .value-icon { width: 40px; height: 40px; }
-.cs-benefits .value-icon svg { width: 24px; height: 24px; }
+/* Same sizing and lit-tile treatment as the About Us hero strip (keyframes: ab-strip-lit) */
+.cs-benefits .value-icon { width: 38px; height: 38px; border-radius: 12px; border: 1px solid var(--ic-bd); background: var(--ic-bg); color: var(--ic); animation: ab-strip-lit 8s ease-in-out infinite var(--d, 0s); }
+.cs-benefits .value-icon svg { width: 22px; height: 22px; }
+.cs-benefits .value-label { font-size: 13px; font-weight: 600; color: #172544; }
+.cs-benefits .value-item:nth-child(odd) .value-icon { --ic: #287CDB; --ic-bg: #EFF6FF; --ic-bd: #DCEEFF; --ic-glow: rgba(40,124,219,.35); }
+.cs-benefits .value-item:nth-child(even) .value-icon { --ic: #239B7A; --ic-bg: #EFFAF7; --ic-bd: #DDF4EC; --ic-glow: rgba(35,155,122,.35); }
+.cs-benefits .value-item:nth-child(2) .value-icon { --d: 2s; }
+.cs-benefits .value-item:nth-child(3) .value-icon { --d: 4s; }
+.cs-benefits .value-item:nth-child(4) .value-icon { --d: 6s; }
+@media (prefers-reduced-motion: reduce) { .cs-benefits .value-icon { animation: none; } }
 @media (max-width: 1080px) { .cs-benefits .value-item { gap: 6px; } }
 @media (max-width: 760px) { .cs-benefits .value-strip { row-gap: 10px; } }
 
