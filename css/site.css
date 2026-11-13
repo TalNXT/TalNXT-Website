@@ -625,7 +625,7 @@ p.copy { font-size: 15px; line-height: 1.7; color: #2b3446; margin: 0; }
 .why-split { display: grid; grid-template-columns: minmax(0,0.75fr) minmax(0,1.25fr); gap: 32px; align-items: center; }
 .why-intro .eyebrow { margin-bottom: 8px; }
 .why-intro h2 { font-size: 22px; line-height: 1.28; }
-.why-intro p.copy { margin-top: 10px; font-size: 13.5px; line-height: 1.6; }
+.why-intro p.copy { margin-top: 10px; font-size: 12px; line-height: 1.6; }
 .why-intro .btn { margin-top: 16px; }
 .why-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 8px; }
 .why-item { position: relative; background: #fff; border: 1px solid #D8E8FA; border-radius: 8px; padding: 10px 14px 10px 16px; box-shadow: 0 10px 24px -20px rgba(23,37,68,.45); transition: border-color .2s, transform .2s, box-shadow .2s; }
@@ -641,7 +641,7 @@ p.copy { font-size: 15px; line-height: 1.7; color: #2b3446; margin: 0; }
 .why-item-head { display: flex; align-items: center; gap: 8px; }
 .why-item-head .icon-badge { width: 26px; height: 26px; }
 .why-item-head .card-title { margin: 0; font-size: 14px; color: #172544; }
-.why-item p { margin-top: 4px; font-size: 12.5px; line-height: 1.4; color: #526174; }
+.why-item p { margin-top: 4px; font-size: 12px; line-height: 1.4; color: #526174; }
 .why-item .icon-badge { background: #EAF4FF; color: #287CDB; }
 .why-item .chip-list { margin-top: 6px; gap: 4px; }
 .why-item .chip { font-size: 10.5px; padding: 1px 7px; color: #1F65B8; background: #F3F8FF; border: 1px solid #D8E8FA; }
