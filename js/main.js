@@ -289,6 +289,162 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
+  // Client enquiry popup (index.html): any .js-enquiry link opens #enq-modal in
+  // "staffing" or "hr" mode (data-enquiry); any other value opens it with no mode
+  // chosen, so the visitor picks one first. Fields for modes not chosen are hidden
+  // and disabled so they are neither validated nor submitted. With data-endpoint
+  // set on the form the enquiry is POSTed there; otherwise a pre-filled email opens.
+  var enqModal = document.getElementById('enq-modal');
+  if (enqModal) {
+    var enqForm = document.getElementById('enq-form');
+    var enqFormWrap = document.getElementById('enq-form-wrap');
+    var enqThanks = document.getElementById('enq-thanks');
+    var enqThanksMsg = document.getElementById('enq-thanks-msg');
+    var enqError = document.getElementById('enq-error');
+    var enqType = document.getElementById('enq-f-type');
+    var enqSubmit = enqForm.querySelector('.cr-submit');
+    var enqLastTrigger = null;
+    var enqCopy = {
+      staffing: { eyebrow: 'Submit your staffing requirement', title: 'Tell us about the talent you need', msg: 'Job description, key skills, budget or anything else' },
+      hr: { eyebrow: 'Discuss your HR needs', title: 'Tell us about your HR priorities', msg: 'Current challenges, team setup or what you’d like to achieve' },
+      any: { eyebrow: 'Build your team with us', title: 'Tell us what you need', msg: 'Roles, HR priorities, timelines or anything else' }
+    };
+
+    var enqSetMode = function (mode) {
+      enqType.value = mode;
+      var copy = enqCopy[mode] || enqCopy.any;
+      document.getElementById('enq-eyebrow').textContent = copy.eyebrow;
+      document.getElementById('enq-title').textContent = copy.title;
+      document.getElementById('enq-f-msg').placeholder = copy.msg;
+      enqForm.querySelectorAll('[data-enq]').forEach(function (group) {
+        var on = group.getAttribute('data-enq') === mode;
+        group.hidden = !on;
+        group.querySelectorAll('input, select, textarea').forEach(function (el) { el.disabled = !on; });
+      });
+    };
+
+    var enqOpen = function (mode, trigger) {
+      enqForm.reset();
+      var chosen = mode === 'hr' || mode === 'staffing';
+      enqSetMode(chosen ? mode : '');
+      enqError.textContent = '';
+      enqForm.querySelectorAll('[aria-invalid]').forEach(function (el) { el.removeAttribute('aria-invalid'); });
+      enqSubmit.disabled = false;
+      enqFormWrap.hidden = false;
+      enqThanks.hidden = true;
+      enqLastTrigger = trigger;
+      enqModal.classList.add('open');
+      document.body.classList.add('cr-modal-open');
+      (chosen ? document.getElementById('enq-f-name') : enqType).focus();
+    };
+
+    var enqClose = function () {
+      if (!enqModal.classList.contains('open')) return;
+      enqModal.classList.remove('open');
+      document.body.classList.remove('cr-modal-open');
+      if (enqLastTrigger) enqLastTrigger.focus();
+    };
+
+    document.querySelectorAll('.js-enquiry').forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        enqOpen(link.getAttribute('data-enquiry'), link);
+      });
+    });
+    enqType.addEventListener('change', function () { enqSetMode(enqType.value); });
+
+    document.getElementById('enq-close').addEventListener('click', enqClose);
+    document.getElementById('enq-done').addEventListener('click', enqClose);
+    enqModal.addEventListener('click', function (e) { if (e.target === enqModal) enqClose(); });
+    document.addEventListener('keydown', function (e) {
+      if (!enqModal.classList.contains('open')) return;
+      if (e.key === 'Escape') { enqClose(); return; }
+      // Keep Tab focus inside the popup
+      if (e.key !== 'Tab') return;
+      var items = Array.prototype.filter.call(enqModal.querySelectorAll('button, input, select, textarea'), function (el) {
+        return !el.disabled && el.offsetParent !== null;
+      });
+      if (!items.length) return;
+      var first = items[0], last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
+
+    var enqValidate = function () {
+      var firstBad = null;
+      enqForm.querySelectorAll('input, select, textarea').forEach(function (el) {
+        if (el.disabled || el.type === 'checkbox') return;
+        var ok = el.checkValidity();
+        if (ok) el.removeAttribute('aria-invalid'); else el.setAttribute('aria-invalid', 'true');
+        if (!ok && !firstBad) firstBad = el;
+      });
+      var msg = '';
+      if (firstBad) {
+        msg = firstBad.type === 'email' && firstBad.value ? 'Please enter a valid email address.'
+          : firstBad.type === 'number' ? 'Please enter the number of positions as a whole number.'
+          : 'Please fill in all required fields marked *.';
+      } else if (!document.getElementById('enq-f-consent').checked) {
+        msg = 'Please tick the consent box to continue.';
+        firstBad = document.getElementById('enq-f-consent');
+      }
+      enqError.textContent = msg;
+      if (firstBad) firstBad.focus();
+      return !msg;
+    };
+
+    var enqShowThanks = function (message) {
+      enqThanksMsg.textContent = message;
+      enqFormWrap.hidden = true;
+      enqThanks.hidden = false;
+      document.getElementById('enq-done').focus();
+    };
+
+    enqForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!enqValidate()) return;
+      var data = new FormData(enqForm);
+      var isHr = data.get('enquiry_type') === 'hr';
+      var endpoint = enqForm.getAttribute('data-endpoint');
+
+      if (endpoint) {
+        enqSubmit.disabled = true;
+        fetch(endpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' } })
+          .then(function (res) {
+            if (!res.ok) throw new Error(res.status);
+            enqShowThanks('We’ve received your ' + (isHr ? 'HR enquiry' : 'staffing requirement') + '. Our team will get in touch within one business day.');
+          })
+          .catch(function () {
+            enqSubmit.disabled = false;
+            enqError.textContent = 'Something went wrong sending your enquiry. Please try again, or email us at info@talnxt.com.';
+          });
+        return;
+      }
+
+      var val = function (k) { return data.get(k) || '-'; };
+      var lines = [
+        'Name: ' + data.get('name'),
+        'Company: ' + data.get('company'),
+        'Email: ' + data.get('email'),
+        'Phone: ' + data.get('phone'),
+        ''
+      ].concat(isHr ? [
+        'Area of interest: ' + val('hr_area'),
+        'Company size: ' + val('company_size'),
+        'Timeline: ' + val('timeline')
+      ] : [
+        'Role(s) / skills: ' + val('roles'),
+        'Number of positions: ' + val('positions'),
+        'Engagement model: ' + val('engagement_model'),
+        'Work location / mode: ' + val('location'),
+        'Needed by: ' + val('start')
+      ], ['', data.get('message') || '']);
+      var subject = (isHr ? 'People & HR solutions enquiry' : 'Staffing requirement') + ' – ' + data.get('company');
+      window.location.href = 'mailto:info@talnxt.com?subject=' + encodeURIComponent(subject) +
+        '&body=' + encodeURIComponent(lines.join('\n'));
+      enqShowThanks('Your email app has opened with your details filled in. Please send the email to complete your enquiry, and our team will get in touch within one business day.');
+    });
+  }
+
   // Home coverage cards: each tag toggles its details in the card's panel and
   // swaps the corner illustration to match (Escape or the close button collapses it).
   document.querySelectorAll('.cov-card').forEach(function (card) {
