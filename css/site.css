@@ -2178,19 +2178,60 @@ a.cta-v:hover { color: #8EC1F5; }
 .ab-lead-area.gold { --la-c: var(--ab-gold); --la-bg: var(--ab-pale-gold); --la-tint: var(--ab-light-gold); --la-bd: #F4E7C7; --la-bd-hover: #E9CF8E; }
 .ab-lead-area.lav { --la-c: var(--ab-lav); --la-bg: var(--ab-pale-lav); --la-tint: var(--ab-light-lav); --la-bd: #E6DDF8; --la-bd-hover: #C9B5EE; }
 
-/* ---- 10. Final CTA: white-to-pale-blue panel, circular photo right ---- */
-.ab-page .ab-cta-sec { background: #fff; padding: 24px 0 80px; overflow: visible; }
-.ab-cta { position: relative; overflow: hidden; isolation: isolate; display: grid; grid-template-columns: minmax(0,1fr) 280px; align-items: center; gap: 56px; padding: 48px 56px 64px;
-  border: 1px solid #C9DFF6; border-radius: 30px; background: radial-gradient(ellipse 40% 80% at 100% 50%, rgba(221,244,236,.7), transparent 70%), linear-gradient(110deg, #fff 0%, #EFF6FF 55%, #DCEEFF 100%); }
+/* ---- 10. Final CTA: pale blue / white / mint panel, glows top-left and behind the photo, three layered
+   waves along the foot; copy + value cues + button left, ringed circular photo right. Compact, sized to match
+   the CTA panels on the other pages (~280px tall inside the standard container) ---- */
+.ab-page .ab-cta-sec { background: #fff; padding: 20px 0 40px; overflow: visible; }
+.ab-cta { position: relative; overflow: hidden; isolation: isolate; display: grid; grid-template-columns: minmax(0,1fr) 220px; align-items: center; gap: 32px;
+  padding: 26px 56px 34px; box-sizing: border-box;
+  border: 1px solid var(--ab-border); border-radius: 28px; box-shadow: 0 24px 48px -40px rgba(23,37,68,.28);
+  background:
+    radial-gradient(ellipse 34% 46% at 4% 0%, rgba(40,124,219,.13), transparent 72%),
+    radial-gradient(ellipse 34% 60% at 84% 26%, rgba(35,155,122,.12), transparent 70%),
+    linear-gradient(100deg, #F1F7FD 0%, #fff 46%, #fff 58%, #EFFAF7 100%); }
+/* Translucent curve sweeping in from the top-left corner */
+.ab-cta::before { content: ""; position: absolute; z-index: 0; top: -150px; left: -110px; width: 400px; height: 260px; border-radius: 50%; pointer-events: none;
+  background: linear-gradient(160deg, rgba(220,238,255,.75), rgba(220,238,255,0) 70%); transform: rotate(-12deg); }
 .ab-cta > * { position: relative; z-index: 1; }
-.ab-cta::after { content: ""; position: absolute; z-index: 0; left: 0; right: 0; bottom: 0; height: 60px; pointer-events: none;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 80' preserveAspectRatio='none'%3E%3Cpath d='M0 50C200 20 420 70 640 48S1000 14 1200 40V80H0z' fill='%23287CDB' fill-opacity='.06'/%3E%3Cpath d='M0 66C260 44 500 80 760 64S1040 44 1200 58V80H0z' fill='%23239B7A' fill-opacity='.08'/%3E%3C/svg%3E") center bottom/100% 100% no-repeat; }
-.ab-cta .ab-h2 { max-width: 560px; }
-.ab-cta .ab-lede { max-width: 580px; margin-top: 14px; }
-.ab-cta .ab-btn { margin-top: 28px; }
-.ab-cta-photo { position: relative; margin: 0; width: 100%; aspect-ratio: 1; }
-.ab-cta-photo::before { content: ""; position: absolute; inset: -14px; border-radius: 50%; border: 2px dashed rgba(40,124,219,.25); }
-.ab-cta-photo img { position: relative; width: 100%; height: 100%; object-fit: cover; border-radius: 50%; border: 6px solid #fff; box-shadow: 0 18px 40px -26px rgba(23,37,68,.5); }
+.ab-cta > .ab-cta-waves { position: absolute; z-index: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 46px; pointer-events: none; }
+
+.ab-page .ab-cta .eyebrow { font-size: 12px; letter-spacing: .14em; margin-bottom: 8px; }
+.ab-page .ab-cta .eyebrow.lined::before { width: 28px; height: 2px; border-radius: 1px; background: var(--ab-blue); box-shadow: none; }
+.ab-page .ab-cta .eyebrow.lined::after { content: none; }
+/* Heading and description use the same type as the CTA on the other pages (Contingent Staffing) */
+.ab-cta .ab-h2 { font-size: 30px; font-weight: 600; line-height: 1.15; }
+.ab-cta-accent { color: var(--ab-blue); }
+.ab-cta .ab-lede { max-width: 520px; margin-top: 10px; font-size: 11px; line-height: 1.55; color: #3E4D61; }
+
+/* Value cues: read as a statement row, not buttons; hairline dividers between items */
+.ab-cta-cues { display: flex; margin: 16px 0 0; padding: 0; list-style: none; }
+.ab-cta-cue { flex: 1 1 0; display: flex; align-items: center; gap: 10px; min-width: 0; padding: 0 16px; font-size: 12px; font-weight: 600; line-height: 1.3; color: var(--ab-navy); }
+.ab-cta-cue:first-child { padding-left: 0; }
+.ab-cta-cue + .ab-cta-cue { border-left: 1px solid var(--ab-border); }
+.ab-cta-cue span { flex: none; display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; color: var(--cc-c); background: var(--cc-bg); box-shadow: inset 0 0 0 1px var(--cc-bd); }
+.ab-cta-cue svg { width: 19px; height: 19px; }
+.ab-cta-cue.mint { --cc-c: var(--ab-teal); --cc-bg: #E5F7F1; --cc-bd: #CBEBDF; }
+.ab-cta-cue.lav { --cc-c: var(--ab-lav); --cc-bg: #F1EAFE; --cc-bd: #E0D4FA; }
+.ab-cta-cue.gold { --cc-c: var(--ab-gold); --cc-bg: #FFF4D9; --cc-bd: #F6E3B4; }
+
+/* Button sized like the CTA buttons on the other pages (Contingent Staffing) */
+.ab-cta .ab-btn { margin-top: 16px; gap: 8px; padding: 10px 19px; border-radius: 10px; font-size: 14px; font-weight: 600; }
+
+/* Photo: white-bordered circle inside a dotted outline, blue arc upper-left, mint arc lower-right, soft mint glow */
+.ab-cta-photo { position: relative; justify-self: end; margin: 0; width: 100%; aspect-ratio: 1; }
+.ab-cta-photo::before { content: ""; position: absolute; z-index: -1; inset: -12%; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(circle, rgba(221,244,236,.95) 0%, rgba(220,238,255,.5) 45%, transparent 70%); }
+.ab-cta-ring { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.ab-cta-photo img { position: absolute; inset: 8%; width: 84%; height: 84%; object-fit: cover; border-radius: 50%; border: 6px solid var(--ab-light-mint); box-sizing: border-box;
+  box-shadow: 0 0 16px 2px rgba(35,155,122,.22), 0 18px 36px -24px rgba(23,37,68,.45);
+  animation: ab-cta-frame-pulse 2.4s ease-in-out infinite;
+  /* The partnership image is a cut-out on transparency: sit it on a soft blue-to-mint disc */
+  background: radial-gradient(circle at 50% 35%, #fff 0%, #EAF4FF 55%, #DDF4EC 100%); }
+/* Frame pulse: mint border and glow brighten and fade slowly (no strobe) */
+@keyframes ab-cta-frame-pulse {
+  0%, 100% { border-color: var(--ab-light-mint); box-shadow: 0 0 10px 0 rgba(35,155,122,.15), 0 18px 36px -24px rgba(23,37,68,.45); }
+  50% { border-color: #9FE0C9; box-shadow: 0 0 26px 6px rgba(35,155,122,.42), 0 18px 36px -24px rgba(23,37,68,.45); }
+}
 
 @media (prefers-reduced-motion: reduce) {
   .ab-btn, .ab-btn span, .ab-link span, .ab-pillar { transition: none; }
@@ -2200,6 +2241,7 @@ a.cta-v:hover { color: #8EC1F5; }
   .ab-why-card:hover { transform: none; }
   .ab-lead-area { transition: none; }
   .ab-lead-area:hover { transform: none; }
+  .ab-cta-photo img { animation: none; }
   .ab-btn:hover, .ab-pillar:hover, .ab-btn:hover span, .ab-link:hover span { transform: none; }
 }
 
@@ -2252,7 +2294,17 @@ a.cta-v:hover { color: #8EC1F5; }
   .ab-lead-orbit { max-width: 300px; }
   .ab-lead-caption { margin-bottom: 8px; }
   .ab-pillar-grid { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; }
-  .ab-cta { grid-template-columns: minmax(0,1fr) 200px; gap: 36px; padding: 40px 36px 56px; }
+}
+/* Tablet: smaller photo; the cue row is too narrow for three columns, so cues stack */
+@media (max-width: 1024px) {
+  .ab-cta { grid-template-columns: minmax(0,1fr) 190px; gap: 28px; padding: 26px 36px 34px; }
+  .ab-cta .ab-h2 { font-size: 28px; }
+}
+@media (max-width: 900px) {
+  .ab-cta .ab-h2 { font-size: 25px; }
+  .ab-cta-cues { flex-direction: column; gap: 8px; }
+  .ab-cta-cue, .ab-cta-cue:first-child { padding: 0; }
+  .ab-cta-cue + .ab-cta-cue { border-left: 0; }
 }
 /* Mobile */
 @media (max-width: 760px) {
@@ -2289,11 +2341,13 @@ a.cta-v:hover { color: #8EC1F5; }
   .ab-why-br { display: none; }
   .ab-why-head .ab-lede { margin-top: 14px; }
   .ab-why-card { flex-basis: 184px; }
-  .ab-page .ab-cta-sec { padding: 8px 0 56px; }
-  .ab-cta { grid-template-columns: 1fr; gap: 28px; padding: 36px 22px 52px; text-align: center; }
-  .ab-cta-photo { grid-row: 1; width: 150px; justify-self: center; }
-  .ab-cta .ab-h2, .ab-cta .ab-lede { margin-left: auto; margin-right: auto; }
+  .ab-page .ab-cta-sec { padding: 8px 0 40px; }
+  .ab-cta { grid-template-columns: 1fr; gap: 22px; padding: 26px 22px 40px; border-radius: 24px; }
+  .ab-cta::before { width: 300px; height: 220px; top: -130px; left: -110px; }
+  .ab-cta > .ab-cta-waves { height: 34px; }
   .ab-cta .ab-btn { width: 100%; justify-content: center; }
+  .ab-cta-photo { justify-self: center; max-width: 170px; }
+  .ab-cta-photo img { border-width: 5px; }
 }
 @media (max-width: 640px) {
   .ab-lead-years { grid-template-columns: auto minmax(0,1fr); gap: 12px; padding: 12px 16px; }
@@ -2315,4 +2369,5 @@ a.cta-v:hover { color: #8EC1F5; }
   .ab-hero h1 { font-size: 24px !important; }
   .ab-page .ab-h2 { font-size: 25px !important; }
   .ab-page .ab-why-head .ab-h2 { font-size: 24px !important; }
+  .ab-page .ab-cta .ab-h2 { font-size: 23px !important; }
 }
