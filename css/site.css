@@ -614,7 +614,7 @@ p.copy { font-size: 15px; line-height: 1.7; color: #2b3446; margin: 0; }
 .navy-band .icon-badge { background: rgba(127,176,245,.14); color: #7fb0f5; }
 
 /* compact "why choose" band (home) — intro left, 2x2 tiles right */
-.sec.why-band { padding: 34px 0; }
+.sec.why-band { padding: 34px 0; background: #1e3a8a; }
 .why-split { display: grid; grid-template-columns: minmax(0,0.75fr) minmax(0,1.25fr); gap: 32px; align-items: center; }
 .why-intro .eyebrow { margin-bottom: 8px; }
 .why-intro h2 { font-size: 22px; line-height: 1.28; }
