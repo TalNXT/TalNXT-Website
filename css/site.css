@@ -326,11 +326,6 @@ p.copy { font-size: 15px; line-height: 1.7; color: #2b3446; margin: 0; }
   .sec { padding: 30px 0; }
   .row-flex { flex-direction: column; align-items: stretch; gap: 24px; }
   .row-flex.reverse-mobile { flex-direction: column-reverse; }
-  .industries-hero-row { flex-direction: column; align-items: stretch !important; gap: 24px !important; }
-  .industries-hero-text { flex-basis: auto !important; max-width: 100% !important; }
-  .industries-hero-text h1 { max-width: 100% !important; }
-  .industries-hero-text p { max-width: 100% !important; }
-  .industries-hero-imgcol { min-width: 0 !important; }
   .grid-3 { grid-template-columns: 1fr; }
   .grid-2 { grid-template-columns: 1fr; }
   h1 { font-size: 26px !important; line-height: 1.28 !important; }
@@ -355,7 +350,7 @@ p.copy { font-size: 15px; line-height: 1.7; color: #2b3446; margin: 0; }
 
 /* =========================================================
    Staff augmentation pages (home, staff-augmentation, why-talnxt,
-   quality-compliance, technologies, industries)
+   quality-compliance)
    ========================================================= */
 .page-hero { background: linear-gradient(115deg,#f8fafc 0%,var(--accent-tint) 100%); border-bottom: 1px solid var(--line); position: relative; overflow: hidden; }
 .page-hero .container { position: relative; z-index: 1; padding-top: 40px; padding-bottom: 40px; }
