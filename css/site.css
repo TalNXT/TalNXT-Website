@@ -700,6 +700,16 @@ p.copy { font-size: 15px; line-height: 1.7; color: #2b3446; margin: 0; }
 .sla-sec .sec-head .eyebrow::before,
 .sla-sec .sec-head .eyebrow::after { content: ""; width: 40px; height: 4px; border-radius: 2px; background: linear-gradient(180deg, #6fb394 0%, var(--green) 55%, #2a5a47 100%); box-shadow: 0 1px 2px rgba(20,32,58,.25), inset 0 1px 0 rgba(255,255,255,.35); }
 .sla-sec .sec-head h2 { font-size: 25px; }
+.sla-sec .sec-head .copy { max-width: 640px; margin: 8px auto 0; font-size: 12px; }
+.sla-group + .sla-group { margin-top: 26px; }
+.sla-group-head { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+.sla-group-title { font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #1e3a8a; white-space: nowrap; }
+.sla-group-line { flex: 1; position: relative; height: 8px; margin-right: 4px; background: radial-gradient(circle, var(--accent) 1.5px, transparent 2px) 0 50% / 10px 8px repeat-x; -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 35%); mask-image: linear-gradient(90deg, transparent 0%, #000 35%); animation: sla-flow .9s linear infinite; }
+@keyframes sla-flow { to { background-position: 10px 50%; } }
+@media (prefers-reduced-motion: reduce) { .sla-group-line { animation: none; } }
+.sla-group-line::after { content: ""; position: absolute; right: 0; top: 50%; width: 7px; height: 7px; border-top: 1.5px solid var(--accent); border-right: 1.5px solid var(--accent); transform: translateY(-50%) rotate(45deg); }
+.sla-group-link { font-size: 13px; font-weight: 600; color: var(--accent); text-decoration: none; white-space: nowrap; }
+.sla-group-link:hover { text-decoration: underline; }
 #models .sec-head .eyebrow,
 #models .sec-head h2 { font-weight: 700; }
 #models .sec-head p.copy { font-size: 13px; }
