@@ -1,0 +1,29 @@
+# Cloudflare Worker for the TalNXT website forms. See ../docs/SETUP.md.
+# Secrets (TENANT_ID, CLIENT_SECRET, ...) are NOT set here. Use `npx wrangler secret put <NAME>`.
+name = "talnxt-forms"
+main = "src/index.ts"
+compatibility_date = "2026-11-01"
+
+# Only the workers.dev URL is used, so no custom domain or route needs to be set up.
+workers_dev = true
+preview_urls = false
+
+[vars]
+# Comma-separated list of site origins allowed to call the API (exact match, no trailing slash).
+ALLOWED_ORIGINS = "https://www.talnxt.com,https://talnxt.com"
+# "true" skips all Microsoft Graph calls and only logs. Local testing only; keep "false" in production.
+DRY_RUN = "false"
+
+# Built-in Workers rate limiting (free plan, no KV writes).
+# 5 submissions per IP per 60 seconds per form. Counters are per Cloudflare location and approximate.
+[[ratelimits]]
+name = "SUBMIT_LIMITER"
+namespace_id = "1001"
+
+  [ratelimits.simple]
+  limit = 5
+  period = 60
+
+# Workers Logs (included in the free plan). Our code never logs form contents.
+[observability]
+enabled = true

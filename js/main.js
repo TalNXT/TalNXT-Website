@@ -240,63 +240,16 @@ document.addEventListener('DOMContentLoaded', function () {
     insRender();
   }
 
-  // Shared lead-capture modal: "Download" on an insight opens this, collects
-  // name + email, then routes the request to TalNXT by email (this is a
-  // static site with no backend/CRM, so there is no automated PDF delivery —
-  // submitting opens a pre-filled email to the team instead).
-  var dlModal = document.getElementById('download-modal');
-  if (dlModal) {
-    var dlTitleEl = document.getElementById('dl-modal-title');
-    var dlFormWrap = document.getElementById('dl-modal-form-wrap');
-    var dlForm = document.getElementById('dl-modal-form');
-    var dlThanks = document.getElementById('dl-modal-thanks');
-    var dlThanksTitle = document.getElementById('dl-thanks-title');
-    var dlCloseBtn = document.getElementById('dl-modal-close');
-    var dlCurrentTitle = '';
-
-    var dlOpen = function (title) {
-      dlCurrentTitle = title;
-      if (dlTitleEl) dlTitleEl.textContent = title;
-      if (dlFormWrap) dlFormWrap.style.display = '';
-      if (dlThanks) dlThanks.style.display = 'none';
-      if (dlForm) dlForm.reset();
-      dlModal.classList.add('open');
-    };
-    var dlClose = function () { dlModal.classList.remove('open'); };
-
-    document.querySelectorAll('.js-download-link').forEach(function (a) {
-      a.addEventListener('click', function () { dlOpen(a.dataset.title || 'this insight'); });
-    });
-
-    if (dlCloseBtn) dlCloseBtn.addEventListener('click', dlClose);
-    dlModal.addEventListener('click', function (e) { if (e.target === dlModal) dlClose(); });
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') dlClose(); });
-
-    if (dlForm) {
-      dlForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-        var name = document.getElementById('dl-name').value.trim();
-        var email = document.getElementById('dl-email').value.trim();
-        if (!name || !email) return;
-        var subject = 'Insight download: ' + dlCurrentTitle;
-        var body = 'Name: ' + name + '\nEmail: ' + email + '\nRequested insight: ' + dlCurrentTitle;
-        var mailto = 'mailto:info@talnxt.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-        window.location.href = mailto;
-        if (dlThanksTitle) dlThanksTitle.textContent = dlCurrentTitle;
-        if (dlFormWrap) dlFormWrap.style.display = 'none';
-        if (dlThanks) dlThanks.style.display = '';
-      });
-    }
-  }
-
   // Client enquiry popup (index.html): any .js-enquiry link opens #enq-modal in
   // "staffing" or "hr" mode (data-enquiry); any other value opens it with no mode
   // chosen, so the visitor picks one first. Fields for modes not chosen are hidden
-  // and disabled so they are neither validated nor submitted. With data-endpoint
-  // set on the form the enquiry is POSTed there; otherwise a pre-filled email opens.
+  // and disabled so they are neither validated nor submitted. Once the backend is
+  // configured in js/forms.js, the enquiry is POSTed to the Worker (/api/enquiry)
+  // with a Turnstile token; until then a pre-filled email opens instead.
   var enqModal = document.getElementById('enq-modal');
   if (enqModal) {
     var enqForm = document.getElementById('enq-form');
+    var enqGuard = window.TalnxtForms ? window.TalnxtForms.guard(enqForm) : null;
     var enqFormWrap = document.getElementById('enq-form-wrap');
     var enqThanks = document.getElementById('enq-thanks');
     var enqThanksMsg = document.getElementById('enq-thanks-msg');
@@ -329,10 +282,11 @@ document.addEventListener('DOMContentLoaded', function () {
       enqSetMode(chosen ? mode : '');
       enqError.textContent = '';
       enqForm.querySelectorAll('[aria-invalid]').forEach(function (el) { el.removeAttribute('aria-invalid'); });
-      enqSubmit.disabled = false;
+      if (window.TalnxtForms) window.TalnxtForms.setBusy(enqSubmit, false);
       enqFormWrap.hidden = false;
       enqThanks.hidden = true;
       enqLastTrigger = trigger;
+      if (enqGuard) enqGuard.mount();
       enqModal.classList.add('open');
       document.body.classList.add('cr-modal-open');
       (chosen ? document.getElementById('enq-f-name') : enqType).focus();
@@ -361,8 +315,8 @@ document.addEventListener('DOMContentLoaded', function () {
       if (e.key === 'Escape') { enqClose(); return; }
       // Keep Tab focus inside the popup
       if (e.key !== 'Tab') return;
-      var items = Array.prototype.filter.call(enqModal.querySelectorAll('button, input, select, textarea'), function (el) {
-        return !el.disabled && el.offsetParent !== null;
+      var items = Array.prototype.filter.call(enqModal.querySelectorAll('button, input, select, textarea, a[href]'), function (el) {
+        return !el.disabled && el.tabIndex >= 0 && el.offsetParent !== null;
       });
       if (!items.length) return;
       var first = items[0], last = items[items.length - 1];
@@ -404,18 +358,30 @@ document.addEventListener('DOMContentLoaded', function () {
       if (!enqValidate()) return;
       var data = new FormData(enqForm);
       var isHr = data.get('enquiry_type') === 'hr';
-      var endpoint = enqForm.getAttribute('data-endpoint');
+      var forms = window.TalnxtForms;
 
-      if (endpoint) {
-        enqSubmit.disabled = true;
-        fetch(endpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' } })
-          .then(function (res) {
-            if (!res.ok) throw new Error(res.status);
-            enqShowThanks('We’ve received your ' + (isHr ? 'HR enquiry' : 'staffing requirement') + '. Our team will get in touch within one business day.');
+      if (forms && forms.enabled()) {
+        if (!enqGuard.token()) {
+          enqError.textContent = enqGuard.failed()
+            ? 'The security check could not load. Please check your connection or disable content blockers for this site, then try again.'
+            : 'Please wait a moment while we complete a quick security check, then submit again.';
+          if (enqGuard.failed()) enqGuard.mount();
+          return;
+        }
+        data.set('cf-turnstile-response', enqGuard.token());
+        enqError.textContent = '';
+        forms.setBusy(enqSubmit, true);
+        forms.submit('/api/enquiry', data)
+          .then(function () {
+            enqGuard.reset();
+            enqShowThanks('We’ve received your ' + (isHr ? 'HR enquiry' : 'staffing requirement') + '. A confirmation email is on its way, and our team will get in touch within one business day.');
           })
-          .catch(function () {
-            enqSubmit.disabled = false;
-            enqError.textContent = 'Something went wrong sending your enquiry. Please try again, or email us at info@talnxt.com.';
+          .catch(function (err) {
+            forms.setBusy(enqSubmit, false);
+            if (err.code !== 'validation_error') enqGuard.reset();
+            var bad = forms.markInvalid(enqForm, err.fields);
+            enqError.textContent = err.userMessage || 'Something went wrong sending your enquiry. Please check your connection and try again, or email us at info@talnxt.com.';
+            if (bad) bad.focus();
           });
         return;
       }

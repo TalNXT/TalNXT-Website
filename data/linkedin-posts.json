@@ -1,0 +1,78 @@
+{
+  "_howToEdit": [
+    "Shown on the home page (index.html) by js/linkedin-feed.js. Keep posts NEWEST FIRST; the first maxItems are shown.",
+    "Each post needs a url (the post link on LinkedIn) and EITHER a title (shown as a card) OR an embedUrl (shown as LinkedIn's own embedded post).",
+    "title, date (YYYY-MM-DD), image (https:// link or a site path such as img/post.jpg) and excerpt are for cards. embedUrl wins when both are present.",
+    "embedUrl: on LinkedIn open the post, click ... then Embed this post, and copy the src=\"...\" value from the code (https://www.linkedin.com/embed/feed/update/...).",
+    "Optional embedHeight (pixels, default 560) sets the height of an embedded post.",
+    "Commit and push; the site updates on the next deploy. Check the file is still valid JSON (e.g. jsonlint.com) if the section disappears."
+  ],
+  "companyUrl": "https://www.linkedin.com/company/talnxt-technologies-private-limited",
+  "maxItems": 3,
+  "posts": [
+    {
+      "title": "",
+      "date": "2026-11-12",
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7526541053911339008",
+      "image": "",
+      "excerpt": "",
+      "embedUrl": "https://www.linkedin.com/embed/feed/update/urn:li:activity:7526541053911339008"
+    },
+    {
+      "title": "",
+      "date": "2026-11-11",
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7526164333177929728",
+      "image": "",
+      "excerpt": "",
+      "embedUrl": "https://www.linkedin.com/embed/feed/update/urn:li:activity:7526164333177929728"
+    },
+    {
+      "title": "",
+      "date": "2026-11-10",
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7525808294402260992",
+      "image": "",
+      "excerpt": "",
+      "embedUrl": "https://www.linkedin.com/embed/feed/update/urn:li:activity:7525808294402260992"
+    },
+    {
+      "title": "",
+      "date": "2026-11-09",
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7525461758023782400",
+      "image": "",
+      "excerpt": "",
+      "embedUrl": "https://www.linkedin.com/embed/feed/update/urn:li:activity:7525461758023782400"
+    },
+    {
+      "title": "",
+      "date": "2026-11-09",
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7525451830915690496",
+      "image": "",
+      "excerpt": "",
+      "embedUrl": "https://www.linkedin.com/embed/feed/update/urn:li:activity:7525451830915690496"
+    },
+    {
+      "title": "",
+      "date": "2026-11-03",
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7523265554959368192",
+      "image": "",
+      "excerpt": "",
+      "embedUrl": "https://www.linkedin.com/embed/feed/update/urn:li:activity:7523265554959368192"
+    },
+    {
+      "title": "",
+      "date": "2026-11-02",
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7522907867184795649",
+      "image": "",
+      "excerpt": "",
+      "embedUrl": "https://www.linkedin.com/embed/feed/update/urn:li:activity:7522907867184795649"
+    },
+    {
+      "title": "",
+      "date": "2026-10-27",
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7520743091700510721",
+      "image": "",
+      "excerpt": "",
+      "embedUrl": "https://www.linkedin.com/embed/feed/update/urn:li:activity:7520743091700510721"
+    }
+  ]
+}

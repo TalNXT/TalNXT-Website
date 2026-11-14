@@ -221,8 +221,8 @@
 </section>
 
 <!-- Client enquiry popup: opened by the "Share Your Requirement" CTAs (js/main.js); same form as index.html.
-     Set data-endpoint on the form (e.g. a Formspree URL) to receive submissions directly;
-     left empty, submitting opens a pre-filled email to info@talnxt.com. -->
+     Submissions go to the forms Worker configured in js/forms.js; until that is set,
+     submitting opens a pre-filled email to info@talnxt.com. -->
 <div class="modal-overlay cr-modal" id="enq-modal">
   <div class="modal-box cr-modal-box" role="dialog" aria-modal="true" aria-labelledby="enq-title">
     <button type="button" class="modal-close" id="enq-close" aria-label="Close">✕</button>
@@ -231,32 +231,34 @@
         <div class="eyebrow" id="enq-eyebrow">Submit your requirement</div>
         <h2 id="enq-title" class="cr-modal-title">Tell us what you need</h2>
       </div>
-      <form id="enq-form" class="cr-form" data-endpoint="" novalidate>
+      <form id="enq-form" class="cr-form" data-form="enquiry" novalidate>
+        <div class="hp-field" aria-hidden="true"><label for="enq-f-website">Leave this field empty</label><input id="enq-f-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
         <div class="cr-form-grid">
           <!-- Staffing-only form: the enquiry type is fixed, so no "I'm looking for" choice and no HR fields -->
           <input type="hidden" id="enq-f-type" name="enquiry_type" value="staffing">
-          <div class="modal-field"><label for="enq-f-name">Full name <span aria-hidden="true">*</span></label><input id="enq-f-name" name="name" type="text" autocomplete="name" required></div>
-          <div class="modal-field"><label for="enq-f-company">Company <span aria-hidden="true">*</span></label><input id="enq-f-company" name="company" type="text" autocomplete="organization" required></div>
-          <div class="modal-field"><label for="enq-f-email">Work email <span aria-hidden="true">*</span></label><input id="enq-f-email" name="email" type="email" autocomplete="email" required></div>
-          <div class="modal-field"><label for="enq-f-phone">Phone <span aria-hidden="true">*</span></label><input id="enq-f-phone" name="phone" type="tel" autocomplete="tel" required></div>
+          <div class="modal-field"><label for="enq-f-name">Full name <span aria-hidden="true">*</span></label><input id="enq-f-name" name="name" type="text" autocomplete="name" maxlength="100" required></div>
+          <div class="modal-field"><label for="enq-f-company">Company <span aria-hidden="true">*</span></label><input id="enq-f-company" name="company" type="text" autocomplete="organization" maxlength="150" required></div>
+          <div class="modal-field"><label for="enq-f-email">Work email <span aria-hidden="true">*</span></label><input id="enq-f-email" name="email" type="email" autocomplete="email" maxlength="254" required></div>
+          <div class="modal-field"><label for="enq-f-phone">Phone <span aria-hidden="true">*</span></label><input id="enq-f-phone" name="phone" type="tel" autocomplete="tel" maxlength="20" required></div>
 
-          <div class="modal-field cr-span" data-enq="staffing"><label for="enq-f-roles">Role(s) / skills required <span aria-hidden="true">*</span></label><input id="enq-f-roles" name="roles" type="text" placeholder="e.g. 2 Java developers, 1 DevOps engineer" required></div>
+          <div class="modal-field cr-span" data-enq="staffing"><label for="enq-f-roles">Role(s) / skills required <span aria-hidden="true">*</span></label><input id="enq-f-roles" name="roles" type="text" maxlength="500" placeholder="e.g. 2 Java developers, 1 DevOps engineer" required></div>
           <div class="modal-field" data-enq="staffing"><label for="enq-f-positions">Number of positions</label><input id="enq-f-positions" name="positions" type="number" min="1" max="500" inputmode="numeric"></div>
           <div class="modal-field" data-enq="staffing"><label for="enq-f-model">Engagement model</label>
             <select id="enq-f-model" name="engagement_model">
               <option value="">Select</option><option>Contract (C2C)</option><option>Contract-to-hire (C2H)</option><option>Permanent</option><option>Not sure yet</option>
             </select>
           </div>
-          <div class="modal-field" data-enq="staffing"><label for="enq-f-location">Work location / mode</label><input id="enq-f-location" name="location" type="text" placeholder="e.g. Bengaluru, hybrid"></div>
+          <div class="modal-field" data-enq="staffing"><label for="enq-f-location">Work location / mode</label><input id="enq-f-location" name="location" type="text" maxlength="100" placeholder="e.g. Bengaluru, hybrid"></div>
           <div class="modal-field" data-enq="staffing"><label for="enq-f-start">Needed by</label>
             <select id="enq-f-start" name="start">
               <option value="">Select</option><option>Immediately</option><option>Within 2 weeks</option><option>Within a month</option><option>1–3 months</option>
             </select>
           </div>
 
-          <div class="modal-field cr-span"><label for="enq-f-msg" id="enq-f-msg-label">Additional details</label><textarea id="enq-f-msg" name="message" rows="3"></textarea></div>
+          <div class="modal-field cr-span"><label for="enq-f-msg" id="enq-f-msg-label">Additional details</label><textarea id="enq-f-msg" name="message" rows="3" maxlength="2000"></textarea></div>
         </div>
-        <label class="cr-consent"><input type="checkbox" id="enq-f-consent" name="consent" required> I agree to TalNXT storing these details to respond to my enquiry.</label>
+        <label class="cr-consent"><input type="checkbox" id="enq-f-consent" name="consent" required> I agree to TalNXT storing these details to respond to my enquiry, as described in our <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>.</label>
+        <div class="cf-turnstile-slot"></div>
         <p class="cr-form-error" id="enq-error" role="alert"></p>
         <button type="submit" class="cta-btn cr-submit">Submit Requirement <span aria-hidden="true">→</span></button>
       </form>
@@ -316,10 +318,11 @@
     </div>
     <div class="footer-bottom">
       <div>&copy; <span id="year">2026</span> TalNXT Technologies. All rights reserved.</div>
-      <!-- Privacy Policy | Terms & Conditions: add links here once those pages exist -->
+      <nav class="footer-legal" aria-label="Legal"><a href="privacy.html">Privacy Policy</a></nav>
     </div>
   </div>
 </footer>
+<script src="js/forms.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

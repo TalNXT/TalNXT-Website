@@ -52,7 +52,7 @@
         <p class="lede">Join a team that values ownership, curiosity and getting things right. TalNXT brings together technology, talent and transformation, and we're looking for people committed to delivering meaningful outcomes for our clients.</p>
         <div class="hero-actions">
           <a class="btn accent" href="#open-roles">See Open Roles →</a>
-          <a class="btn" href="mailto:info@talnxt.com?subject=Career%20Interest%20at%20TalNXT">Send Your Resume</a>
+          <a class="btn js-apply-general" href="#apply" aria-haspopup="dialog">Send Your Resume</a>
         </div>
       </div>
       <div class="cs-visual">
@@ -252,7 +252,7 @@
           <li class="cs-cta-cue gold"><span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.3-7.5 9.5-4.3-1.2-7.5-4.9-7.5-9.5V6z"/><path d="M8.8 12.2l2.2 2.2 4.2-4.4"/></svg></span>Integrity</li>
         </ul>
         <div class="cta-actions">
-          <a class="cta-btn" href="mailto:info@talnxt.com?subject=Career%20Interest%20at%20TalNXT">Send Your Resume <span aria-hidden="true">→</span></a>
+          <a class="cta-btn js-apply-general" href="#apply" aria-haspopup="dialog">Send Your Resume <span aria-hidden="true">→</span></a>
           <a class="cta-btn-alt" href="index.html#contact"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12.5c0 4-3.6 7-8 7-1.2 0-2.3-.2-3.3-.6L4 20l1.2-3.6C4.4 15.3 4 14 4 12.5c0-4 3.6-7 8-7s8 3 8 7z"/><path d="M8.5 12.5h.01M12 12.5h.01M15.5 12.5h.01"/></svg>Already in Process? Contact Us</a>
         </div>
       </div>
@@ -270,9 +270,9 @@
   </div>
 </section>
 
-<!-- APPLICATION POPUP: opened by each card's "Apply Now" (js/careers.js). Set data-endpoint on the
-     form to a form-service URL (e.g. Formspree) to receive the resume file; left empty, submitting
-     opens a pre-filled email to info@talnxt.com instead. -->
+<!-- APPLICATION POPUP: opened by each card's "Apply Now", or as a general application by
+     .js-apply-general links and careers.html#apply (js/careers.js). Submissions go to the forms
+     Worker configured in js/forms.js; until that is set, submitting opens a pre-filled email. -->
 <div class="modal-overlay cr-modal" id="cr-apply-modal">
   <div class="modal-box cr-modal-box" role="dialog" aria-modal="true" aria-labelledby="cr-apply-title">
     <button type="button" class="modal-close" id="cr-apply-close" aria-label="Close">✕</button>
@@ -282,31 +282,33 @@
         <h2 id="cr-apply-title" class="cr-modal-title"></h2>
         <ul class="cr-modal-meta"><li id="cr-apply-type"></li><li id="cr-apply-loc"></li><li id="cr-apply-exp"></li></ul>
       </div>
-      <form id="cr-apply-form" class="cr-form" data-endpoint="" enctype="multipart/form-data" novalidate>
+      <form id="cr-apply-form" class="cr-form" data-form="candidate" enctype="multipart/form-data" novalidate>
+        <div class="hp-field" aria-hidden="true"><label for="cr-f-website">Leave this field empty</label><input id="cr-f-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
         <input type="hidden" name="role" id="cr-f-role">
         <div class="cr-form-grid">
-          <div class="modal-field"><label for="cr-f-name">Full name <span aria-hidden="true">*</span></label><input id="cr-f-name" name="name" type="text" autocomplete="name" required></div>
-          <div class="modal-field"><label for="cr-f-email">Email <span aria-hidden="true">*</span></label><input id="cr-f-email" name="email" type="email" autocomplete="email" required></div>
-          <div class="modal-field"><label for="cr-f-phone">Phone <span aria-hidden="true">*</span></label><input id="cr-f-phone" name="phone" type="tel" autocomplete="tel" required></div>
-          <div class="modal-field"><label for="cr-f-city">Current location</label><input id="cr-f-city" name="location" type="text" autocomplete="address-level2"></div>
+          <div class="modal-field"><label for="cr-f-name">Full name <span aria-hidden="true">*</span></label><input id="cr-f-name" name="name" type="text" autocomplete="name" maxlength="100" required></div>
+          <div class="modal-field"><label for="cr-f-email">Email <span aria-hidden="true">*</span></label><input id="cr-f-email" name="email" type="email" autocomplete="email" maxlength="254" required></div>
+          <div class="modal-field"><label for="cr-f-phone">Phone <span aria-hidden="true">*</span></label><input id="cr-f-phone" name="phone" type="tel" autocomplete="tel" maxlength="20" required></div>
+          <div class="modal-field"><label for="cr-f-city">Current location</label><input id="cr-f-city" name="location" type="text" autocomplete="address-level2" maxlength="100"></div>
           <div class="modal-field"><label for="cr-f-exp">Total experience (years)</label><input id="cr-f-exp" name="experience" type="number" min="0" max="50" step="0.5" inputmode="decimal"></div>
           <div class="modal-field"><label for="cr-f-notice">Notice period</label>
             <select id="cr-f-notice" name="notice">
               <option value="">Select</option><option>Immediate</option><option>15 days</option><option>30 days</option><option>60 days</option><option>90 days</option>
             </select>
           </div>
-          <div class="modal-field cr-span"><label for="cr-f-linkedin">LinkedIn profile</label><input id="cr-f-linkedin" name="linkedin" type="url" placeholder="https://www.linkedin.com/in/…"></div>
+          <div class="modal-field cr-span"><label for="cr-f-linkedin">LinkedIn profile</label><input id="cr-f-linkedin" name="linkedin" type="url" maxlength="255" placeholder="https://www.linkedin.com/in/…"></div>
           <div class="modal-field cr-span">
             <label for="cr-f-resume">Resume <span aria-hidden="true">*</span></label>
-            <input id="cr-f-resume" name="resume" type="file" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required>
+            <input id="cr-f-resume" name="resume" type="file" accept=".pdf,.docx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required>
             <label class="cr-file" for="cr-f-resume" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4"/><path d="M7 9l5-5 5 5"/><path d="M5 16v3a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3"/></svg>
-              <span id="cr-f-resume-name">Upload PDF, DOC or DOCX (max 5 MB)</span>
+              <span id="cr-f-resume-name">Upload PDF or DOCX (max 5 MB)</span>
             </label>
           </div>
-          <div class="modal-field cr-span"><label for="cr-f-msg">Anything else we should know?</label><textarea id="cr-f-msg" name="message" rows="3"></textarea></div>
+          <div class="modal-field cr-span"><label for="cr-f-msg">Anything else we should know?</label><textarea id="cr-f-msg" name="message" rows="3" maxlength="2000"></textarea></div>
         </div>
-        <label class="cr-consent"><input type="checkbox" id="cr-f-consent" name="consent" required> I agree to TalNXT storing my details to contact me about this and similar roles.</label>
+        <label class="cr-consent"><input type="checkbox" id="cr-f-consent" name="consent" required> I agree to TalNXT storing my details and resume to contact me about this and similar roles, as described in our <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>.</label>
+        <div class="cf-turnstile-slot"></div>
         <p class="cr-form-error" id="cr-apply-error" role="alert"></p>
         <button type="submit" class="cta-btn cr-submit">Submit Application <span aria-hidden="true">→</span></button>
       </form>
@@ -366,10 +368,11 @@
     </div>
     <div class="footer-bottom">
       <div>&copy; <span id="year">2026</span> TalNXT Technologies. All rights reserved.</div>
-      <!-- Privacy Policy | Terms & Conditions: add links here once those pages exist -->
+      <nav class="footer-legal" aria-label="Legal"><a href="privacy.html">Privacy Policy</a></nav>
     </div>
   </div>
 </footer>
+<script src="js/forms.js"></script>
 <script src="js/main.js"></script>
 <script src="js/careers.js"></script>
 </body>

@@ -1,0 +1,28 @@
+# Copy to .dev.vars for `npx wrangler dev`. .dev.vars is gitignored; never commit it.
+# In production these values are set with `npx wrangler secret put <NAME>` instead.
+
+# Allow your local static server during development (overrides wrangler.toml).
+ALLOWED_ORIGINS=http://localhost:8080,http://127.0.0.1:8080
+# true = skip Microsoft Graph entirely (no SharePoint writes, no email). Set false to test end to end.
+DRY_RUN=true
+
+# Cloudflare Turnstile. This is Cloudflare's public TEST secret, which always passes.
+# Pair it with the test site key 1x00000000000000000000AA on the frontend.
+TURNSTILE_SECRET=1x0000000000000000000000000000000AA
+
+# Microsoft Entra app registration (client credentials)
+TENANT_ID=00000000-0000-0000-0000-000000000000
+CLIENT_ID=00000000-0000-0000-0000-000000000000
+CLIENT_SECRET=replace-me
+
+# SharePoint (IDs come from Graph Explorer; see docs/SETUP.md)
+SHAREPOINT_SITE_ID=contoso.sharepoint.com,00000000-0000-0000-0000-000000000000,00000000-0000-0000-0000-000000000000
+ENQUIRY_LIST_ID=00000000-0000-0000-0000-000000000000
+CANDIDATE_LIST_ID=00000000-0000-0000-0000-000000000000
+RESUME_DRIVE_ID=b!replace-me
+# Optional folder inside the resume library, e.g. "Applications". Leave empty for the library root.
+RESUME_FOLDER_PATH=
+
+# Mail: the mailbox that sends (a shared mailbox is fine) and the recruiter inbox that receives notifications.
+MAIL_FROM=careers@example.com
+MAIL_TO=recruiter@example.com

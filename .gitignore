@@ -1,0 +1,20 @@
+# Dependencies and build output
+node_modules/
+worker/.wrangler/
+.wrangler/
+dist/
+
+# Secrets and local env. Never commit these. (.dev.vars.example IS committed.)
+.dev.vars
+.dev.vars.*
+!.dev.vars.example
+.env
+.env.*
+*.pem
+*.pfx
+
+# Logs and OS clutter
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
