@@ -209,6 +209,10 @@ Run these in **Windows PowerShell** as an Exchange administrator:
 Install-Module ExchangeOnlineManagement -Scope CurrentUser   # first time only
 Connect-ExchangeOnline
 
+# 0) Newer tenants only: if the next command says "isn't currently allowed in your organization",
+#    run this once, then retry after a few minutes (it can take up to about an hour).
+Enable-OrganizationCustomization
+
 # 1) A scope that contains ONLY the sending mailbox
 New-ManagementScope -Name "TalNXT Forms Sender" `
   -RecipientRestrictionFilter "PrimarySmtpAddress -eq 'careers@talnxt.com'"

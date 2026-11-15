@@ -9,8 +9,8 @@
                        Cloudflare's test key '1x00000000000000000000AA' always passes (local testing only).
    While either value is empty, the forms fall back to opening a pre-filled email to info@talnxt.com. */
 window.TALNXT_FORMS_CONFIG = window.TALNXT_FORMS_CONFIG || {
-  apiBase: '',
-  turnstileSiteKey: ''
+  apiBase: 'https://talnxt-forms.talnxt.workers.dev',
+  turnstileSiteKey: '0x4AAAAAAGBZDQUoyAownT6t'
 };
 
 window.TalnxtForms = (function () {
