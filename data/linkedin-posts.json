@@ -1,77 +1,129 @@
 {
   "_howToEdit": [
-    "Shown on the Thought Leadership page (thought-leadership.html) by js/linkedin-feed.js. Keep posts NEWEST FIRST. pageSize posts show at first; a Show More button reveals the next pageSize.",
-    "Each post needs a url (the post link on LinkedIn) and EITHER a title (shown as a card) OR an embedUrl (shown as LinkedIn's own embedded post).",
-    "title, date (YYYY-MM-DD), image (https:// link or a site path such as img/post.jpg) and excerpt are for cards. embedUrl wins when both are present.",
-    "embedUrl: on LinkedIn open the post, click ... then Embed this post, and copy the src=\"...\" value from the code (https://www.linkedin.com/embed/feed/update/...).",
-    "Optional embedHeight (pixels, default 560) sets the height of an embedded post.",
-    "Commit and push; the site updates on the next deploy. Check the file is still valid JSON (e.g. jsonlint.com) if the section disappears."
+    "Shown on the Thought Leadership page (thought-leadership.html) by js/linkedin-feed.js. Keep posts NEWEST FIRST. pageSize cards show at first; Show More reveals the next pageSize.",
+    "Each card shows topic, date, title and excerpt. Read more expands it to show body (the rest of the post). url is the post link on LinkedIn (on the post: ... then Copy link to post).",
+    "title: the post's opening line. excerpt: the next line or two. body: a list of the remaining paragraphs; inside a paragraph, start a line with \"• \" or \"🔹 \" to make it a bullet. Leave out hashtags.",
+    "topic: a short label (1-2 words). date: YYYY-MM-DD. image (optional): https:// link or a site path such as img/post.jpg, shown at the top of the card.",
+    "embedUrl (optional, only used when a post has no title): LinkedIn's own embedded post. On the post: ... then Embed this post, and copy the src=\"...\" value.",
+    "Commit and push; the site updates in a minute or two. If the feed shows \"New perspectives are on their way\", check the file is still valid JSON (e.g. jsonlint.com)."
   ],
   "companyUrl": "https://www.linkedin.com/company/talnxt-technologies-private-limited",
   "pageSize": 6,
   "posts": [
     {
-      "title": "",
+      "topic": "Decision-Making",
       "date": "2026-11-12",
+      "title": "Have you ever continued with something simply because you've already invested so much in it?",
+      "excerpt": "A project that's not delivering results. A process that's no longer effective. A business decision that isn't working as expected.",
+      "body": [
+        "Yet, we continue — because we've already invested time, money and effort.\nThis is called the Sunk Cost Fallacy.",
+        "It's the tendency to let past investments influence future decisions, even when continuing may not be the best choice.",
+        "A simple way to overcome it is to pause and ask:",
+        "If I were making this decision today, knowing what I know now, would I still choose the same path?",
+        "Remember, good decision-making isn't about justifying yesterday's investments. It's about making the right choices for tomorrow.",
+        "Sometimes, moving forward means knowing when to change direction.",
+        "Have you experienced this in your professional or business journey?"
+      ],
       "url": "https://www.linkedin.com/feed/update/urn:li:activity:7526541053911339008",
       "image": "",
-      "excerpt": "",
       "embedUrl": "https://www.linkedin.com/embed/feed/update/urn:li:activity:7526541053911339008"
     },
     {
-      "title": "",
+      "topic": "Performance",
       "date": "2026-11-11",
+      "title": "Most businesses are good at measuring results.",
+      "excerpt": "Revenue, profitability, attrition, customer churn and delivery performance.",
+      "body": [
+        "But these numbers often tell us what has already happened.",
+        "The real opportunity lies in identifying the signals that influence those outcomes."
+      ],
       "url": "https://www.linkedin.com/feed/update/urn:li:activity:7526164333177929728",
       "image": "",
-      "excerpt": "",
       "embedUrl": "https://www.linkedin.com/embed/feed/update/urn:li:activity:7526164333177929728"
     },
     {
-      "title": "",
+      "topic": "Problem-Solving",
       "date": "2026-11-10",
+      "title": "A common mistake in business is treating the symptom instead of solving the actual problem.",
+      "excerpt": "The 5 Whys technique helps teams move beyond surface-level explanations and identify what is really going wrong.",
+      "body": [
+        "Try it the next time a problem keeps recurring.",
+        "Before asking, “Who is responsible?” ask, “Why is this happening?”",
+        "Sometimes, the solution isn't more resources. It's a better understanding of the problem."
+      ],
       "url": "https://www.linkedin.com/feed/update/urn:li:activity:7525808294402260992",
       "image": "",
-      "excerpt": "",
       "embedUrl": "https://www.linkedin.com/embed/feed/update/urn:li:activity:7525808294402260992"
     },
     {
-      "title": "",
+      "topic": "AI & Skills",
       "date": "2026-11-09",
+      "title": "You can’t hire your way out of an AI skills gap.",
+      "excerpt": "45% of organizations in India name AI, digital and data skills as their single biggest workforce constraint. And 82% of employers report difficulty filling roles.",
+      "body": [
+        "So many companies do the same thing. They hire in a rush, pay a premium for scarce profiles, and still miss delivery timelines. Meanwhile, the capability they need is often partly sitting inside their own team, unmapped.",
+        "At TalNXT, we approach it in four steps:\n🔹 Map: Identify the capabilities your business plan needs in the next 6–12 months, and where your workforce stands today.\n🔹 Source: Decide what to hire, what to bring in on contract, and what to build from within.\n🔹 Build: Put the people practices in place (role design, career paths, onboarding, reskilling) so the capability sticks.\n🔹 Embed: Track time-to-fill, capability coverage and early attrition, so the model keeps working.",
+        "The right talent, on time, and a workforce that can scale with your plans.",
+        "👉 We are offering a free 30-minute Workforce Capability Check.",
+        "Come with your hiring plan, and we’ll help you pinpoint your top three skill gaps and decide what to hire, what to build and what to borrow.",
+        "📩 Write to recruiter@talnxt.com or visit talnxt.com to book your slot."
+      ],
       "url": "https://www.linkedin.com/feed/update/urn:li:activity:7525461758023782400",
       "image": "",
-      "excerpt": "",
       "embedUrl": "https://www.linkedin.com/embed/feed/update/urn:li:activity:7525461758023782400"
     },
     {
-      "title": "",
+      "topic": "Business Strategy",
       "date": "2026-11-09",
+      "title": "Revenue growth is a good sign. But it isn't the complete picture.",
+      "excerpt": "Sometimes, businesses become so dependent on a few large customers, markets or sales channels that they don't recognise the risk until something changes.",
+      "body": [
+        "A question for business leaders:\nDoes your organisation actively measure revenue concentration risk, or does it become visible only when a major account is lost?"
+      ],
       "url": "https://www.linkedin.com/feed/update/urn:li:activity:7525451830915690496",
       "image": "",
-      "excerpt": "",
       "embedUrl": "https://www.linkedin.com/embed/feed/update/urn:li:activity:7525451830915690496"
     },
     {
-      "title": "",
+      "topic": "Leadership",
       "date": "2026-11-03",
+      "title": "Not every business problem announces itself.",
+      "excerpt": "Sometimes, the warning signs are hidden in plain sight.",
+      "body": [
+        "• Revenue is growing, but margins are shrinking.\n• Teams are busy, but outcomes aren't improving.\n• Customers are staying, but loyalty is weakening.\n• Decisions are being made, but execution is slowing.\n• The business is scaling, but everything depends on a few people.",
+        "These aren't always obvious failures. They're blind spots.",
+        "And by the time they become visible, the cost of correcting them may be significantly higher.",
+        "A question for business leaders:\nWhat's one business blind spot organizations tend to recognize too late?"
+      ],
       "url": "https://www.linkedin.com/feed/update/urn:li:activity:7523265554959368192",
       "image": "",
-      "excerpt": "",
       "embedUrl": "https://www.linkedin.com/embed/feed/update/urn:li:activity:7523265554959368192"
     },
     {
-      "title": "",
+      "topic": "Retention",
       "date": "2026-11-02",
+      "title": "Your best employees don't always leave because of money.",
+      "excerpt": "Sometimes, they leave because they stop seeing a future.",
+      "body": [
+        "The cost? Lost productivity, institutional capability and momentum.",
+        "Retention starts long before an employee decides to resign.",
+        "What do you think matters most in retaining high performers: growth, recognition, compensation or leadership?"
+      ],
       "url": "https://www.linkedin.com/feed/update/urn:li:activity:7522907867184795649",
       "image": "",
-      "excerpt": "",
       "embedUrl": "https://www.linkedin.com/embed/feed/update/urn:li:activity:7522907867184795649"
     },
     {
-      "title": "",
+      "topic": "Customer Experience",
       "date": "2026-10-27",
+      "title": "Growth is good. But can your customer experience keep up?",
+      "excerpt": "As businesses scale, disconnected teams, complex processes and unclear ownership can impact customer satisfaction.",
+      "body": [
+        "The solution? Align people, simplify processes and enable seamless delivery.\nBecause growth means little if customer experience suffers.",
+        "💬 What matters most: Better processes, stronger teams or smarter technology?"
+      ],
       "url": "https://www.linkedin.com/feed/update/urn:li:activity:7520743091700510721",
       "image": "",
-      "excerpt": "",
       "embedUrl": "https://www.linkedin.com/embed/feed/update/urn:li:activity:7520743091700510721"
     }
   ]
