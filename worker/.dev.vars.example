@@ -26,3 +26,8 @@ RESUME_FOLDER_PATH=
 # Mail: the mailbox that sends (a shared mailbox is fine) and the recruiter inbox that receives notifications.
 MAIL_FROM=careers@example.com
 MAIL_TO=recruiter@example.com
+
+# LinkedIn feed (optional; docs/SETUP.md section 10). LINKEDIN_CLIENT_ID, LINKEDIN_ORG_ID and
+# LINKEDIN_API_VERSION are plain vars in wrangler.toml.
+LINKEDIN_CLIENT_SECRET=
+LINKEDIN_SETUP_KEY=

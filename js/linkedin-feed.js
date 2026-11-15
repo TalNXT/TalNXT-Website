@@ -1,7 +1,8 @@
 /* LinkedIn feed on the Thought Leadership page (thought-leadership.html, #perspectives).
-   Content comes from data/linkedin-posts.json; edit that file to change the posts (instructions
-   are inside it). No scraping or unofficial APIs: the cards are built from text kept in the JSON,
-   and each links to the original post on LinkedIn.
+   Live posts come from the forms Worker (/api/linkedin-posts, synced from the TalNXT LinkedIn page
+   through LinkedIn's official API). When that has nothing recent, the static posts in
+   data/linkedin-posts.json are shown (edit that file to change them; instructions are inside it).
+   No scraping or unofficial APIs. Each card links to the original post on LinkedIn.
    Each card is compact (topic, date, title, a short excerpt); "Read more" expands it in place.
    Shows pageSize cards at a time with a "Show more" button. If the JSON can't be loaded or has no
    usable posts, a short message with a link to the LinkedIn page is shown instead. */
@@ -193,25 +194,46 @@
     if (more) more.hidden = true;
   }
 
-  fetch('data/linkedin-posts.json', { cache: 'no-cache' })
-    .then(function (res) { if (!res.ok) throw new Error(res.status); return res.json(); })
-    .then(function (data) {
-      var company = linkedinUrl(data.companyUrl);
-      if (company) {
-        Array.prototype.forEach.call(document.querySelectorAll('.li-follow'), function (a) { a.href = company; });
-      }
-      var cards = (Array.isArray(data.posts) ? data.posts : []).map(build).filter(Boolean);
-      if (!cards.length) return showEmpty();
+  function getJson(url, opts, timeoutMs) {
+    var ctrl = window.AbortController ? new AbortController() : null;
+    var timer = ctrl ? setTimeout(function () { ctrl.abort(); }, timeoutMs) : null;
+    if (ctrl) opts.signal = ctrl.signal;
+    return fetch(url, opts)
+      .then(function (res) { if (!res.ok) throw new Error(res.status); return res.json(); })
+      .then(function (d) { if (timer) clearTimeout(timer); return d; }, function (e) { if (timer) clearTimeout(timer); throw e; });
+  }
 
-      var pageSize = clamp(data.pageSize, 6, 1, 24);
-      var shown = 0;
-      function next() {
-        cards.slice(shown, shown + pageSize).forEach(function (c) { feed.appendChild(c); });
-        shown = Math.min(shown + pageSize, cards.length);
-        if (more) more.hidden = shown >= cards.length;
-      }
-      if (more) more.addEventListener('click', next);
-      next();
-    })
-    .catch(showEmpty);
+  // Live posts come from the forms Worker (data-live on #li-feed), which syncs the LinkedIn page
+  // through LinkedIn's official API. If it has no recent feed (404), errors or is slow, the static
+  // posts in data/linkedin-posts.json are shown instead. The static file also sets the page size
+  // and the Follow link.
+  var liveUrl = feed.getAttribute('data-live') || '';
+  var live = /^(https:\/\/|http:\/\/(localhost|127\.0\.0\.1)[:/])/.test(liveUrl)
+    ? getJson(liveUrl, { mode: 'cors', credentials: 'omit' }, 4000)
+        .then(function (d) { return d && d.ok && Array.isArray(d.posts) && d.posts.length ? d.posts : null; })
+        .catch(function () { return null; })
+    : Promise.resolve(null);
+  var stat = getJson('data/linkedin-posts.json', { cache: 'no-cache' }, 8000).catch(function () { return null; });
+
+  Promise.all([live, stat]).then(function (r) {
+    var livePosts = r[0], data = r[1] || {};
+    var company = linkedinUrl(data.companyUrl);
+    if (company) {
+      Array.prototype.forEach.call(document.querySelectorAll('.li-follow'), function (a) { a.href = company; });
+    }
+    var posts = livePosts || (Array.isArray(data.posts) ? data.posts : []);
+    feed.setAttribute('data-source', livePosts ? 'live' : 'static');
+    var cards = posts.map(build).filter(Boolean);
+    if (!cards.length) return showEmpty();
+
+    var pageSize = clamp(data.pageSize, 6, 1, 24);
+    var shown = 0;
+    function next() {
+      cards.slice(shown, shown + pageSize).forEach(function (c) { feed.appendChild(c); });
+      shown = Math.min(shown + pageSize, cards.length);
+      if (more) more.hidden = shown >= cards.length;
+    }
+    if (more) more.addEventListener('click', next);
+    next();
+  }).catch(showEmpty);
 })();

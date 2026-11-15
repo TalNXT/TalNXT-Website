@@ -23,6 +23,20 @@ export interface Env {
   MAIL_TO: string;
 
   SUBMIT_LIMITER: RateLimiter;
+
+  /* LinkedIn feed (optional; the feature stays off until all of these are set). See docs/SETUP.md. */
+  /** KV namespace holding the LinkedIn token and the last synced feed. */
+  LINKEDIN_KV?: KVNamespace;
+  /** LinkedIn app Client ID (public, in wrangler.toml). */
+  LINKEDIN_CLIENT_ID?: string;
+  /** Numeric ID of the TalNXT company page (public, in wrangler.toml). */
+  LINKEDIN_ORG_ID?: string;
+  /** LinkedIn API version header, YYYYMM (in wrangler.toml). */
+  LINKEDIN_API_VERSION?: string;
+  /** LinkedIn app Client Secret (Worker secret). */
+  LINKEDIN_CLIENT_SECRET?: string;
+  /** Long random key that protects the connect and manual-sync links (Worker secret). */
+  LINKEDIN_SETUP_KEY?: string;
 }
 
 /** Minimal shape of the Workers rate-limiting binding. */

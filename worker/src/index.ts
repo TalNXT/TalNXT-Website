@@ -4,6 +4,11 @@
  *   POST /api/enquiry    multipart/form-data  client enquiry (staffing or HR)
  *   POST /api/candidate  multipart/form-data  job application with resume (PDF or DOCX, max 5 MB)
  *   GET  /api/health                          liveness check, returns {"ok":true}
+ *   GET  /api/linkedin-posts                  latest LinkedIn company posts, or 404 so the site uses its static posts
+ *   GET  /api/linkedin/connect?key=...        admin: start the one-time LinkedIn sign-in
+ *   GET  /api/linkedin/callback               LinkedIn redirects here after sign-in
+ *   GET  /api/linkedin/sync?key=...           admin: run a sync now and show the result
+ *   (cron)                                    re-syncs the LinkedIn feed on the schedule in wrangler.toml
  *
  * Request pipeline: route -> CORS/origin -> content type and size -> rate limit -> parse
  * -> honeypot -> validate -> Turnstile -> store in SharePoint and email via Microsoft Graph.
@@ -16,6 +21,49 @@ import { candidate, enquiry, type Handler } from './handlers';
 import { ApiError, GENERIC_ERROR, json, logEvent } from './http';
 import { isHoneypotTripped } from './validate';
 import { verifyTurnstile } from './turnstile';
+import { adminPage, consumeState, finishConnect, linkedinConfigured, liveFeed, setupKeyOk, startConnect, syncLinkedIn } from './linkedin';
+
+async function handleLinkedIn(request: Request, env: Env, url: URL, cors: Record<string, string>): Promise<Response | null> {
+  if (request.method !== 'GET' && request.method !== 'HEAD') return null;
+  const base = url.origin;
+
+  if (url.pathname === '/api/linkedin-posts') {
+    const feed = await liveFeed(env);
+    const headers = { ...cors, 'Access-Control-Allow-Methods': 'GET', Vary: 'Origin' };
+    if (!feed) return json({ ok: false, error: { code: 'no_live_feed', message: 'No live feed available.' } }, 404, { ...headers, 'Cache-Control': 'public, max-age=300' });
+    return json({ ok: true, source: 'live', updatedAt: feed.updatedAt, posts: feed.posts }, 200, { ...headers, 'Cache-Control': 'public, max-age=300' });
+  }
+
+  if (url.pathname === '/api/linkedin/connect' || url.pathname === '/api/linkedin/sync') {
+    if (!setupKeyOk(env, url.searchParams.get('key'))) return adminPage('Not allowed', 'This link needs a valid setup key.', false);
+    if (!linkedinConfigured(env)) return adminPage('LinkedIn feed not configured', 'Set LINKEDIN_ORG_ID and LINKEDIN_CLIENT_ID in wrangler.toml and the LINKEDIN_CLIENT_SECRET secret, then deploy again.', false);
+    if (url.pathname === '/api/linkedin/connect') return Response.redirect(await startConnect(env, request.url), 302);
+    const result = await syncLinkedIn(env, base);
+    return adminPage(result.status === 'ok' ? 'Sync complete' : 'Sync did not complete', `Result: ${JSON.stringify(result)}`, result.status === 'ok');
+  }
+
+  if (url.pathname === '/api/linkedin/callback') {
+    if (!linkedinConfigured(env)) return adminPage('LinkedIn feed not configured', 'Finish the configuration first.', false);
+    const error = url.searchParams.get('error');
+    if (error) return adminPage('LinkedIn sign-in was cancelled', `LinkedIn returned: ${error.slice(0, 80)}. Nothing was changed.`, false);
+    if (!(await consumeState(env.LINKEDIN_KV, url.searchParams.get('state')))) {
+      return adminPage('Link expired', 'This sign-in link has expired or was already used. Open the connect link again.', false);
+    }
+    const code = url.searchParams.get('code');
+    if (!code) return adminPage('Sign-in failed', 'LinkedIn did not return an authorisation code. Please try again.', false);
+    try {
+      await finishConnect(env, code, request.url);
+    } catch (err) {
+      logEvent('error', 'linkedin_connect_failed', { reason: err instanceof Error ? err.message : 'unknown' });
+      return adminPage('Sign-in failed', 'LinkedIn did not accept the sign-in. Check the app settings (redirect URL, client secret) and try again.', false);
+    }
+    const result = await syncLinkedIn(env, base);
+    return result.status === 'ok'
+      ? adminPage('LinkedIn connected', `The website now shows ${result.count} live posts from the TalNXT page. You can close this tab.`, true)
+      : adminPage('Connected, but the first sync did not complete', `Result: ${JSON.stringify(result)}. The site keeps showing its saved posts until a sync succeeds. Check the Worker logs.`, false);
+  }
+  return null;
+}
 
 interface Route {
   name: string;
@@ -40,6 +88,15 @@ async function handle(request: Request, env: Env, ctx: ExecutionContext, cors: R
   const url = new URL(request.url);
 
   if (url.pathname === '/api/health' && request.method === 'GET') return json({ ok: true }, 200);
+
+  if (url.pathname === '/api/linkedin-posts' && request.method === 'OPTIONS') {
+    return new Response(null, { status: originOk ? 204 : 403, headers: { ...cors, 'Access-Control-Allow-Methods': 'GET' } });
+  }
+  if (url.pathname.startsWith('/api/linkedin')) {
+    const res = await handleLinkedIn(request, env, url, cors);
+    if (res) return res;
+    throw new ApiError(405, 'method_not_allowed', 'Method not allowed.');
+  }
 
   const route = ROUTES[url.pathname];
   if (!route) throw new ApiError(404, 'not_found', 'Not found.');
@@ -111,5 +168,9 @@ export default {
       }
       return json({ ok: false, error: { code: 'server_error', message: GENERIC_ERROR } }, 502, cors);
     }
+  },
+
+  async scheduled(_controller, env, ctx): Promise<void> {
+    ctx.waitUntil(syncLinkedIn(env).then(() => undefined));
   },
 } satisfies ExportedHandler<Env>;

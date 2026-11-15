@@ -38,6 +38,8 @@ Values in `<angle brackets>` are placeholders. Keep a private note (not in this 
 | `MAIL_TO` | The recruiter inbox (comma-separate several) |
 | `TURNSTILE_SECRET` | Step 4.2 |
 
+The optional LinkedIn feed adds two more secrets, `LINKEDIN_CLIENT_SECRET` and `LINKEDIN_SETUP_KEY`, covered in section 10.
+
 ---
 
 ## 1. SharePoint: site, library and lists
@@ -391,7 +393,7 @@ Logs: `npx wrangler tail` streams production logs, and **Workers & Pages → tal
 | Rate limit (default 5 per IP per minute per form) | `[[ratelimits]]` in `worker/wrangler.toml` (`period` must be 10 or 60) |
 | A dropdown option in a form | Change it in the HTML **and** in `OPTIONS` in `worker/src/validate.ts`, then redeploy, or the server rejects the new value |
 | Field length limits | `worker/src/validate.ts` (keep the HTML `maxlength` attributes in step) |
-| LinkedIn posts on the home page | `data/linkedin-posts.json` (instructions inside the file) |
+| Saved (fallback) LinkedIn posts on the Thought Leadership page | `data/linkedin-posts.json` (instructions inside the file). Live posts are synced automatically; see section 10 |
 | Privacy policy text | `privacy.html` |
 
 ---
@@ -403,6 +405,9 @@ Logs: `npx wrangler tail` streams production logs, and **Workers & Pages → tal
 | Cloudflare Workers Free | 100,000 requests/day, 10 ms CPU per request | Requests fail. **No charge** without a paid plan |
 | Workers rate-limiting binding | Included | — |
 | Workers Logs | Included daily quota on the free plan | Extra logs are dropped |
+| Workers KV (LinkedIn feed) | 100,000 reads and 1,000 writes/day | The feed uses a handful of writes a day; at the limit writes fail and the site shows the saved posts |
+| Cron triggers (LinkedIn sync) | Included | — |
+| LinkedIn API (Community Management API, Development tier) | Free | Calls are rejected; the site shows the saved posts |
 | Turnstile | Free | — |
 | Microsoft Graph (Sites, sendMail) | No per-call charge | Throttling (the Worker retries once) |
 | SharePoint storage | Counts against your tenant's quota | ~5 MB per resume is negligible |
@@ -422,6 +427,7 @@ Logs: `npx wrangler tail` streams production logs, and **Workers & Pages → tal
 
 - **Entra:** only `Sites.Selected` (application), with `write` on one site. Mail.Send comes from Exchange RBAC, scoped to one mailbox.
 - **Worker:** exact-origin CORS and an origin check, Turnstile on every submission, a hidden honeypot field, a per-IP rate limit, strict server-side validation, resume type checked by **magic bytes** (PDF or DOCX only, 5 MB max), HTML-escaped emails, and fixed-text acknowledgements so the form can't be used to send arbitrary content.
+- **LinkedIn:** read-only scope `r_organization_social`, our own company page only. The connect and manual-sync links need `LINKEDIN_SETUP_KEY`; the sign-in uses a one-time `state`. The token lives only in Workers KV and is never logged or returned.
 - **Errors:** visitors see friendly messages only. Microsoft error details stay in the logs (codes only).
 - **Secrets:** stored only in Cloudflare (`wrangler secret`) and your local `.dev.vars`, both excluded by `.gitignore`.
 - **Public repo:** GitHub Pages publishes the whole repo, including `worker/` and `docs/`. They contain no secrets, so this is safe, but you can exclude them from the Pages upload if you prefer.
@@ -452,5 +458,77 @@ Start with `npx wrangler tail` (or **Workers & Pages → talnxt-forms → Logs**
 | "Please upload your resume as a PDF or Word (.docx) file" for a real resume | The file is a legacy `.doc`, a renamed file, or a "PDF" that is really an image. Ask the candidate to save it as PDF or DOCX |
 | `wrangler dev` fails with `spawn UNKNOWN`, or Windows reports "An Application Control policy has blocked this file" | Windows Smart App Control or WDAC is blocking the local runtime (`workerd.exe`). This happens on Windows on ARM, which has no native `workerd` build, and on locked-down PCs. Options: run `npm test`, which needs no runtime; use **WSL2** (Ubuntu) and run the same commands there; or `npx wrangler dev --remote`, which runs on Cloudflare. Don't weaken the device policy just for this |
 | `npm install` warns about install scripts for `esbuild` / `workerd` | npm 11 asks before running them. They're already approved in `worker/package.json` (`allowScripts`). If versions change, run `npm install-scripts approve esbuild workerd` |
-| LinkedIn section missing on the home page | `data/linkedin-posts.json` isn't valid JSON. Paste it into a JSON validator |
-| A LinkedIn embed shows "post unavailable" | The post isn't public, or the `embedUrl` is wrong. Use the `src` from LinkedIn's **Embed this post** code, or give the item a `title` and remove `embedUrl` to show a link card instead |
+| Thought Leadership page shows "New perspectives are on their way" | `data/linkedin-posts.json` isn't valid JSON and there is no live feed. Paste the file into a JSON validator. For the live feed, see section 10.7 |
+
+---
+
+## 10. LinkedIn feed (Thought Leadership page)
+
+The Thought Leadership page shows **live** posts from the TalNXT LinkedIn page when the sync is working, and the **saved** posts in `data/linkedin-posts.json` whenever it isn't (before setup, if the LinkedIn token expires, or if LinkedIn or the Worker is down or slow). Visitors always see posts; nothing breaks.
+
+```
+every 6 hours (cron)  ->  Worker reads our page's posts via LinkedIn's official API  ->  saves the last good copy in Workers KV
+visitor opens page    ->  GET /api/linkedin-posts (live, if synced within 7 days)    ->  else data/linkedin-posts.json
+```
+
+Only LinkedIn's official **Community Management API** is used, with the read-only scope `r_organization_social`. No scraping.
+
+### 10.1 LinkedIn app (one time)
+
+1. At **linkedin.com/developers**, as a **super admin** of the TalNXT company page: **Create app** (name `TalNXT Website`, LinkedIn Page = TalNXT, privacy policy `https://www.talnxt.com/privacy.html`).
+2. **Settings** → verify the app with the company page.
+3. **Products** → **Community Management API** → **Access request form**. Use case: *Direct Advertiser*; other use cases: *Page management* only. Describe it as read-only display of our own page's posts on our website.
+4. **Auth** → **Authorized redirect URLs**: `https://talnxt-forms.talnxt.workers.dev/api/linkedin/callback`
+5. Wait for approval. You'll know it's approved when **Auth → OAuth 2.0 scopes** lists `r_organization_social`.
+
+### 10.2 Configure the Worker (after approval)
+
+1. **Company page ID:** open the TalNXT page as an admin; the address looks like `linkedin.com/company/12345678/admin/`. Put the number in `LINKEDIN_ORG_ID` in `worker/wrangler.toml`. (`LINKEDIN_CLIENT_ID` is already set.)
+2. Secrets (paste each value when asked; never put them in a file or chat):
+   ```bash
+   cd worker
+   npx wrangler secret put LINKEDIN_CLIENT_SECRET   # LinkedIn app -> Auth -> Primary Client Secret
+   npx wrangler secret put LINKEDIN_SETUP_KEY       # any long random string (20+ characters); keep it in a password manager
+   ```
+   A quick way to make a setup key in PowerShell: `-join ((48..57)+(97..122) | Get-Random -Count 32 | % {[char]$_})`
+3. `npx wrangler deploy`
+
+### 10.3 Connect (a page super admin, 2 minutes)
+
+1. Open `https://talnxt-forms.talnxt.workers.dev/api/linkedin/connect?key=YOUR-SETUP-KEY`
+2. Sign in to LinkedIn and click **Allow**.
+3. You land on a page saying **"LinkedIn connected. The website now shows N live posts"**. Open the Thought Leadership page to check.
+
+To sync immediately at any time (for example right after publishing a post): `https://talnxt-forms.talnxt.workers.dev/api/linkedin/sync?key=YOUR-SETUP-KEY`. Otherwise the cron picks it up within 6 hours, and visitors' browsers may cache the feed for up to 5 minutes.
+
+### 10.4 Token expiry
+
+LinkedIn access tokens last about **60 days**. If LinkedIn issues a refresh token to the app, the Worker renews it automatically. If not, from 10 days before expiry the Worker emails `MAIL_TO` (from `MAIL_FROM`) every 3 days until someone repeats **10.3**. While the token is expired, the site shows the saved posts.
+
+### 10.5 How cards are built from posts
+
+- **Title:** the post's first paragraph (or its first sentence if the paragraph is long). **Excerpt:** the next paragraph. **Read more:** the rest.
+- **Topic tag:** the post's first hashtag, split into words (`#BusinessStrategy` → "Business Strategy"), or "Insights" if there is none.
+- Hashtag-only lines, bare links and sign-offs such as "🌐 www.talnxt.com" or "Follow our page…" are left out. Only **published, public** posts with text are shown, newest first (up to 24).
+- Images and document carousels aren't shown on the cards; **View post** opens the full post on LinkedIn.
+
+### 10.6 Keeping the saved posts useful
+
+The saved posts are the fallback, so refresh `data/linkedin-posts.json` now and then with your best recent posts (same format, instructions inside the file). They are also what the page shows until the LinkedIn app is approved.
+
+### 10.7 Troubleshooting
+
+Check **Cloudflare dashboard → Workers → talnxt-forms → Logs** for `linkedin_sync`:
+
+| `status` in the log | Meaning and fix |
+|---|---|
+| `not_configured` | `LINKEDIN_ORG_ID`, `LINKEDIN_CLIENT_ID` or `LINKEDIN_CLIENT_SECRET` missing. See 10.2 |
+| `not_connected` | Nobody has done 10.3 yet |
+| `token_expired` | Repeat 10.3 |
+| `api_error`, `httpStatus` 401 | Token revoked or wrong app. Repeat 10.3 |
+| `api_error`, `httpStatus` 403 | The app lacks `r_organization_social`, or the person who connected isn't a super admin of the page |
+| `api_error`, `httpStatus` 426 or code `NONEXISTENT_VERSION` | `LINKEDIN_API_VERSION` in `wrangler.toml` is retired. Set a recent month (`YYYYMM`) and deploy |
+| `no_posts` | The page has no public posts with text. The previous feed is kept |
+| `ok` | Working. `count` is the number of posts synced |
+
+The connect page says **"Link expired"**: the sign-in took more than 10 minutes or the link was reused. Open the connect link again.

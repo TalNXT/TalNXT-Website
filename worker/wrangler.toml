@@ -14,6 +14,26 @@ ALLOWED_ORIGINS = "https://www.talnxt.com,https://talnxt.com"
 # "true" skips all Microsoft Graph calls and only logs. Local testing only; keep "false" in production.
 DRY_RUN = "false"
 
+# --- LinkedIn feed for the Thought Leadership page (see ../docs/SETUP.md, "LinkedIn feed") ---
+# Off until LINKEDIN_ORG_ID is set here and the LINKEDIN_CLIENT_SECRET and LINKEDIN_SETUP_KEY secrets exist.
+# Until then (and whenever a sync fails) the website shows its static data/linkedin-posts.json.
+# Public values only; the client secret is a Worker secret.
+LINKEDIN_CLIENT_ID = "77yf8a6urc1n7i"
+# Numeric ID of the TalNXT company page: the number in linkedin.com/company/<ID>/admin/ when you manage the page.
+LINKEDIN_ORG_ID = "111524061"
+# LinkedIn API version (YYYYMM). LinkedIn retires versions after about a year; if the logs show a
+# version error from "linkedin_sync", change this to a recent month and deploy again.
+LINKEDIN_API_VERSION = "202610"
+
+# Token and the last good feed (Workers KV free plan; this uses a handful of writes a day).
+[[kv_namespaces]]
+binding = "LINKEDIN_KV"
+id = "8f9be4d75348413b8568f830f6781712"
+
+# Re-sync the LinkedIn feed every 6 hours (cron triggers are included in the free plan).
+[triggers]
+crons = ["17 */6 * * *"]
+
 # Built-in Workers rate limiting (free plan, no KV writes).
 # 5 submissions per IP per 60 seconds per form. Counters are per Cloudflare location and approximate.
 [[ratelimits]]
