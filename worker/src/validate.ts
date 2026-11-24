@@ -4,7 +4,7 @@
  * IMPORTANT: select options below must match the <option> text in the HTML exactly.
  */
 
-type Kind = 'text' | 'multiline' | 'name' | 'email' | 'phone' | 'url' | 'int' | 'decimal' | 'path';
+type Kind = 'text' | 'multiline' | 'name' | 'email' | 'phone' | 'url' | 'int' | 'decimal' | 'path' | 'idlist';
 
 export interface FieldRule {
   label: string;
@@ -37,6 +37,18 @@ export const OPTIONS = {
   companySize: [`1${NDASH}50 employees`, `51${NDASH}200 employees`, `201${NDASH}1,000 employees`, '1,000+ employees'],
   timeline: ['Immediately', 'Within a month', `1${NDASH}3 months`, 'Just exploring'],
   notice: ['Immediate', '15 days', '30 days', '60 days', '90 days'],
+  // TalNXT Digital contact form (talnxtdigital.com/contact.html)
+  cloudPlatform: ['AWS', 'Microsoft Azure', 'Both', 'Other'],
+  digitalInterest: [
+    'Cloud Assessment & Migration',
+    'Cloud FinOps',
+    'Cloud Security',
+    'Governance & Compliance',
+    'DevOps & DevSecOps',
+    'Cloud Automation',
+    'Zero-Cost Cloud Assessment',
+    'Other',
+  ],
 } as const;
 
 const common: Rules = {
@@ -59,12 +71,25 @@ export const ENQUIRY_STAFFING_RULES: Rules = {
   engagement_model: { label: 'Engagement model', kind: 'text', max: 50, options: OPTIONS.engagementModel },
   location: { label: 'Work location / mode', kind: 'text', max: 100 },
   start: { label: 'Needed by', kind: 'text', max: 50, options: OPTIONS.neededBy },
+  /** Talent Bench profile IDs the client shortlisted (talent-bench.html), comma-separated. */
+  profiles: { label: 'Requested profiles', kind: 'idlist', max: 500 },
 };
 
 export const ENQUIRY_HR_RULES: Rules = {
   hr_area: { label: 'Area of interest', kind: 'text', max: 100, required: true, options: OPTIONS.hrArea },
   company_size: { label: 'Company size', kind: 'text', max: 50, options: OPTIONS.companySize },
   timeline: { label: 'Timeline', kind: 'text', max: 50, options: OPTIONS.timeline },
+};
+
+/** TalNXT Digital "Get in touch" form. Phone is not asked for; platform and interest are optional ("Not sure yet" sends ""). */
+export const DIGITAL_ENQUIRY_RULES: Rules = {
+  name: { label: 'Your name', kind: 'name', max: 100, required: true },
+  email: { label: 'Work email', kind: 'email', max: 254, required: true },
+  company: { label: 'Company', kind: 'text', max: 150 },
+  platform: { label: 'Cloud platform', kind: 'text', max: 50, options: OPTIONS.cloudPlatform },
+  interest: { label: "I'm interested in", kind: 'text', max: 100, options: OPTIONS.digitalInterest },
+  message: { label: 'Tell us more', kind: 'multiline', max: 2000 },
+  page: { label: 'Page', kind: 'path', max: 200 },
 };
 
 export const CANDIDATE_RULES: Rules = {
@@ -155,6 +180,11 @@ function checkField(rule: FieldRule, raw: string): { value: string } | { error: 
       if (rule.range && (n < rule.range[0] || n > rule.range[1])) return { error: `${rule.label} must be between ${rule.range[0]} and ${rule.range[1]}.` };
       if (rule.step && Math.abs(n / rule.step - Math.round(n / rule.step)) > 1e-9) return { error: `${rule.label} must be in steps of ${rule.step}.` };
       return { value: String(n) };
+    }
+    case 'idlist': {
+      const ids = [...new Set(value.split(',').map((s) => s.trim().toUpperCase()).filter(Boolean))];
+      if (ids.length > 25 || !ids.every((id) => /^[A-Z0-9][A-Z0-9_-]{0,29}$/.test(id))) return { error: `${rule.label} are not valid.` };
+      return { value: ids.join(', ') };
     }
     case 'path':
       return /^\/[A-Za-z0-9/_.\-#?=&%]*$/.test(value) ? { value } : { value: '' };

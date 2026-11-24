@@ -3,7 +3,9 @@
  *
  *   POST /api/enquiry    multipart/form-data  client enquiry (staffing or HR)
  *   POST /api/candidate  multipart/form-data  job application with resume (PDF or DOCX, max 5 MB)
+ *   POST /api/digital-enquiry  multipart/form-data  TalNXT Digital contact form (talnxtdigital.com)
  *   GET  /api/health                          liveness check, returns {"ok":true}
+ *   GET  /api/bench[?refresh=key]             Talent Bench profiles from SharePoint (cached 10 min)
  *   GET  /api/linkedin-posts                  latest LinkedIn company posts, or 404 so the site uses its static posts
  *   GET  /api/linkedin/connect?key=...        admin: start the one-time LinkedIn sign-in
  *   GET  /api/linkedin/callback               LinkedIn redirects here after sign-in
@@ -16,8 +18,9 @@
  */
 import { corsHeaders, isAllowedOrigin, parseOrigins } from './cors';
 import type { Env } from './env';
+import { handleBench } from './bench';
 import { GraphError } from './graph';
-import { candidate, enquiry, type Handler } from './handlers';
+import { candidate, digitalEnquiry, enquiry, type Handler } from './handlers';
 import { ApiError, GENERIC_ERROR, json, logEvent } from './http';
 import { isHoneypotTripped } from './validate';
 import { verifyTurnstile } from './turnstile';
@@ -75,6 +78,7 @@ interface Route {
 const ROUTES: Record<string, Route> = {
   '/api/enquiry': { name: 'enquiry', handler: enquiry, maxBytes: 64 * 1024 },
   '/api/candidate': { name: 'candidate', handler: candidate, maxBytes: 6 * 1024 * 1024 },
+  '/api/digital-enquiry': { name: 'digital_enquiry', handler: digitalEnquiry, maxBytes: 64 * 1024 },
 };
 
 /** Random 10-character id (base32), used as the public reference and in file names. */
@@ -88,6 +92,14 @@ async function handle(request: Request, env: Env, ctx: ExecutionContext, cors: R
   const url = new URL(request.url);
 
   if (url.pathname === '/api/health' && request.method === 'GET') return json({ ok: true }, 200);
+
+  if (url.pathname === '/api/bench') {
+    if (request.method === 'OPTIONS') {
+      return new Response(null, { status: originOk ? 204 : 403, headers: { ...cors, 'Access-Control-Allow-Methods': 'GET' } });
+    }
+    if (request.method !== 'GET' && request.method !== 'HEAD') throw new ApiError(405, 'method_not_allowed', 'Method not allowed.');
+    return handleBench(request, env, ctx, cors);
+  }
 
   if (url.pathname === '/api/linkedin-posts' && request.method === 'OPTIONS') {
     return new Response(null, { status: originOk ? 204 : 403, headers: { ...cors, 'Access-Control-Allow-Methods': 'GET' } });

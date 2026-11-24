@@ -66,6 +66,25 @@ export function enquiryAck(to: string, siteUrl: string): MailMessage {
   };
 }
 
+/** Public address of the TalNXT Digital site, used in its acknowledgement email. */
+export const DIGITAL_SITE_URL = 'https://talnxtdigital.com';
+/** TalNXT Digital has no privacy page of its own; it is a TalNXT Technologies company and uses the group policy. */
+const GROUP_PRIVACY_URL = 'https://www.talnxt.com/privacy.html';
+
+export function digitalEnquiryAck(to: string): MailMessage {
+  return {
+    to: [to],
+    subject: 'We have received your enquiry - TalNXT Digital',
+    html: wrap(
+      `<p>Hello,</p>` +
+        `<p>Thank you for contacting TalNXT Digital. We have received your enquiry, and a member of our cloud team will get back to you within one business day.</p>` +
+        `<p>If you need to add anything in the meantime, simply reply to this email.</p>` +
+        `<p>Regards,<br>Team TalNXT Digital<br><a href="${DIGITAL_SITE_URL}" style="color:#1b5fc4">${DIGITAL_SITE_URL.replace(/^https?:\/\//, '')}</a></p>` +
+        `<p style="color:#58657a;font-size:12px">You are receiving this because this email address was entered in the contact form on our website. If that was not you, please ignore this message. TalNXT Digital is a TalNXT Technologies company. How we handle your data: <a href="${GROUP_PRIVACY_URL}">Privacy Policy</a>.</p>`,
+    ),
+  };
+}
+
 export function candidateAck(to: string, siteUrl: string): MailMessage {
   return {
     to: [to],

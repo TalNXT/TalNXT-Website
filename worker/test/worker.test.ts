@@ -204,6 +204,23 @@ describe('POST /api/enquiry', () => {
     expectNoPiiInLogs();
   });
 
+  it('records Talent Bench profile requests for the recruiter, but never echoes them in the acknowledgement', async () => {
+    const { res } = await run(post('/api/enquiry', enquiryForm({ profiles: 'tnb-1003, TNB-1015' })), testEnv({ DRY_RUN: 'false' }));
+    expect(res.status).toBe(200);
+    const item = calls.find((c) => c.url.includes('/lists/enq-list/items'));
+    expect(JSON.parse(String(item?.body)).fields.RequestedProfiles).toBe('TNB-1003, TNB-1015');
+    const [notify, ack] = calls.filter((c) => c.url.endsWith('/sendMail')).map((c) => JSON.parse(String(c.body)));
+    expect(notify.message.subject).toBe('New Talent Bench request: Acme Pvt Ltd (TNB-1003, TNB-1015)');
+    expect(notify.message.body.content).toContain('Requested bench profiles');
+    expect(ack.message.body.content).not.toContain('TNB-');
+  });
+
+  it('leaves RequestedProfiles empty for ordinary enquiries', async () => {
+    await run(post('/api/enquiry', enquiryForm()), testEnv({ DRY_RUN: 'false' }));
+    const item = calls.find((c) => c.url.includes('/lists/enq-list/items'));
+    expect(JSON.parse(String(item?.body)).fields.RequestedProfiles).toBeUndefined();
+  });
+
   it('still succeeds if only the list write fails (the email carries the lead)', async () => {
     graphFailures['/items'] = 403;
     const { res } = await run(post('/api/enquiry', enquiryForm()), testEnv({ DRY_RUN: 'false' }));
@@ -286,5 +303,82 @@ describe('POST /api/candidate', () => {
     expect(JSON.stringify(body)).not.toMatch(/graph|accessDenied|sharepoint/i);
     expect(calls.some((c) => c.url.includes('/items'))).toBe(false);
     expectNoPiiInLogs();
+  });
+});
+
+function digitalForm(fields: Record<string, string> = {}): FormData {
+  const f = new FormData();
+  const base: Record<string, string> = {
+    name: 'Asha Rao',
+    email: 'asha@acme.example',
+    company: 'Acme Pvt Ltd',
+    platform: 'Microsoft Azure',
+    interest: 'Cloud FinOps',
+    message: 'Our Azure bill doubled.',
+    consent: 'on',
+    website: '',
+    page: '/contact.html',
+    'cf-turnstile-response': 'token-ok',
+    ...fields,
+  };
+  for (const [k, v] of Object.entries(base)) f.set(k, v);
+  return f;
+}
+
+describe('POST /api/digital-enquiry', () => {
+  const DIGITAL = 'https://talnxtdigital.com';
+
+  it('accepts a submission from the Digital site in dry-run mode', async () => {
+    const { res, body } = await run(post('/api/digital-enquiry', digitalForm(), DIGITAL));
+    expect(res.status).toBe(200);
+    expect(body?.ok).toBe(true);
+    expect(res.headers.get('Access-Control-Allow-Origin')).toBe(DIGITAL);
+  });
+
+  it('allows "Not sure yet" (empty) platform and interest, and no company', async () => {
+    const { res } = await run(post('/api/digital-enquiry', digitalForm({ platform: '', interest: '', company: '' }), DIGITAL));
+    expect(res.status).toBe(200);
+  });
+
+  it('rejects unknown options, a bad email and missing consent', async () => {
+    const f = digitalForm({ platform: 'GCP', email: 'nope', consent: '' });
+    const { res, body } = await run(post('/api/digital-enquiry', f, DIGITAL));
+    expect(res.status).toBe(400);
+    expect(Object.keys(body?.error?.fields ?? {}).sort()).toEqual(['consent', 'email', 'platform']);
+  });
+
+  it('stores a Digital item in the enquiries list and emails from the same mailbox to the same inbox', async () => {
+    const { res } = await run(post('/api/digital-enquiry', digitalForm(), DIGITAL), testEnv({ DRY_RUN: 'false', ALLOWED_ORIGINS: DIGITAL }));
+    expect(res.status).toBe(200);
+
+    const item = calls.find((c) => c.url.includes('/lists/enq-list/items'));
+    const fields = JSON.parse(String(item?.body)).fields;
+    expect(fields).toMatchObject({
+      Title: 'Acme Pvt Ltd',
+      EnquiryType: 'Digital',
+      CloudPlatform: 'Microsoft Azure',
+      ServiceInterest: 'Cloud FinOps',
+      SourcePage: 'talnxtdigital.com/contact.html',
+      ConsentGiven: true,
+    });
+    expect(fields.Phone).toBeUndefined();
+
+    const mails = calls.filter((c) => c.url.endsWith('/users/careers%40talnxt.test/sendMail')).map((c) => JSON.parse(String(c.body)));
+    expect(mails).toHaveLength(2);
+    const [notify, ack] = mails;
+    expect(notify.message.subject).toBe('New TalNXT Digital enquiry: Acme Pvt Ltd');
+    expect(notify.message.toRecipients[0].emailAddress.address).toBe('recruiter@talnxt.test');
+    expect(notify.message.replyTo[0].emailAddress.address).toBe('asha@acme.example');
+    expect(ack.message.subject).toContain('TalNXT Digital');
+    expect(ack.message.body.content).toContain('talnxtdigital.com');
+    expect(ack.message.body.content).not.toContain('Asha');
+    expect(ack.message.body.content).not.toContain('Azure bill');
+    expectNoPiiInLogs();
+  });
+
+  it('uses the name as the list title when no company is given', async () => {
+    await run(post('/api/digital-enquiry', digitalForm({ company: '' }), DIGITAL), testEnv({ DRY_RUN: 'false', ALLOWED_ORIGINS: DIGITAL }));
+    const item = calls.find((c) => c.url.includes('/lists/enq-list/items'));
+    expect(JSON.parse(String(item?.body)).fields.Title).toBe('Asha Rao');
   });
 });

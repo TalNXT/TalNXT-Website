@@ -1,6 +1,6 @@
 # Website forms backend: setup guide
 
-This guide connects the website's **enquiry form** (home, Contingent Staffing and People & HR pages) and **job application form** (Careers page, plus the "Submit Your Resume" buttons) to Microsoft 365. It runs on free tiers only.
+This guide connects the website's **enquiry form** (home, Contingent Staffing and People & HR pages, plus the TalNXT Digital contact form, see section 11) and **job application form** (Careers page, plus the "Submit Your Resume" buttons) to Microsoft 365. It runs on free tiers only.
 
 ```
 Browser (www.talnxt.com, GitHub Pages)
@@ -38,7 +38,7 @@ Values in `<angle brackets>` are placeholders. Keep a private note (not in this 
 | `MAIL_TO` | The recruiter inbox (comma-separate several) |
 | `TURNSTILE_SECRET` | Step 4.2 |
 
-The optional LinkedIn feed adds two more secrets, `LINKEDIN_CLIENT_SECRET` and `LINKEDIN_SETUP_KEY`, covered in section 10.
+The optional LinkedIn feed adds two more secrets, `LINKEDIN_CLIENT_SECRET` and `LINKEDIN_SETUP_KEY`, covered in section 10. The Talent Bench page adds `BENCH_LIST_ID` (and optionally `BENCH_REFRESH_KEY`), covered in section 12.
 
 ---
 
@@ -199,7 +199,7 @@ To check it, run **GET** on the same URL. The app should be listed with role `wr
 
 ### 3.1 Create a shared mailbox (free, no licence)
 
-**Exchange admin center → Recipients → Mailboxes → Add a shared mailbox**, for example `careers@talnxt.com` (the name is up to you). This is **`MAIL_FROM`**. Notifications and acknowledgements are sent from it, and replies from candidates and clients land in it, so give the recruiters access.
+**Exchange admin center → Recipients → Mailboxes → Add a shared mailbox**, for example `enquiries@talnxt.com` with display name **TalNXT Enquiries** (recipients see this as the sender name). This is **`MAIL_FROM`**. Notifications and acknowledgements are sent from it, and replies from candidates and clients land in it, so give the recruiters access.
 
 > Shared mailboxes need no licence up to 50 GB. Don't convert it to a user mailbox, because that would need a paid licence.
 
@@ -217,7 +217,7 @@ Enable-OrganizationCustomization
 
 # 1) A scope that contains ONLY the sending mailbox
 New-ManagementScope -Name "TalNXT Forms Sender" `
-  -RecipientRestrictionFilter "PrimarySmtpAddress -eq 'careers@talnxt.com'"
+  -RecipientRestrictionFilter "PrimarySmtpAddress -eq 'enquiries@talnxt.com'"
 
 # 2) Register the app's service principal in Exchange.
 #    ObjectId = Entra admin center -> Enterprise applications -> "TalNXT Website Forms" -> Object ID
@@ -228,7 +228,7 @@ New-ServicePrincipal -AppId <CLIENT_ID> -ObjectId <ENTERPRISE_APP_OBJECT_ID> -Di
 New-ManagementRoleAssignment -App <CLIENT_ID> -Role "Application Mail.Send" -CustomResourceScope "TalNXT Forms Sender"
 
 # 4) Check: the first should show InScope = True, the second False
-Test-ServicePrincipalAuthorization -Identity <CLIENT_ID> -Resource careers@talnxt.com
+Test-ServicePrincipalAuthorization -Identity <CLIENT_ID> -Resource enquiries@talnxt.com
 Test-ServicePrincipalAuthorization -Identity <CLIENT_ID> -Resource <any-other-user>@talnxt.com
 ```
 
@@ -243,10 +243,10 @@ Microsoft is replacing Application Access Policies with RBAC for Applications, s
 
 ```powershell
 Connect-ExchangeOnline
-New-DistributionGroup -Name "TalNXT Forms Senders" -Type Security -Members careers@talnxt.com
+New-DistributionGroup -Name "TalNXT Forms Senders" -Type Security -Members enquiries@talnxt.com
 New-ApplicationAccessPolicy -AppId <CLIENT_ID> -PolicyScopeGroupId "TalNXT Forms Senders" `
-  -AccessRight RestrictAccess -Description "Website forms may send only as the careers mailbox"
-Test-ApplicationAccessPolicy -Identity careers@talnxt.com -AppId <CLIENT_ID>         # Granted
+  -AccessRight RestrictAccess -Description "Website forms may send only as the enquiries mailbox"
+Test-ApplicationAccessPolicy -Identity enquiries@talnxt.com -AppId <CLIENT_ID>         # Granted
 Test-ApplicationAccessPolicy -Identity <other-user>@talnxt.com -AppId <CLIENT_ID>    # Denied
 ```
 
@@ -532,3 +532,238 @@ Check **Cloudflare dashboard → Workers → talnxt-forms → Logs** for `linked
 | `ok` | Working. `count` is the number of posts synced |
 
 The connect page says **"Link expired"**: the sign-in took more than 10 minutes or the link was reused. Open the connect link again.
+
+---
+
+## 11. TalNXT Digital contact form (talnxtdigital.com)
+
+The **Get in touch** form on the TalNXT Digital site (`contact.html` in the `TalNXT-Digital` repo) uses this same Worker, Entra app, SharePoint site and mailboxes. Nothing new is created in Microsoft 365 apart from two list columns.
+
+```
+talnxtdigital.com/contact.html  --POST /api/digital-enquiry + Turnstile token-->  talnxt-forms Worker
+  ├─► SharePoint list "Website Enquiries"   (EnquiryType = "Digital")
+  └─► Exchange: notification from MAIL_FROM (enquiries@talnxt.com) to MAIL_TO, and a TalNXT Digital-branded acknowledgement to the sender
+```
+
+| Form field | List column | Notes |
+|---|---|---|
+| Company (or the name, if company is blank) | `Title` | |
+| Your name, Work email, Company | `FullName`, `Email`, `Company` | No phone is asked on this form |
+| Cloud platform | `CloudPlatform` | **New column**. "Not sure yet" is left blank |
+| I'm interested in | `ServiceInterest` | **New column**. "Not sure yet" is left blank |
+| Tell us more | `Message` | |
+| (automatic) | `EnquiryType` = `Digital`, `SourcePage` = `talnxtdigital.com/contact.html`, `ConsentGiven` = Yes | |
+
+### 11.1 Add the two columns (one time)
+
+In Graph Explorer (signed in as admin, Step 1.2), run a **POST** to `https://graph.microsoft.com/v1.0/sites/{site-id}/lists/{ENQUIRY_LIST_ID}/columns` **twice**, once with each body:
+
+```json
+{ "name": "CloudPlatform", "text": {} }
+```
+
+```json
+{ "name": "ServiceInterest", "text": {} }
+```
+
+Until these exist, Digital enquiries still reach the inbox by email, but the list item fails (`digital_enquiry_list_item`, 400 `invalidRequest` in the logs). Tip: add a view on the list filtered to `EnquiryType = Digital`.
+
+### 11.2 Allow the Digital site
+
+1. **Turnstile:** Cloudflare dashboard → **Turnstile** → widget **TalNXT website forms** → **Settings** → add hostnames `talnxtdigital.com`, `www.talnxtdigital.com` and `talnxt.github.io` → Save. (The Digital site uses the same public site key.) Without this, the form shows "The security check expired or failed".
+2. **Origins:** `ALLOWED_ORIGINS` in `worker/wrangler.toml` already lists `https://talnxtdigital.com`, `https://www.talnxtdigital.com` and `https://talnxt.github.io` (the GitHub Pages address, used until the custom domain is live). Remove `talnxt.github.io` once the Digital site is only served from its own domain.
+3. Deploy the Worker: `cd worker && npx wrangler deploy`.
+
+The Digital site's `js/config.js` holds `formsApi` and `turnstileSiteKey`. If either is emptied, its form falls back to opening a pre-filled email.
+
+### 11.3 Test
+
+On the Digital site's **Contact** page, submit a test with your own email. Check: a `Digital` item in **Website Enquiries**, a "New TalNXT Digital enquiry: …" email in the `MAIL_TO` inbox (sent from enquiries@talnxt.com, Reply goes to the visitor), and a "We have received your enquiry - TalNXT Digital" acknowledgement. Delete the test item.
+
+### 11.4 Changing the dropdowns
+
+The **Cloud platform** and **I'm interested in** options must match `OPTIONS.cloudPlatform` and `OPTIONS.digitalInterest` in `worker/src/validate.ts` exactly. Change both, then redeploy the Worker.
+
+---
+
+## 12. Talent Bench (talent-bench.html)
+
+The **Talent Bench** page lists anonymised bench profiles that the team keeps in a SharePoint list. Visitors filter by vertical, technology, experience, availability, work mode, location and budget, shortlist profiles, and send one **Request profiles** enquiry. That enquiry goes through the existing `/api/enquiry` route into **Website Enquiries**, with the profile IDs in a new `RequestedProfiles` column.
+
+```
+SharePoint list "Bench Profiles"  ◄── recruiters add/edit items with the SharePoint form
+  │  Graph GET (Sites.Selected, the same app and site grant as the forms)
+  ▼
+talnxt-forms Worker  GET /api/bench
+  │  only items with "Show on website" = Yes, only whitelisted columns
+  │  cached 10 min (memory + KV key bench:snapshot); last good copy served if Graph fails
+  ▼
+www.talnxt.com/talent-bench.html  (filters run in the browser; ?tech=reactjs&vertical=engineering links are shareable)
+  │  "Request profiles"
+  ▼
+POST /api/enquiry (staffing, profiles=TNB-1003, TNB-1015)  ─►  Website Enquiries + recruiter email
+```
+
+**Nothing new in Entra or Exchange.** The app's existing `write` grant on the Recruitment site (Step 2.4) also allows reading, and the list lives on that same site.
+
+**What must never go in the list:** candidate names, employer or client names, email, phone, LinkedIn URLs or photos. The Worker only ever reads the columns in the table below, so **Internal Notes** is never sent to the website, but every other column is public.
+
+### 12.1 Create the "Bench Profiles" list (Graph Explorer, about 5 minutes)
+
+Create the list through Graph, as in Step 1.3, so the **internal column names match what the Worker reads**. (Creating columns by hand with names like "Experience (yrs)" produces internal names such as `Experience_x0020__x0028_yrs_x0029_`, which the Worker cannot find.) You can rename the *display* names freely afterwards.
+
+In Graph Explorer (signed in as admin, Step 1.2), run a **POST** to `https://graph.microsoft.com/v1.0/sites/{site-id}/lists` with:
+
+```json
+{
+  "displayName": "Bench Profiles",
+  "list": { "template": "genericList" },
+  "columns": [
+    { "name": "Role", "displayName": "Role", "text": { "maxLength": 120 }, "required": true },
+    { "name": "Vertical", "displayName": "Vertical", "required": true,
+      "choice": { "allowTextEntry": false, "displayAs": "dropDownMenu",
+        "choices": ["Engineering", "Cloud & DevOps", "Data & AI", "QA & Testing", "ERP / SAP", "Design", "Project / Delivery"] } },
+    { "name": "PrimaryTech", "displayName": "Primary Technology", "required": true,
+      "choice": { "allowTextEntry": true, "displayAs": "dropDownMenu",
+        "choices": ["ReactJS", "Angular", "Vue.js", "Node.js", "Java", ".NET", "Python", "PHP", "Golang", "Flutter", "Android", "iOS", "React Native",
+                    "DevOps", "AWS", "Azure", "GCP", "Data Engineering", "Power BI", "Data Science", "Salesforce", "SAP", "ServiceNow",
+                    "QA Automation", "Manual Testing", "UI/UX", "Project Management", "Business Analysis"] } },
+    { "name": "SkillSet", "displayName": "SkillSet", "text": { "allowMultipleLines": true } },
+    { "name": "ExperienceYears", "displayName": "Experience (yrs)", "required": true,
+      "number": { "decimalPlaces": "one", "minimum": 0, "maximum": 40 } },
+    { "name": "Availability", "displayName": "Availability",
+      "choice": { "allowTextEntry": false, "displayAs": "dropDownMenu",
+        "choices": ["Immediate", "15 days", "30 days", "60 days", "From date"] },
+      "defaultValue": { "value": "Immediate" } },
+    { "name": "AvailableFrom", "displayName": "Available From", "dateTime": { "format": "dateOnly" } },
+    { "name": "Location", "displayName": "Location", "text": { "maxLength": 80 } },
+    { "name": "WorkMode", "displayName": "Work Mode",
+      "choice": { "allowTextEntry": false, "displayAs": "checkBoxes", "choices": ["Onsite", "Hybrid", "Remote"] } },
+    { "name": "Summary", "displayName": "Summary", "text": { "maxLength": 255 } },
+    { "name": "CostINR", "displayName": "Cost (INR / Month)", "number": { "decimalPlaces": "none", "minimum": 0 } },
+    { "name": "CostUSD", "displayName": "Cost (USD / Month)", "number": { "decimalPlaces": "none", "minimum": 0 } },
+    { "name": "Published", "displayName": "Show on website", "boolean": {}, "defaultValue": { "value": "0" } },
+    { "name": "InternalNotes", "displayName": "Internal Notes", "text": { "allowMultipleLines": true } }
+  ]
+}
+```
+
+Copy the `id` from the response. This is **`BENCH_LIST_ID`**. (Or later: **GET** `https://graph.microsoft.com/v1.0/sites/{site-id}/lists?$select=id,displayName` and find "Bench Profiles".)
+
+| Column (display name) | Internal name | What to enter | On the website |
+|---|---|---|---|
+| **Profile ID** (built-in Title) | `Title` | A code such as `TNB-1042`. Letters, digits and hyphens only. Never a name | Card badge, shortlist, enquiry |
+| Role | `Role` | "Senior React Developer" | Card title |
+| Vertical | `Vertical` | Choice | Coloured pill filter |
+| Primary Technology | `PrimaryTech` | Choice; new values can be typed in | Technology filter |
+| SkillSet | `SkillSet` | Comma-separated: `React, Redux, TypeScript` | Skill chips + search |
+| Experience (yrs) | `ExperienceYears` | 0–40, one decimal | Experience filter |
+| Availability | `Availability` | Immediate / 15 / 30 / 60 days / From date | Availability filter + badge |
+| Available From | `AvailableFrom` | Only when Availability = From date | "From 15 Dec" |
+| Location | `Location` | City | Location filter |
+| Work Mode | `WorkMode` | One or more | Work mode filter |
+| Summary | `Summary` | One anonymised line, max 255 characters | Card text |
+| Cost (INR / Month) | `CostINR` | Whole rupees per month. Blank = "On request" | ₹ price + budget filter |
+| Cost (USD / Month) | `CostUSD` | Whole dollars per month. Blank = "On request" | $ price (currency toggle) |
+| Show on website | `Published` | Yes to publish | Only Yes items are shown |
+| Internal Notes | `InternalNotes` | Anything internal (candidate name, vendor, rate history) | **Never sent** |
+
+Two settings Graph can't make. Do these in SharePoint (open the list → ⚙ **List settings**):
+
+1. **Rename Title:** List settings → Columns → **Title** → Column name `Profile ID` → *Enforce unique values* **Yes** (SharePoint asks to index the column: OK) → Save. The internal name stays `Title`.
+2. **Vertical choices:** edit the choices of **Vertical** or **Primary Technology** any time (column → Edit). The website builds its filters from whatever values are in use, so there's nothing to change in code.
+
+### 12.2 Set up the entry form
+
+SharePoint generates a form for the list. Recruiters use it via **+ New** or by opening an item.
+
+1. **Order and hide fields:** open the list → **+ New** → in the form, top right, **Edit form** (pencil) → **Edit columns**. Drag fields into this order and untick any you don't need: Profile ID, Role, Vertical, Primary Technology, SkillSet, Experience (yrs), Availability, Available From, Location, Work Mode, Summary, Cost (INR / Month), Cost (USD / Month), Show on website, Internal Notes → **Save**.
+2. **Show "Available From" only when needed:** in the same form → Edit form → **Edit columns** → hover **Available From** → ⋮ → **Edit conditional formula** →
+   ```
+   =if([$Availability] == 'From date', 'true', 'false')
+   ```
+   → Save.
+3. **Optional: group the form into sections.** Edit form → **Configure layout** → *Apply formatting to*: **Body** → paste:
+   ```json
+   {
+     "sections": [
+       { "displayname": "Profile", "fields": ["Profile ID", "Role", "Vertical", "Primary Technology", "Summary"] },
+       { "displayname": "Skills & experience", "fields": ["SkillSet", "Experience (yrs)"] },
+       { "displayname": "Availability", "fields": ["Availability", "Available From", "Location", "Work Mode"] },
+       { "displayname": "Commercials", "fields": ["Cost (INR / Month)", "Cost (USD / Month)"] },
+       { "displayname": "Publishing", "fields": ["Show on website", "Internal Notes"] }
+     ]
+   }
+   ```
+   → **Save**. Field names here are the display names, so update this JSON if you rename a column.
+4. **Optional, Power Apps:** for a fully custom form, use list → **Integrate → Power Apps → Customize forms**. It isn't needed for this feature.
+
+### 12.3 Views for the team
+
+1. **Live on website:** list → **All Items** ▾ → **Create new view** → List, name "Live on website" → then ▾ → **Edit current view**: Filter `Show on website` is equal to `Yes`; Group by `Primary Technology`; Sort by `Experience (yrs)` descending → OK.
+2. **Drafts:** the same, with `Show on website` is equal to `No`.
+3. **Optional: Live/Draft pill.** Hover the **Show on website** column header → ▾ → **Column settings → Format this column → Advanced mode** → paste:
+   ```json
+   {
+     "$schema": "https://developer.microsoft.com/json-schemas/sp/v2/column-formatting.schema.json",
+     "elmType": "div",
+     "txtContent": "=if(@currentField, 'Live', 'Draft')",
+     "style": {
+       "padding": "2px 10px", "border-radius": "12px", "font-weight": "600", "display": "inline-block",
+       "color": "=if(@currentField, '#2f8f5b', '#58657a')",
+       "background-color": "=if(@currentField, '#e5f2ea', '#edf0f5')"
+     }
+   }
+   ```
+4. **Permissions (optional):** List settings → **Permissions for this list** → give the recruiting team **Edit**. The website doesn't need anything here; it reads through the app grant.
+
+### 12.4 Add the RequestedProfiles column to Website Enquiries (one time)
+
+**POST** to `https://graph.microsoft.com/v1.0/sites/{site-id}/lists/{ENQUIRY_LIST_ID}/columns`:
+
+```json
+{ "name": "RequestedProfiles", "displayName": "Requested Profiles", "text": {} }
+```
+
+Until it exists, bench requests still reach the recruiter by email (the subject reads "New Talent Bench request: Company (TNB-…)"), but the list item fails (`enquiry_list_item`, 400 `invalidRequest` in the logs). Tip: add a Website Enquiries view filtered to `Requested Profiles` *is not empty*.
+
+### 12.5 Configure and deploy the Worker
+
+```bash
+cd worker
+npx wrangler secret put BENCH_LIST_ID          # paste the list id from 12.1
+# Optional: a key for instant refresh (otherwise LINKEDIN_SETUP_KEY is used)
+node -e "console.log(require('crypto').randomBytes(24).toString('hex'))"
+npx wrangler secret put BENCH_REFRESH_KEY      # paste the value printed above
+npm run check
+npx wrangler deploy
+```
+
+Check it: open `https://talnxt-forms.talnxt.workers.dev/api/bench` in a browser. You should see `{"ok":true,…,"profiles":[…]}` containing only items marked **Show on website = Yes**, and no `InternalNotes`.
+
+Then push the website (`talent-bench.html`, `js/bench.js`, `css/site.css`, `js/main.js`) to `main`; GitHub Pages deploys it. The page is linked from the footer of every page, the Contingent Staffing hero and the home page CTA, and is in `sitemap.xml`.
+
+### 12.6 Day-to-day use
+
+| Task | How |
+|---|---|
+| Add a profile | List → **+ New** → fill in → **Show on website = Yes** → Save. Live within **10 minutes** |
+| Show it immediately | Open `https://talnxt-forms.talnxt.workers.dev/api/bench?refresh=<BENCH_REFRESH_KEY>` once. Visitors' browsers may keep their copy for up to 5 more minutes |
+| Prepare without publishing | Leave **Show on website = No** (the default) |
+| Placed / no longer available | Set **Show on website = No** (keeps history) or delete the item |
+| New technology or vertical | Type it into Primary Technology, or edit the Vertical choices. Filters update automatically. A new vertical gets a colour from the spare palette; to give it a fixed colour, add it to `VERTICAL_COLOURS` in `js/bench.js` |
+| Share a filtered view | Filter the page and copy the URL, e.g. `talent-bench.html?tech=reactjs,angular&avail=now` |
+| Preview without SharePoint | `talent-bench.html?demo=1` loads `data/bench-sample.json` (sample data, not linked anywhere) |
+
+### 12.7 Troubleshooting
+
+| Symptom | Cause and fix |
+|---|---|
+| Page shows "We couldn't load the bench right now" and `/api/bench` returns `bench_not_configured` | `BENCH_LIST_ID` isn't set. Run step 12.5 |
+| `/api/bench` returns `bench_unavailable`; logs show `bench_fetch_failed` with `403 accessDenied` | The app's site grant is missing or on another site. Step 2.4 |
+| `bench_fetch_failed` with `400 invalidRequest` | A column internal name differs. **GET** `…/lists/{BENCH_LIST_ID}/columns?$select=name,displayName` and compare with 12.1 |
+| A profile doesn't appear | **Show on website** isn't Yes, Profile ID or Role is empty, or you're within the 10-minute cache (use the refresh link) |
+| Shows old data while SharePoint is down | By design: the last good snapshot is served until Graph recovers (`"source":"stale"` in the JSON) |
+| Bench request saved without profile IDs | `RequestedProfiles` column missing. Step 12.4 |
+
+Logs: `cd worker && npx wrangler tail`. The page itself never shows internal error details.

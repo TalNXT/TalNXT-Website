@@ -1,0 +1,491 @@
+{
+ "ok": true,
+ "source": "demo",
+ "updatedAt": "2026-11-24T00:00:00Z",
+ "count": 20,
+ "profiles": [
+  {
+   "id": "TNB-1001",
+   "role": "Senior React Developer",
+   "vertical": "Engineering",
+   "tech": "ReactJS",
+   "skills": [
+    "React",
+    "Redux",
+    "TypeScript",
+    "Next.js",
+    "Jest",
+    "REST"
+   ],
+   "experience": 6.5,
+   "availability": "Immediate",
+   "availableFrom": null,
+   "location": "Bengaluru",
+   "workMode": [
+    "Hybrid",
+    "Remote"
+   ],
+   "summary": "Built and scaled customer dashboards for a BFSI platform serving 2M users.",
+   "costInr": 180000,
+   "costUsd": 2200,
+   "updated": "2026-11-10"
+  },
+  {
+   "id": "TNB-1002",
+   "role": "React Developer",
+   "vertical": "Engineering",
+   "tech": "ReactJS",
+   "skills": [
+    "React",
+    "JavaScript",
+    "Tailwind",
+    "Redux Toolkit"
+   ],
+   "experience": 3.2,
+   "availability": "15 days",
+   "availableFrom": null,
+   "location": "Hyderabad",
+   "workMode": [
+    "Remote"
+   ],
+   "summary": "Delivered responsive e-commerce storefronts with strong Lighthouse scores.",
+   "costInr": 95000,
+   "costUsd": 1150,
+   "updated": "2026-11-11"
+  },
+  {
+   "id": "TNB-1003",
+   "role": "Angular Lead",
+   "vertical": "Engineering",
+   "tech": "Angular",
+   "skills": [
+    "Angular",
+    "RxJS",
+    "NgRx",
+    "TypeScript",
+    "Micro-frontends"
+   ],
+   "experience": 9,
+   "availability": "Immediate",
+   "availableFrom": null,
+   "location": "Pune",
+   "workMode": [
+    "Onsite",
+    "Hybrid"
+   ],
+   "summary": "Led a 6-member UI team modernising an insurance portal from AngularJS.",
+   "costInr": 240000,
+   "costUsd": 2900,
+   "updated": "2026-11-12"
+  },
+  {
+   "id": "TNB-1004",
+   "role": "Java Backend Engineer",
+   "vertical": "Engineering",
+   "tech": "Java",
+   "skills": [
+    "Java 17",
+    "Spring Boot",
+    "Microservices",
+    "Kafka",
+    "PostgreSQL"
+   ],
+   "experience": 5.5,
+   "availability": "30 days",
+   "availableFrom": null,
+   "location": "Chennai",
+   "workMode": [
+    "Hybrid"
+   ],
+   "summary": "Designed payment microservices handling 1,500 TPS.",
+   "costInr": 160000,
+   "costUsd": 1950,
+   "updated": "2026-11-13"
+  },
+  {
+   "id": "TNB-1005",
+   "role": "Java Full Stack Developer",
+   "vertical": "Engineering",
+   "tech": "Java",
+   "skills": [
+    "Java",
+    "Spring Boot",
+    "React",
+    "MySQL",
+    "Docker"
+   ],
+   "experience": 4,
+   "availability": "Immediate",
+   "availableFrom": null,
+   "location": "Bengaluru",
+   "workMode": [
+    "Remote"
+   ],
+   "summary": "",
+   "costInr": 120000,
+   "costUsd": 1450,
+   "updated": "2026-11-14"
+  },
+  {
+   "id": "TNB-1006",
+   "role": ".NET Core Developer",
+   "vertical": "Engineering",
+   "tech": ".NET",
+   "skills": [
+    "C#",
+    ".NET 8",
+    "ASP.NET Core",
+    "Azure",
+    "SQL Server"
+   ],
+   "experience": 7,
+   "availability": "From date",
+   "availableFrom": "2026-12-15",
+   "location": "Kochi",
+   "workMode": [
+    "Remote"
+   ],
+   "summary": "Migrated legacy WCF services to .NET 8 APIs on Azure.",
+   "costInr": 170000,
+   "costUsd": 2050,
+   "updated": "2026-11-15"
+  },
+  {
+   "id": "TNB-1007",
+   "role": "Node.js Developer",
+   "vertical": "Engineering",
+   "tech": "Node.js",
+   "skills": [
+    "Node.js",
+    "NestJS",
+    "MongoDB",
+    "AWS Lambda",
+    "GraphQL"
+   ],
+   "experience": 4.5,
+   "availability": "Immediate",
+   "availableFrom": null,
+   "location": "Bengaluru",
+   "workMode": [
+    "Hybrid",
+    "Remote"
+   ],
+   "summary": "Built serverless APIs for a logistics tracking product.",
+   "costInr": 130000,
+   "costUsd": 1600,
+   "updated": "2026-11-16"
+  },
+  {
+   "id": "TNB-1008",
+   "role": "Python Developer",
+   "vertical": "Engineering",
+   "tech": "Python",
+   "skills": [
+    "Python",
+    "Django",
+    "FastAPI",
+    "Celery",
+    "PostgreSQL"
+   ],
+   "experience": 3.8,
+   "availability": "15 days",
+   "availableFrom": null,
+   "location": "Coimbatore",
+   "workMode": [
+    "Remote"
+   ],
+   "summary": "",
+   "costInr": 100000,
+   "costUsd": 1200,
+   "updated": "2026-11-17"
+  },
+  {
+   "id": "TNB-1009",
+   "role": "Flutter Developer",
+   "vertical": "Engineering",
+   "tech": "Flutter",
+   "skills": [
+    "Flutter",
+    "Dart",
+    "Firebase",
+    "Bloc",
+    "REST"
+   ],
+   "experience": 3,
+   "availability": "Immediate",
+   "availableFrom": null,
+   "location": "Hyderabad",
+   "workMode": [
+    "Remote"
+   ],
+   "summary": "Shipped 4 apps to Play Store and App Store.",
+   "costInr": 90000,
+   "costUsd": 1100,
+   "updated": "2026-11-18"
+  },
+  {
+   "id": "TNB-1010",
+   "role": "Android Developer",
+   "vertical": "Engineering",
+   "tech": "Android",
+   "skills": [
+    "Kotlin",
+    "Jetpack Compose",
+    "MVVM",
+    "Coroutines"
+   ],
+   "experience": 5,
+   "availability": "30 days",
+   "availableFrom": null,
+   "location": "Bengaluru",
+   "workMode": [
+    "Hybrid"
+   ],
+   "summary": "",
+   "costInr": 140000,
+   "costUsd": 1700,
+   "updated": "2026-11-19"
+  },
+  {
+   "id": "TNB-1011",
+   "role": "DevOps Engineer",
+   "vertical": "Cloud & DevOps",
+   "tech": "DevOps",
+   "skills": [
+    "AWS",
+    "Terraform",
+    "Kubernetes",
+    "Jenkins",
+    "GitHub Actions",
+    "Prometheus"
+   ],
+   "experience": 6,
+   "availability": "Immediate",
+   "availableFrom": null,
+   "location": "Bengaluru",
+   "workMode": [
+    "Hybrid",
+    "Remote"
+   ],
+   "summary": "Cut cloud spend 28% through right-sizing and autoscaling.",
+   "costInr": 190000,
+   "costUsd": 2300,
+   "updated": "2026-11-20"
+  },
+  {
+   "id": "TNB-1012",
+   "role": "Azure Cloud Engineer",
+   "vertical": "Cloud & DevOps",
+   "tech": "Azure",
+   "skills": [
+    "Azure",
+    "AKS",
+    "Bicep",
+    "Azure DevOps",
+    "Entra ID"
+   ],
+   "experience": 8,
+   "availability": "15 days",
+   "availableFrom": null,
+   "location": "Pune",
+   "workMode": [
+    "Remote"
+   ],
+   "summary": "Landing-zone design and migration for a manufacturing group.",
+   "costInr": 220000,
+   "costUsd": 2650,
+   "updated": "2026-11-21"
+  },
+  {
+   "id": "TNB-1013",
+   "role": "Power BI Developer",
+   "vertical": "Data & AI",
+   "tech": "Power BI",
+   "skills": [
+    "Power BI",
+    "DAX",
+    "Power Query",
+    "SQL",
+    "Azure Synapse"
+   ],
+   "experience": 4,
+   "availability": "Immediate",
+   "availableFrom": null,
+   "location": "Chennai",
+   "workMode": [
+    "Remote"
+   ],
+   "summary": "Built executive sales dashboards for a retail chain.",
+   "costInr": 110000,
+   "costUsd": 1350,
+   "updated": "2026-11-22"
+  },
+  {
+   "id": "TNB-1014",
+   "role": "Data Scientist",
+   "vertical": "Data & AI",
+   "tech": "Python",
+   "skills": [
+    "Python",
+    "scikit-learn",
+    "PyTorch",
+    "SQL",
+    "MLflow",
+    "LLMs"
+   ],
+   "experience": 5.5,
+   "availability": "60 days",
+   "availableFrom": null,
+   "location": "Bengaluru",
+   "workMode": [
+    "Hybrid"
+   ],
+   "summary": "Developed churn and demand-forecasting models in production.",
+   "costInr": 210000,
+   "costUsd": 2550,
+   "updated": "2026-11-23"
+  },
+  {
+   "id": "TNB-1015",
+   "role": "Data Engineer",
+   "vertical": "Data & AI",
+   "tech": "Data Engineering",
+   "skills": [
+    "Spark",
+    "Databricks",
+    "Airflow",
+    "Python",
+    "Snowflake"
+   ],
+   "experience": 6.5,
+   "availability": "Immediate",
+   "availableFrom": null,
+   "location": "Hyderabad",
+   "workMode": [
+    "Remote"
+   ],
+   "summary": "",
+   "costInr": 200000,
+   "costUsd": 2400,
+   "updated": "2026-11-10"
+  },
+  {
+   "id": "TNB-1016",
+   "role": "QA Automation Engineer",
+   "vertical": "QA & Testing",
+   "tech": "QA Automation",
+   "skills": [
+    "Selenium",
+    "Java",
+    "TestNG",
+    "Cucumber",
+    "RestAssured",
+    "JIRA"
+   ],
+   "experience": 5,
+   "availability": "Immediate",
+   "availableFrom": null,
+   "location": "Bengaluru",
+   "workMode": [
+    "Onsite",
+    "Hybrid"
+   ],
+   "summary": "Automated 1,200+ regression cases, cutting release time by 40%.",
+   "costInr": 105000,
+   "costUsd": 1300,
+   "updated": "2026-11-11"
+  },
+  {
+   "id": "TNB-1017",
+   "role": "SDET (Playwright)",
+   "vertical": "QA & Testing",
+   "tech": "QA Automation",
+   "skills": [
+    "Playwright",
+    "TypeScript",
+    "Cypress",
+    "CI/CD"
+   ],
+   "experience": 3.5,
+   "availability": "15 days",
+   "availableFrom": null,
+   "location": "Noida",
+   "workMode": [
+    "Remote"
+   ],
+   "summary": "",
+   "costInr": 90000,
+   "costUsd": 1100,
+   "updated": "2026-11-12"
+  },
+  {
+   "id": "TNB-1018",
+   "role": "SAP FICO Consultant",
+   "vertical": "ERP / SAP",
+   "tech": "SAP",
+   "skills": [
+    "SAP S/4HANA",
+    "FICO",
+    "Integration with MM/SD"
+   ],
+   "experience": 10,
+   "availability": "30 days",
+   "availableFrom": null,
+   "location": "Mumbai",
+   "workMode": [
+    "Onsite"
+   ],
+   "summary": "Two end-to-end S/4HANA implementations.",
+   "costInr": null,
+   "costUsd": null,
+   "updated": "2026-11-13"
+  },
+  {
+   "id": "TNB-1019",
+   "role": "UI/UX Designer",
+   "vertical": "Design",
+   "tech": "UI/UX",
+   "skills": [
+    "Figma",
+    "Design Systems",
+    "User Research",
+    "Prototyping"
+   ],
+   "experience": 4,
+   "availability": "Immediate",
+   "availableFrom": null,
+   "location": "Bengaluru",
+   "workMode": [
+    "Hybrid"
+   ],
+   "summary": "Redesigned onboarding flows, lifting activation by 18%.",
+   "costInr": 100000,
+   "costUsd": 1200,
+   "updated": "2026-11-14"
+  },
+  {
+   "id": "TNB-1020",
+   "role": "Technical Project Manager",
+   "vertical": "Project / Delivery",
+   "tech": "Project Management",
+   "skills": [
+    "Scrum",
+    "JIRA",
+    "Stakeholder Management",
+    "PMP"
+   ],
+   "experience": 12,
+   "availability": "From date",
+   "availableFrom": "2026-12-15",
+   "location": "Bengaluru",
+   "workMode": [
+    "Onsite",
+    "Hybrid"
+   ],
+   "summary": "Managed delivery of a 25-member multi-vendor programme.",
+   "costInr": 260000,
+   "costUsd": 3150,
+   "updated": "2026-11-15"
+  }
+ ]
+}

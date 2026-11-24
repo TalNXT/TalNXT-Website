@@ -51,13 +51,15 @@ async function getToken(env: Env): Promise<string> {
   return data.access_token;
 }
 
-async function graphRequest(env: Env, stage: string, method: string, path: string, body: BodyInit, contentType: string, timeoutMs = 15_000): Promise<Response> {
+async function graphRequest(env: Env, stage: string, method: string, path: string, body?: BodyInit, contentType?: string, timeoutMs = 15_000): Promise<Response> {
   const token = await getToken(env);
+  const headers: Record<string, string> = { Authorization: `Bearer ${token}`, Accept: 'application/json' };
+  if (contentType) headers['Content-Type'] = contentType;
   for (let attempt = 0; ; attempt++) {
     const res = await fetch(`${GRAPH}${path}`, {
       method,
       body,
-      headers: { Authorization: `Bearer ${token}`, 'Content-Type': contentType },
+      headers,
       signal: AbortSignal.timeout(timeoutMs),
     });
     if (res.ok) return res;
@@ -113,6 +115,28 @@ export async function createListItem(env: Env, listId: string, fields: ListField
   );
   const item = (await res.json()) as { id: string };
   return { id: item.id };
+}
+
+/**
+ * Reads every item of a SharePoint list (following @odata.nextLink pages) and returns each
+ * item's `fields`, limited to `select` plus the item's lastModifiedDateTime as `_modified`.
+ */
+export async function listItems(env: Env, listId: string, select: readonly string[], stage: string, maxPages = 20): Promise<Record<string, unknown>[]> {
+  const query = `$top=500&$select=id,lastModifiedDateTime&$expand=fields($select=${select.map(encodeURIComponent).join(',')})`;
+  let path: string | null = `/sites/${encodeURIComponent(env.SHAREPOINT_SITE_ID)}/lists/${encodeURIComponent(listId)}/items?${query}`;
+  const out: Record<string, unknown>[] = [];
+  for (let page = 0; path && page < maxPages; page++) {
+    const res = await graphRequest(env, stage, 'GET', path);
+    const data = (await res.json()) as {
+      value?: { lastModifiedDateTime?: string; fields?: Record<string, unknown> }[];
+      '@odata.nextLink'?: string;
+    };
+    for (const item of data.value ?? []) out.push({ ...(item.fields ?? {}), _modified: item.lastModifiedDateTime });
+    const next = data['@odata.nextLink'];
+    // nextLink is an absolute Graph URL; only follow it if it stays on Graph.
+    path = next && next.startsWith(GRAPH) ? next.slice(GRAPH.length) : null;
+  }
+  return out;
 }
 
 export interface MailMessage {

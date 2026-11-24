@@ -276,10 +276,26 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     };
 
-    var enqOpen = function (mode, trigger) {
+    // prefill (optional): { fieldName: value }, e.g. from the Talent Bench shortlist.
+    var enqOpen = function (mode, trigger, prefill) {
       enqForm.reset();
       var chosen = mode === 'hr' || mode === 'staffing';
       enqSetMode(chosen ? mode : '');
+      var profilesNote = document.getElementById('enq-profiles-note');
+      if (profilesNote) profilesNote.hidden = true;
+      // reset() leaves hidden inputs as they were, so clear the Talent Bench profile list explicitly
+      var profilesInput = enqForm.elements.namedItem('profiles');
+      if (profilesInput) profilesInput.value = '';
+      if (prefill) {
+        Object.keys(prefill).forEach(function (name) {
+          var el = enqForm.elements.namedItem(name);
+          if (el && 'value' in el) el.value = prefill[name];
+        });
+        if (profilesNote && prefill.profiles) {
+          profilesNote.hidden = false;
+          document.getElementById('enq-profiles-list').textContent = prefill.profiles;
+        }
+      }
       enqError.textContent = '';
       enqForm.querySelectorAll('[aria-invalid]').forEach(function (el) { el.removeAttribute('aria-invalid'); });
       if (window.TalnxtForms) window.TalnxtForms.setBusy(enqSubmit, false);
@@ -298,6 +314,8 @@ document.addEventListener('DOMContentLoaded', function () {
       document.body.classList.remove('cr-modal-open');
       if (enqLastTrigger) enqLastTrigger.focus();
     };
+
+    window.TalnxtEnquiry = { open: enqOpen };
 
     document.querySelectorAll('.js-enquiry').forEach(function (link) {
       link.addEventListener('click', function (e) {
@@ -398,6 +416,7 @@ document.addEventListener('DOMContentLoaded', function () {
         'Company size: ' + val('company_size'),
         'Timeline: ' + val('timeline')
       ] : [
+        'Talent Bench profiles: ' + val('profiles'),
         'Role(s) / skills: ' + val('roles'),
         'Number of positions: ' + val('positions'),
         'Engagement model: ' + val('engagement_model'),

@@ -24,7 +24,7 @@ export function docxBytes(names = ['[Content_Types].xml', 'word/document.xml'], 
 
 export function testEnv(overrides: Partial<Env> = {}, allow = true): Env {
   return {
-    ALLOWED_ORIGINS: 'https://www.talnxt.com,https://talnxt.com',
+    ALLOWED_ORIGINS: 'https://www.talnxt.com,https://talnxt.com,https://talnxtdigital.com',
     DRY_RUN: 'true',
     TURNSTILE_SECRET: 'test-secret',
     TENANT_ID: 'tenant',

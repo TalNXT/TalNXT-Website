@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Talent Bench: Pre-assessed Developers Available Now | TalNXT Technologies</title>
+<meta name="description" content="Browse anonymised, pre-assessed developers and tech specialists on the TalNXT bench. Filter by vertical, technology, experience and availability, then request profiles for contract or contract-to-hire." />
+<link rel="canonical" href="https://www.talnxt.com/talent-bench.html" />
+<meta name="robots" content="index, follow" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Talent Bench: Pre-assessed Developers Available Now | TalNXT Technologies" />
+<meta property="og:description" content="Browse anonymised, pre-assessed developers and tech specialists on the TalNXT bench. Filter by vertical, technology, experience and availability, then request profiles for contract or contract-to-hire." />
+<meta property="og:url" content="https://www.talnxt.com/talent-bench.html" />
+<meta property="og:image" content="https://www.talnxt.com/logo.png" />
+<meta property="og:site_name" content="TalNXT Technologies" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Talent Bench: Pre-assessed Developers Available Now | TalNXT Technologies" />
+<meta name="twitter:description" content="Browse anonymised, pre-assessed developers and tech specialists on the TalNXT bench. Filter by vertical, technology, experience and availability, then request profiles for contract or contract-to-hire." />
+<meta name="twitter:image" content="https://www.talnxt.com/logo.png" />
+<link rel="icon" href="logo.png" />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;0,600;1,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<link href="css/site.css" rel="stylesheet" />
+<script src="js/consent.js"></script>
+</head>
+<body>
+
+<header>
+  <nav class="site-nav">
+    <div class="container" style="display:flex; align-items:center; justify-content:space-between; width:100%;">
+      <a class="logo" href="index.html"><img src="logo.png" alt="TalNXT Technologies"></a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+      <ul class="nav-links">
+        <li class=""><a href="about.html">About Us</a></li>
+        <li class=""><a href="contingent-staffing.html">Contingent Staffing</a></li>
+        <li class=""><a href="people-hr-solutions.html">People &amp; HR Solutions</a></li>
+        <li class=""><a href="thought-leadership.html">Thought Leadership</a></li>
+        <li class=""><a href="index.html#contact">Contact Us</a></li>
+      </ul>
+      <div class="nav-cta desktop-only"><a class="btn accent" href="index.html#contact">Talk to Our Experts</a><a class="nav-phone" href="tel:+919606629269" aria-label="Call TalNXT at +91 96066 29269"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>+91 96066 29269</span></a></div>
+    </div>
+  </nav>
+</header>
+<main id="tb-app">
+
+<section class="tb-hero">
+  <div class="container">
+    <div class="tb-crumbs"><a href="index.html">Home</a> <span aria-hidden="true">→</span> <a href="contingent-staffing.html">Contingent Staffing</a> <span aria-hidden="true">→</span> <span aria-current="page">Talent Bench</span></div>
+    <div class="tb-hero-grid">
+      <div>
+        <div class="eyebrow tb-eyebrow"><span class="tb-live-dot" aria-hidden="true"></span> Updated live from our bench</div>
+        <h1 class="tb-title">Pre-assessed tech talent, <em>ready to deploy</em></h1>
+        <p class="tb-lead">Browse anonymised profiles of engineers and specialists available on contract or contract-to-hire. Filter by vertical, technology, experience and availability, then shortlist and request profiles in one go.</p>
+        <div class="tb-hero-cta">
+          <a class="cta-btn" href="#tb-results">Browse profiles <span aria-hidden="true">↓</span></a>
+          <a class="tb-link js-enquiry" data-enquiry="staffing" href="index.html#contact">Can’t find a fit? Share your requirement</a>
+        </div>
+      </div>
+      <ul class="tb-stats" aria-label="Bench at a glance">
+        <li><strong id="tb-stat-profiles">–</strong><span>Profiles on bench</span></li>
+        <li><strong id="tb-stat-tech">–</strong><span>Technologies</span></li>
+        <li><strong id="tb-stat-now">–</strong><span>Available immediately</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="tb-toolbar-wrap">
+  <div class="container">
+    <div class="tb-toolbar" role="search">
+      <label class="tb-search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="M14.5 14.5L20 20"/></svg>
+        <span class="sr-only">Search profiles</span>
+        <input id="tb-q" type="search" placeholder="Search role, skill or profile ID" autocomplete="off" maxlength="80">
+      </label>
+      <div class="tb-tools">
+        <button type="button" class="tb-filter-btn" id="tb-open-filters" aria-controls="tb-filters" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
+          Filters <span class="tb-badge" id="tb-filter-count" hidden>0</span>
+        </button>
+        <label class="tb-select"><span class="sr-only">Sort by</span>
+          <select id="tb-sort">
+            <option value="relevance">Sort: Recommended</option>
+            <option value="exp-desc">Experience: high to low</option>
+            <option value="exp-asc">Experience: low to high</option>
+            <option value="avail">Soonest available</option>
+            <option value="updated">Recently updated</option>
+          </select>
+        </label>
+        <div class="tb-seg" role="group" aria-label="Currency">
+          <button type="button" data-cur="INR" aria-pressed="true">₹ INR</button>
+          <button type="button" data-cur="USD" aria-pressed="false">$ USD</button>
+        </div>
+        <div class="tb-seg tb-seg-icons" role="group" aria-label="Layout">
+          <button type="button" data-view="grid" aria-pressed="true" title="Card view"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.5"/></svg><span class="sr-only">Card view</span></button>
+          <button type="button" data-view="table" aria-pressed="false" title="Table view"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg><span class="sr-only">Table view</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="tb-verticals" id="tb-verticals" role="group" aria-label="Filter by vertical"></div>
+  </div>
+</div>
+
+<section class="tb-main" id="tb-results">
+  <div class="container tb-layout">
+    <aside class="tb-filters" id="tb-filters" aria-label="Filters">
+      <div class="tb-filters-head">
+        <h2>Filters</h2>
+        <button type="button" class="tb-clear" id="tb-clear">Clear all</button>
+        <button type="button" class="tb-close" id="tb-close-filters" aria-label="Close filters">✕</button>
+      </div>
+      <div class="tb-fgroup">
+        <h3>Technology</h3>
+        <input type="search" class="tb-fsearch" id="tb-tech-q" placeholder="Find a technology" aria-label="Find a technology">
+        <div class="tb-checks" id="tb-f-tech"></div>
+        <button type="button" class="tb-more" id="tb-tech-more" hidden>Show all</button>
+      </div>
+      <div class="tb-fgroup"><h3>Experience</h3><div class="tb-checks" id="tb-f-exp"></div></div>
+      <div class="tb-fgroup"><h3>Availability</h3><div class="tb-checks" id="tb-f-avail"></div></div>
+      <div class="tb-fgroup"><h3>Work mode</h3><div class="tb-checks" id="tb-f-mode"></div></div>
+      <div class="tb-fgroup"><h3>Location</h3><div class="tb-checks" id="tb-f-loc"></div></div>
+      <div class="tb-fgroup" id="tb-budget-group">
+        <h3>Max monthly cost</h3>
+        <input type="range" id="tb-budget" min="0" max="100" step="1" value="100" aria-describedby="tb-budget-val">
+        <div class="tb-budget-row"><span id="tb-budget-val">Any</span><button type="button" class="tb-more" id="tb-budget-reset" hidden>Reset</button></div>
+        <p class="tb-fnote">Profiles with cost on request are always shown.</p>
+      </div>
+      <div class="tb-filters-foot"><button type="button" class="cta-btn" id="tb-apply-filters">Show results</button></div>
+    </aside>
+    <div class="tb-filters-backdrop" id="tb-backdrop" hidden></div>
+
+    <div class="tb-results">
+      <div class="tb-results-head">
+        <p class="tb-count" id="tb-count" aria-live="polite">Loading profiles…</p>
+        <div class="tb-active" id="tb-active"></div>
+      </div>
+
+      <ul class="tb-grid" id="tb-grid" aria-busy="true">
+        <li class="tb-card tb-skel" aria-hidden="true"><i></i><i></i><i></i><i></i></li>
+        <li class="tb-card tb-skel" aria-hidden="true"><i></i><i></i><i></i><i></i></li>
+        <li class="tb-card tb-skel" aria-hidden="true"><i></i><i></i><i></i><i></i></li>
+        <li class="tb-card tb-skel" aria-hidden="true"><i></i><i></i><i></i><i></i></li>
+      </ul>
+      <div class="tb-table-wrap" id="tb-table-wrap" hidden>
+        <table class="tb-table">
+          <thead><tr><th scope="col"><span class="sr-only">Shortlist</span></th><th scope="col">Profile</th><th scope="col">Role &amp; skills</th><th scope="col">Exp.</th><th scope="col">Availability</th><th scope="col">Location</th><th scope="col">Cost / month</th><th scope="col"><span class="sr-only">Request</span></th></tr></thead>
+          <tbody id="tb-tbody"></tbody>
+        </table>
+      </div>
+      <div class="tb-more-wrap"><button type="button" class="cta-btn-alt tb-load-more" id="tb-load-more" hidden>Show more profiles</button></div>
+
+      <div class="tb-state" id="tb-empty" hidden>
+        <h3>No profiles match these filters</h3>
+        <p>Try removing a filter, or tell us what you need. We source pre-assessed talent beyond our bench within days.</p>
+        <div class="tb-state-cta"><button type="button" class="cta-btn-alt" id="tb-empty-clear">Clear filters</button><a class="cta-btn js-enquiry" data-enquiry="staffing" href="index.html#contact">Share your requirement</a></div>
+      </div>
+      <div class="tb-state" id="tb-error" hidden>
+        <h3>We couldn’t load the bench right now</h3>
+        <p>Please try again in a moment, or share your requirement and we’ll send matching profiles.</p>
+        <div class="tb-state-cta"><button type="button" class="cta-btn-alt" id="tb-retry">Try again</button><a class="cta-btn js-enquiry" data-enquiry="staffing" href="index.html#contact">Share your requirement</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tb-how">
+  <div class="container">
+    <h2>From shortlist to onboarding in days</h2>
+    <ol class="tb-steps">
+      <li><span>1</span><h3>Shortlist</h3><p>Pick the profiles that fit. Your shortlist stays on this device while you browse.</p></li>
+      <li><span>2</span><h3>Request</h3><p>Send one request for all shortlisted profiles. We reply within one business day with detailed resumes.</p></li>
+      <li><span>3</span><h3>Interview &amp; onboard</h3><p>Interview on your schedule. We handle contracts, compliance and onboarding, on C2C or C2H.</p></li>
+    </ol>
+  </div>
+</section>
+
+<div class="tb-tray" id="tb-tray" hidden>
+  <div class="container tb-tray-inner">
+    <div class="tb-tray-info"><strong id="tb-tray-count">0 profiles</strong> shortlisted <span class="tb-tray-ids" id="tb-tray-ids"></span></div>
+    <div class="tb-tray-actions"><button type="button" class="tb-link" id="tb-tray-clear">Clear</button><button type="button" class="cta-btn" id="tb-tray-request">Request profiles <span aria-hidden="true">→</span></button></div>
+  </div>
+</div>
+
+<div class="modal-overlay cr-modal" id="enq-modal">
+  <div class="modal-box cr-modal-box" role="dialog" aria-modal="true" aria-labelledby="enq-title">
+    <button type="button" class="modal-close" id="enq-close" aria-label="Close">✕</button>
+    <div id="enq-form-wrap">
+      <div class="cr-modal-head">
+        <div class="eyebrow" id="enq-eyebrow">Submit your requirement</div>
+        <h2 id="enq-title" class="cr-modal-title">Tell us what you need</h2>
+      </div>
+      <form id="enq-form" class="cr-form" data-form="enquiry" novalidate>
+        <div class="hp-field" aria-hidden="true"><label for="enq-f-website">Leave this field empty</label><input id="enq-f-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+        <div class="cr-form-grid">
+          <div class="modal-field cr-span"><label for="enq-f-type">I'm looking for <span aria-hidden="true">*</span></label>
+            <select id="enq-f-type" name="enquiry_type" required>
+              <option value="">Select</option>
+              <option value="staffing">Technology talent (contingent staffing)</option>
+              <option value="hr">People &amp; HR solutions</option>
+            </select>
+          </div>
+          <div class="modal-field"><label for="enq-f-name">Full name <span aria-hidden="true">*</span></label><input id="enq-f-name" name="name" type="text" autocomplete="name" maxlength="100" required></div>
+          <div class="modal-field"><label for="enq-f-company">Company <span aria-hidden="true">*</span></label><input id="enq-f-company" name="company" type="text" autocomplete="organization" maxlength="150" required></div>
+          <div class="modal-field"><label for="enq-f-email">Work email <span aria-hidden="true">*</span></label><input id="enq-f-email" name="email" type="email" autocomplete="email" maxlength="254" required></div>
+          <div class="modal-field"><label for="enq-f-phone">Phone <span aria-hidden="true">*</span></label><input id="enq-f-phone" name="phone" type="tel" autocomplete="tel" maxlength="20" required></div>
+
+          <div class="modal-field cr-span tb-enq-profiles" id="enq-profiles-note" hidden><span class="tb-enq-label">Profiles requested</span><span id="enq-profiles-list"></span><input type="hidden" name="profiles" id="enq-f-profiles"></div>
+          <div class="modal-field cr-span" data-enq="staffing"><label for="enq-f-roles">Role(s) / skills required <span aria-hidden="true">*</span></label><input id="enq-f-roles" name="roles" type="text" maxlength="500" placeholder="e.g. 2 Java developers, 1 DevOps engineer" required></div>
+          <div class="modal-field" data-enq="staffing"><label for="enq-f-positions">Number of positions</label><input id="enq-f-positions" name="positions" type="number" min="1" max="500" inputmode="numeric"></div>
+          <div class="modal-field" data-enq="staffing"><label for="enq-f-model">Engagement model</label>
+            <select id="enq-f-model" name="engagement_model">
+              <option value="">Select</option><option>Contract (C2C)</option><option>Contract-to-hire (C2H)</option><option>Permanent</option><option>Not sure yet</option>
+            </select>
+          </div>
+          <div class="modal-field" data-enq="staffing"><label for="enq-f-location">Work location / mode</label><input id="enq-f-location" name="location" type="text" maxlength="100" placeholder="e.g. Bengaluru, hybrid"></div>
+          <div class="modal-field" data-enq="staffing"><label for="enq-f-start">Needed by</label>
+            <select id="enq-f-start" name="start">
+              <option value="">Select</option><option>Immediately</option><option>Within 2 weeks</option><option>Within a month</option><option>1–3 months</option>
+            </select>
+          </div>
+
+          <div class="modal-field cr-span" data-enq="hr"><label for="enq-f-area">Area of interest <span aria-hidden="true">*</span></label>
+            <select id="enq-f-area" name="hr_area" required>
+              <option value="">Select</option><option>Workforce Strategy &amp; Planning</option><option>HR Outsourcing &amp; Operations</option><option>Organisation &amp; People Transformation</option><option>HR Advisory &amp; Fractional HR Leadership</option><option>HR Tech &amp; AI Adoption</option><option>Not sure yet</option>
+            </select>
+          </div>
+          <div class="modal-field" data-enq="hr"><label for="enq-f-size">Company size</label>
+            <select id="enq-f-size" name="company_size">
+              <option value="">Select</option><option>1–50 employees</option><option>51–200 employees</option><option>201–1,000 employees</option><option>1,000+ employees</option>
+            </select>
+          </div>
+          <div class="modal-field" data-enq="hr"><label for="enq-f-timeline">Timeline</label>
+            <select id="enq-f-timeline" name="timeline">
+              <option value="">Select</option><option>Immediately</option><option>Within a month</option><option>1–3 months</option><option>Just exploring</option>
+            </select>
+          </div>
+
+          <div class="modal-field cr-span"><label for="enq-f-msg" id="enq-f-msg-label">Additional details</label><textarea id="enq-f-msg" name="message" rows="3" maxlength="2000"></textarea></div>
+        </div>
+        <label class="cr-consent"><input type="checkbox" id="enq-f-consent" name="consent" required> I agree to TalNXT storing these details to respond to my enquiry, as described in our <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>.</label>
+        <div class="cf-turnstile-slot"></div>
+        <p class="cr-form-error" id="enq-error" role="alert"></p>
+        <button type="submit" class="cta-btn cr-submit">Submit Requirement <span aria-hidden="true">→</span></button>
+      </form>
+    </div>
+    <div id="enq-thanks" class="cr-thanks" hidden>
+      <span class="cr-thanks-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+      <h2 class="cr-modal-title">Thank you</h2>
+      <p id="enq-thanks-msg"></p>
+      <button type="button" class="cta-btn-alt cr-thanks-close" id="enq-done">Close</button>
+    </div>
+  </div>
+</div>
+
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col footer-brand-col">
+        <a href="index.html" aria-label="TalNXT Technologies home"><img class="footer-logo" src="logo.png" alt="TalNXT Technologies"></a>
+        <p class="footer-tagline">Building Technology Teams. Enabling Business Growth</p>
+        <p class="footer-desc">Pre-assessed technology talent. Flexible engagement. End-to-end workforce support.</p>
+        <div class="footer-social soc-lit">
+          <a class="soc soc-li" href="https://www.linkedin.com/company/talnxt-technologies-private-limited" target="_blank" rel="noopener" aria-label="TalNXT on LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.125 2.062 2.062 0 0 1 0 4.125zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a class="soc soc-fb" href="https://www.facebook.com/talnxt" target="_blank" rel="noopener" aria-label="TalNXT on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg></a>
+          <a class="soc soc-ig" href="https://www.instagram.com/talnxt" target="_blank" rel="noopener" aria-label="TalNXT on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="url(#soc-ig-grad)" stroke-width="2" aria-hidden="true"><defs><linearGradient id="soc-ig-grad" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#FEDA75"/><stop offset=".3" stop-color="#FA7E1E"/><stop offset=".55" stop-color="#D62976"/><stop offset=".8" stop-color="#962FBF"/><stop offset="1" stop-color="#4F5BD5"/></linearGradient></defs><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.3"/><circle cx="17.6" cy="6.4" r=".6" stroke-width="1.6"/></svg></a>
+          <a class="soc soc-yt" href="https://www.youtube.com/@talnxt" target="_blank" rel="noopener" aria-label="TalNXT on YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        </div>
+      </div>
+      <nav class="footer-col" aria-labelledby="ft-staff">
+        <div class="footer-heading" id="ft-staff">Contingent Staffing</div>
+        <ul class="footer-links-list">
+          <li><a href="contingent-staffing.html">Contingent Staffing</a></li>
+          <li><a href="talent-bench.html">Talent Bench</a></li>
+          <li><a href="index.html#c2c">C2C Staffing</a></li>
+          <li><a href="index.html#c2h">C2H Staffing</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-col" aria-labelledby="ft-hr">
+        <div class="footer-heading" id="ft-hr">People &amp; HR Solutions</div>
+        <ul class="footer-links-list">
+          <li><a href="workforce-strategy-planning.html">Workforce Strategy &amp; Planning</a></li>
+          <li><a href="people-hr-solutions.html#hr-outsourcing">HR Outsourcing &amp; Operations</a></li>
+          <li><a href="organization-people-transformation.html">Organisation &amp; People Transformation</a></li>
+          <li><a href="people-hr-solutions.html#hr-advisory">HR Advisory &amp; Fractional HR Leadership</a></li>
+          <li><a href="people-hr-solutions.html#hr-tech-ai">HR Tech &amp; AI Adoption</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-col" aria-labelledby="ft-company">
+        <div class="footer-heading" id="ft-company">Company</div>
+        <ul class="footer-links-list">
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="careers.html">Careers</a></li>
+          <li><a href="candidates.html">For Candidates</a></li>
+          <li><a href="thought-leadership.html">Thought Leadership</a></li>
+          <li><a href="index.html#contact">Contact Us</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <div>&copy; <span id="year">2026</span> TalNXT Technologies. All rights reserved.</div>
+      <nav class="footer-legal" aria-label="Legal"><a href="privacy.html">Privacy Policy</a></nav>
+    </div>
+  </div>
+</footer>
+<script src="js/forms.js"></script>
+<script src="js/main.js"></script>
+<script src="js/bench.js"></script>
+</body>
+</html>

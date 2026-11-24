@@ -18,6 +18,11 @@ export interface Env {
   /** Optional folder inside the resume library, e.g. "Applications". */
   RESUME_FOLDER_PATH?: string;
 
+  /** "Bench Profiles" list for the Talent Bench page (optional; GET /api/bench returns 503 until set). */
+  BENCH_LIST_ID?: string;
+  /** Long random key for /api/bench?refresh=<key> (falls back to LINKEDIN_SETUP_KEY). */
+  BENCH_REFRESH_KEY?: string;
+
   MAIL_FROM: string;
   /** Recruiter inbox; may be a comma-separated list. */
   MAIL_TO: string;

@@ -23,6 +23,11 @@ RESUME_DRIVE_ID=b!replace-me
 # Optional folder inside the resume library, e.g. "Applications". Leave empty for the library root.
 RESUME_FOLDER_PATH=
 
+# Talent Bench (optional; docs/SETUP.md section 12). The "Bench Profiles" list on the same site.
+BENCH_LIST_ID=
+# Long random key for /api/bench?refresh=<key>. Falls back to LINKEDIN_SETUP_KEY when empty.
+BENCH_REFRESH_KEY=
+
 # Mail: the mailbox that sends (a shared mailbox is fine) and the recruiter inbox that receives notifications.
 MAIL_FROM=careers@example.com
 MAIL_TO=recruiter@example.com

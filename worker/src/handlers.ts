@@ -1,10 +1,11 @@
-import { candidateAck, enquiryAck, notificationEmail } from './emails';
+import { candidateAck, digitalEnquiryAck, enquiryAck, notificationEmail } from './emails';
 import { isDryRun, type Env } from './env';
 import { detectResumeType, extensionOf, MAX_RESUME_BYTES } from './filetype';
 import { createListItem, recipients, sendMail, uploadFile, type ListFields, type MailMessage } from './graph';
 import { ApiError, logEvent } from './http';
 import {
   CANDIDATE_RULES,
+  DIGITAL_ENQUIRY_RULES,
   ENQUIRY_BASE_RULES,
   ENQUIRY_HR_RULES,
   ENQUIRY_STAFFING_RULES,
@@ -99,6 +100,7 @@ export const enquiry: Handler = {
       HrArea: v.hr_area,
       CompanySize: v.company_size,
       Timeline: v.timeline,
+      RequestedProfiles: v.profiles,
       Message: v.message,
       SourcePage: v.page,
       ConsentGiven: true,
@@ -108,13 +110,14 @@ export const enquiry: Handler = {
       to: recipients(c.env.MAIL_TO),
       replyTo: v.email ?? '',
       submissionId: c.submissionId,
-      subject: `New ${isHr ? 'HR' : 'staffing'} enquiry: ${v.company}`,
+      subject: v.profiles ? `New Talent Bench request: ${v.company} (${v.profiles})` : `New ${isHr ? 'HR' : 'staffing'} enquiry: ${v.company}`,
       heading: `New ${isHr ? 'People & HR' : 'staffing'} enquiry`,
       rows: [
         ['Name', v.name],
         ['Company', v.company],
         ['Email', v.email],
         ['Phone', v.phone],
+        ['Requested bench profiles', v.profiles],
         ['Role(s) / skills', v.roles],
         ['Positions', v.positions],
         ['Engagement model', v.engagement_model],
@@ -129,6 +132,63 @@ export const enquiry: Handler = {
     });
 
     await storeAndNotify(c, c.env.ENQUIRY_LIST_ID, fields, notification, enquiryAck(v.email ?? '', c.siteUrl), 'enquiry');
+  },
+};
+
+// --- TalNXT Digital enquiry (talnxtdigital.com contact form) -----------------
+
+/*
+ * Saved in the same "Website Enquiries" list with EnquiryType "Digital", and notified to the
+ * same MAIL_TO inbox from the same MAIL_FROM mailbox as the TalNXT enquiries.
+ * Needs two extra list columns, CloudPlatform and ServiceInterest (docs/SETUP.md, section 11).
+ */
+export const digitalEnquiry: Handler = {
+  async validate(form) {
+    const { values, errors } = validateFields(form, DIGITAL_ENQUIRY_RULES);
+    requireConsent(form, errors);
+    if (Object.keys(errors).length) fail(errors);
+    return { values } satisfies EnquiryInput;
+  },
+
+  async process(input, c) {
+    const { values: v } = input as EnquiryInput;
+    if (isDryRun(c.env)) {
+      logEvent('info', 'dry_run_digital_enquiry', { id: c.submissionId });
+      return;
+    }
+
+    const fields: ListFields = {
+      Title: v.company || v.name,
+      SubmissionId: c.submissionId,
+      EnquiryType: 'Digital',
+      FullName: v.name,
+      Company: v.company,
+      Email: v.email,
+      CloudPlatform: v.platform,
+      ServiceInterest: v.interest,
+      Message: v.message,
+      SourcePage: v.page ? `talnxtdigital.com${v.page}` : 'talnxtdigital.com',
+      ConsentGiven: true,
+    };
+
+    const notification = notificationEmail({
+      to: recipients(c.env.MAIL_TO),
+      replyTo: v.email ?? '',
+      submissionId: c.submissionId,
+      subject: `New TalNXT Digital enquiry: ${v.company || v.name}`,
+      heading: 'New TalNXT Digital enquiry',
+      rows: [
+        ['Name', v.name],
+        ['Company', v.company],
+        ['Email', v.email],
+        ['Cloud platform', v.platform || 'Not sure yet'],
+        ['Interested in', v.interest || 'Not sure yet'],
+        ['Details', v.message],
+        ['Submitted from', `talnxtdigital.com${v.page ?? ''}`],
+      ],
+    });
+
+    await storeAndNotify(c, c.env.ENQUIRY_LIST_ID, fields, notification, digitalEnquiryAck(v.email ?? ''), 'digital_enquiry');
   },
 };
 
